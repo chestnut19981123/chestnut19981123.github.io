@@ -123,7 +123,7 @@ Expected: 5 个 `rm 'source/img/xxx.jpg'` 输出，无报错。
 - [ ] **Step 2: 全仓库（排除构建产物与主题）确认无残留引用**
 
 Run: `grep -rn --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=public --exclude-dir=themes "top_img.jpg\|archive_img.jpg\|tag_img.jpg\|category_img.jpg\|about_img.jpg" .`
-Expected: 无任何输出。
+Expected: 仅命中 `docs/superpowers/specs/2026-08-01-remove-banners-design.md` 与 `docs/superpowers/plans/2026-08-01-remove-banners.md` 两处（计划文档对变更对象本身的描述性提及，属预期内）；`_config*.yml` 与 `source/` 内必须零命中。
 
 - [ ] **Step 3: 确认其余图片不受影响**
 
