@@ -29,6 +29,8 @@ tag_img: false
 category_img: false
 ```
 
+> 关于页不在此列：Butterfly 没有 `about_img` 配置键，它的横幅来自页面自身前注，由第 2 节处理。
+
 ### 2. 静态页面前注：`top_img: false`
 
 - `source/tags/index.md`（原 `top_img: '/img/tag_img.jpg'`）
@@ -43,7 +45,13 @@ category_img: false
 
 ### 4. 删除图片文件（`source/img/`）
 
-- `top_img.jpg`、`archive_img.jpg`、`tag_img.jpg`、`category_img.jpg`、`about_img.jpg`
+| 文件 | 原引用来源 |
+|------|-----------|
+| `top_img.jpg` | `_config.butterfly.yml` 的 `index_img` |
+| `archive_img.jpg` | `_config.butterfly.yml` 的 `archive_img` |
+| `tag_img.jpg` | `_config.butterfly.yml` 的 `tag_img` + `source/tags/index.md` 前注 |
+| `category_img.jpg` | `_config.butterfly.yml` 的 `category_img` + `source/categories/index.md` 前注 |
+| `about_img.jpg` | `source/about/index.md` 前注 |
 
 已确认这 5 张图仅被上述配置/前注引用，无其他引用点，可安全删除。
 
