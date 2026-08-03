@@ -6,28 +6,29 @@ date: 2025-03-16 20:40:26
 cover: cover.png
 ---
 
+这是一份 Spring 学习笔记，从 IoC、AOP 到 Spring MVC、Spring Boot 再到 SSM 整合，入门需要的内容基本都覆盖了。代码可以直接抄，注释都写在旁边了，有疑问欢迎评论区交流。
+
 ## 概述
 
 1. 官网：https://spring.io/（文档：https://spring.io/projects/spring-framework#learn）
-2. Spring框架：一个支持快速开发Java EE应用程序的框架。
+2. Spring框架：让 Java EE 开发快起来的框架。
 3. Spring体系结构：
 
 ![spring-overview](spring-overview.png)
 
-4. **I**nversion **o**f **C**ontrol：将创建对象的权力交给框架，包括依赖注入（Dependency Injection）和依赖查找（Dependency Lookup）。
+4. **I**nversion **o**f **C**ontrol（控制反转）：把"谁来创建对象"这件事交给框架，具体包含依赖注入（Dependency Injection）和依赖查找（Dependency Lookup）。简单说，对象不再自己 new 自己，而是等框架送上门。
 
    ![container magic](container-magic.png)
 
-   应用对象与配置数据相结合，在`ApplicationContext`被创建和初始化之后即可拥有一个完全配置且可执行的系统。
+   应用对象与配置数据一结合，`ApplicationContext` 一创建，一个完整可运行的系统就绪了——框架把活都干完了。
 
-5. Bean：可重用组件，Ioc容器管理对象为Bean。Bean的属性有Class，Name，Scope等。
+5. Bean：可重用的组件。被 IoC 容器管起来的对象都叫 Bean，常见属性有 Class、Name、Scope 等。
 
-6. **A**spect **O**riented **P**rogramming：将程序重复代码抽取出来，在需要执行时采用动态代理技术，在不修改源码的基础上对已有方法增强。
+6. **A**spect **O**riented **P**rogramming（面向切面编程）：把重复代码抽出来，需要时用动态代理"插"回去——不改源码，照样给已有方法增强。日志、事务这类横切逻辑是它的主场。
 
 ## 安装
 
-* 将对应[`jar`文件](https://repo.spring.io/ui/native/libs-release-local/org/springframework/spring)置于类路径（`classpath`）中即可
-* 使用Maven构建工程，`pom.xml`中导入依赖
+装依赖有两种姿势：要么手动把 [jar 包](https://repo.spring.io/ui/native/libs-release-local/org/springframework/spring) 扔进 classpath，要么用 Maven 在 `pom.xml` 里声明。现在基本都用后者，下面按功能分类列一下常用依赖：
 
 IoC：
 
@@ -94,6 +95,8 @@ SpringMVC：
 ## Spring配置
 
 ### XML配置
+
+早期 Spring 全靠 XML 配置文件撑场面，现在注解虽然成了主流，但 XML 还是经常见到——老项目里、面试题里都是它。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -232,6 +235,8 @@ public class AppConfig  {
 
 
 ##  IoC
+
+IoC 容器有两个主要实现类，记住区别就行：`ApplicationContext` 一创建就把对象全部造好（立即加载），`BeanFactory` 要等用到的时候才造（延迟加载）。
 
 * `ApplicationContext`
   * `ClassPathXmlApplicationContext`加载类路径下配置文件创建容器
@@ -593,6 +598,8 @@ public class ExampleBean {
 
 ## AOP
 
+AOP 的概念术语不少，初次接触容易晕。先把下面这串名词过一遍，后面声明切面、切点、通知就顺了：
+
 * 概念
 
   - Aspect：切面，即一个横跨多个核心逻辑的功能，或者称之为系统关注点
@@ -851,6 +858,8 @@ public class AdminServiceImpl implements AdminService {
 ```
 
 ## Spring MVC
+
+Spring MVC 是 Web 层的 MVC 框架。先认识它的几个核心组件，再看请求是怎么流转的：
 
 * 组件：
 
@@ -1514,6 +1523,8 @@ public class ProjectExceptionAdvice {
 
 ## Spring Boot
 
+Spring 传统开发最让人头疼的就是配置和依赖，Spring Boot 就是为了解决这俩痛点来的。
+
 * Spring Boot文档：https://spring.io/projects/spring-boot#learn
 * Spring传统缺点：
   * 配置繁琐：SpringBoot采用自动配置技术
@@ -1678,6 +1689,8 @@ spring:
 4. classpath:/类路径的根目录
 
 ## SSM整合
+
+SSM = Spring + SpringMVC + Mybatis，老三样了。整合思路其实就一句话：各管各的——Spring 管对象，SpringMVC 管请求，Mybatis 管数据库，再把它们串起来。下面是完整步骤：
 
 ### 环境搭建
 
@@ -2265,6 +2278,8 @@ private AdminService adminService;
 
 ### 环境搭建
 
+前面讲了 Spring Boot 的概念，这里是实战：从零搭一个能跑的 Spring Boot 项目。
+
 1. 导入父工程、起步依赖以及插件
 
 ```xml
@@ -2495,3 +2510,5 @@ mybatis-plus:
 
 4. 编写持久层接口（若使用Mybatis Plus则可直接继承`BaseMapper<T>`），**需使用`@Mapper`注解标明此类**（dao/mapper）
 5. 编写持久层类方法注解或持久层类的映射配置文件
+
+差不多就这些，从 Spring 到 Spring Boot 的常见内容都过了一遍。祝写代码不报错——真有报错的话，就交给 agent 工具吧。
