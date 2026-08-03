@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 430" width="800" height="430">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <!-- 三层架构 -->
+  <rect x="200" y="30" width="400" height="72" rx="14" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+  <text x="400" y="63" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="22" fill="#1e293b" text-anchor="middle" dominant-baseline="middle" style="font-weight:600">博客文章页</text>
+  <text x="400" y="90" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#64748b" text-anchor="middle" dominant-baseline="middle">读者在页面底部写评论</text>
+
+  <rect x="200" y="180" width="400" height="72" rx="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="400" y="213" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="22" fill="#1e293b" text-anchor="middle" dominant-baseline="middle" style="font-weight:600">Giscus 组件</text>
+  <text x="400" y="240" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#64748b" text-anchor="middle" dominant-baseline="middle">giscus client.js · GitHub 登录 · 配置来自 giscus.app</text>
+
+  <rect x="200" y="330" width="400" height="72" rx="14" fill="#fff7ed" stroke="#f97316" stroke-width="2.5"/>
+  <text x="400" y="363" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="22" fill="#1e293b" text-anchor="middle" dominant-baseline="middle" style="font-weight:600">GitHub Discussions</text>
+  <text x="400" y="390" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#64748b" text-anchor="middle" dominant-baseline="middle">评论存进仓库 · 一条文章对应一条 Discussion</text>
+
+  <!-- 双向箭头 -->
+  <line x1="400" y1="102" x2="400" y2="180" stroke="#64748b" stroke-width="2.5" marker-start="url(#arr)" marker-end="url(#arr)"/>
+  <line x1="400" y1="252" x2="400" y2="330" stroke="#64748b" stroke-width="2.5" marker-start="url(#arr)" marker-end="url(#arr)"/>
+
+  <!-- 侧边标注 -->
+  <text x="90" y="66" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#64748b" text-anchor="end" dominant-baseline="middle">浏览器</text>
+  <text x="90" y="216" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#64748b" text-anchor="end" dominant-baseline="middle">GitHub</text>
+  <text x="90" y="366" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#64748b" text-anchor="end" dominant-baseline="middle">GitHub</text>
+</svg>
