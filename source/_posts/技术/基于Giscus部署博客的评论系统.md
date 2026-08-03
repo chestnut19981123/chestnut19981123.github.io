@@ -1,5 +1,6 @@
 ---
 title: 基于Giscus部署博客的评论系统
+cover: cover.jpg
 categories: '技术'
 tags: ['博客', '评论', 'Giscus']
 date: 2026-08-03 09:30:00
