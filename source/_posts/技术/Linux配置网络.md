@@ -7,82 +7,84 @@ cover: cover.png
 ---
 ## 连接网络
 
-在这个万物互联的时代，几乎所有的操作系统都要连接网络。网络连接通常采用有线和无线两种方式。通常，家庭或办公室的典型网络设置如下：
+现在这个时代，谁离得开网络呢。连接网络的方式无非两种：有线、无线。家庭或办公室的典型布局是这样的链路：
 
 * 调制解调器连接到ISP：调制解调器从ISP接收互联网信号。
 * 调制解调器连接到路由器：通过网线，将调制解调器连接到路由器的WAN端口。
 * 路由器连接到本地设备：路由器通过有线或无线方式连接到本地的计算机、手机或其他设备。
 
-下文将以该网络设置为基础介绍Linux系统连接网络的方法。在Linux系统中，物理机可以使用`nmcli`工具实现网络的连接，而虚拟机可以通过虚拟机软件配置实现上网。
+下文就按这套布局来。在 Linux 中，物理机联网靠 `nmcli` 这个命令行工具，虚拟机则直接在虚拟机软件里配置。
 
 ### 有线方式
 
-采用有线方式连接网络，需要用网线将设备与路由器LAN口相连，步骤如下：
+有线就简单了：找根网线，一头插电脑，另一头插路由器的 LAN 口，然后：
 
-1. 确保网卡存在以及驱动正确安装，可使用以下命令查看网络接口，有线网络接口的名称一般以`eth`或`en`开头。
+1. 先确认网卡存在、驱动正常，用下面这条命令查看网络接口（有线接口的名字一般以 `eth` 或 `en` 开头）。
 
 ```bash
 ip a
 ```
 
-> 现代Linux系统推荐使用`ip`命令，`ip a`命令中的`a`为`address`，使用`ip a`、`ip addr`、`ip address`的效果是一致的。不仅如此，对于下文介绍的`nmcli`命令后的单词也可以使用缩写，例如`nmcli c`、`nmcli con`、`nmcli connection`的含义一致。
+> 这里插一句：现代 Linux 推荐用 `ip` 命令，`ip a` 里的 `a` 是 `address` 的缩写，`ip a`、`ip addr`、`ip address` 三兄弟效果一样。`nmcli` 后面的单词也支持缩写，`nmcli c`、`nmcli con`、`nmcli connection` 都是一家人。
 
-2. 确保设备与路由器的LAN口相连。在插入网线的情况下，Linux系统会自动检测到有线连接并尝试获取IP地址。如果没有自动连接，可使用以下命令手动请求IP地址。
+2. 网线插好后，Linux 一般会自动检测到连接并尝试获取 IP。要是它没反应，就手动请求一下。NetworkManager 环境（多数桌面发行版）用：
 
 ```bash
-sudo dhclient <interface>
+nmcli device connect <interface>
 ```
+
+传统环境也可以用 `sudo dhclient <interface>`——不过新发行版（如 Ubuntu 23.10+、Debian 12+）默认已不带 dhclient 了。
 
 ### 无线方式
 
-采用无线方式连接网络，可以通过`nmcli`工具实现，步骤如下：
+无线就全靠 `nmcli` 了，步骤稍微多一点：
 
-1. 确保网卡存在以及驱动正确安装，可使用以下命令查看网络接口，无线网络接口的名称一般以`wlan`或`wlp`开头。
+1. 先确认网卡存在、驱动正常，用下面这条命令查看网络接口（无线接口的名字一般以 `wlan` 或 `wlp` 开头）。
 
 ```bash
 ip a
 ```
 
-2. 确保无线设备已被启用。
+2. 确认无线网卡已启用。
 
 ```bash
 sudo ip link set <interface> up
 ```
 
-3. 开启WLAN。
+3. 把 Wi-Fi 开关打开。
 
 ```bash
 nmcli radio wifi on
 ```
 
-4. 查看热点。
+4. 看看周围有哪些 Wi-Fi。
 
 ```bash
 nmcli device wifi list
 ```
 
-这里的热点列表会以信号强度由强到弱进行排序显示。
+列表会按信号强度从强到弱排序，一眼就能看到该连哪个。
 
 ![热点列表](热点列表.png)
 
-5. 连接热点。
+5. 连上去。
 
 ```bash
 nmcli device wifi connect <SSID> --ask
 ```
 
-> 如果你不介意密码以明文显示，可以使用`nmcli device wifi connect <SSID> password <password>`。`--ask`选项会要求你交互式输入密码，安全性更高，这也是本文推荐的方式。
+> 不想交互式输密码的话，也可以把密码直接写在命令里，代价是密码会以明文形式留在终端历史中。`--ask` 会提示你交互输入，更安全，本文推荐这种方式。
 
 ### 网络模式
 
-对于虚拟机而言，虚拟机的网络通常由虚拟机软件进行管理。通常，虚拟机的网络模式包含：
+虚拟机的网络由虚拟机软件管理，常见模式有这几种：
 
 * NAT模式：虚拟机通过宿主机的IP地址和端口与外部网络通信。
 * 桥接模式：虚拟机直接连接到物理网络，就像一台独立的物理主机。
 * 内部网络：多个虚拟机之间可以相互通信，但不能与宿主机或外部网络通信。
 * 仅主机模式：虚拟机只能与宿主机通信，不能访问外部网络。
 
-这4种方式中，只有前两种方法可以访问互联网，我们需要根据实际使用需求在虚拟机软件中进行相应配置。对于这几种模式的区别和联系，可以观看下面技术蛋老师的[视频](https://www.bilibili.com/video/BV11M4y1J7zP)了解。
+前两种能访问互联网，后两种只能在小圈子里自嗨。具体选哪种，看需求来，在虚拟机软件里配置即可。模式之间的区别和联系，可以看技术蛋老师的[视频](https://www.bilibili.com/video/BV11M4y1J7zP)：
 
 <iframe style="width: 100%; aspect-ratio: 16/9;" src="//player.bilibili.com/player.html?bvid=BV11M4y1J7zP&poster=1&autoplay=0" frameborder="no" scrolling="no"></iframe>
 
@@ -92,24 +94,22 @@ nmcli device wifi connect <SSID> --ask
 
 ## 静态地址
 
-设置静态地址是Linux系统中的常见操作之一，特别是在虚拟机中十分常见。设置静态IP地址后，可以使用`ssh`连接固定的IP地址，从而对虚拟机进行访问。通常，网络中分配IP地址的方式包含：
+为什么要设静态 IP？因为 IP 一变，`ssh` 连接就找不到人了，虚拟机场景里尤其常见。IP 分配通常有两种方式：
 
 * DHCP：通过DHCP服务器自动分配IP地址和配置其他网络参数。
 * 静态地址：手动分配IP地址和配置其他网络参数，设备的IP地址在配置后不会改变。
 
-下文将介绍设置静态IP地址的方法。在Linux系统中，可以使用`nmcli`工具绑定静态IP地址。
+下面介绍用 `nmcli` 绑定静态 IP 的方法。
 
 ### 有线连接
 
-采用有线方式连接的网络，可以通过`nmcli`工具实现静态地址绑定，步骤如下：
-
-1. 确定网络接口名称，可使用以下命令查看网络接口，有线网络接口的名称一般以`eth`或`en`开头。
+1. 先确认接口名（有线接口一般以 `eth` 或 `en` 开头）：
 
 ```bash
 ip a
 ```
 
-在这一步可确定当前所属的网络，通过接口信息中的`inet`这一行所显示的内容而确定。例如如下信息：
+顺便在这一步确定当前网络，看接口信息里 `inet` 那一行。例如：
 
 ```
 ...
@@ -122,15 +122,15 @@ ip a
 ...
 ```
 
-从上述信息可以看出，当前所属网络为`192.168.31.0/24`，除去网络地址`192.168.31.0`、广播地址`192.168.31.255`和网关地址`192.168.31.1`外，其余地址均为可选的IP地址，也就是`192.168.31.2`~`192.168.31.254`，一般情况下选择当前地址`192.168.31.102`即可。除此之外，也可以通过路由器配置或虚拟机配置确定网络地址。
+这段输出告诉我们网络是 `192.168.31.0/24`：去掉网络地址 `192.168.31.0`、广播地址 `192.168.31.255` 和网关 `192.168.31.1`，剩下的 `192.168.31.2`~`192.168.31.254` 都能选，一般直接用当前的 `192.168.31.102` 就行。也可以去路由器或虚拟机配置里确认网络地址。
 
-2. 确定有线连接名称，可使用以下命令查看已有连接，该连接名称需要与上一步查看的接口名称相关联。
+2. 查一下已有连接的名字（要和上一步的接口对应上）：
 
 ```bash
 nmcli connection show
 ```
 
-3. 设置静态连接所需的IP地址、网关以及DNS等信息。
+3. 然后设置 IP、网关和 DNS：
 
 ```bash
 nmcli connection modify <connection> ipv4.method manual ipv4.addresses <address> ipv4.gateway <gateway> ipv4.dns <dns>
@@ -143,13 +143,13 @@ nmcli connection modify <connection> ipv4.method manual ipv4.addresses <address>
 * `gateway`：网关地址为`192.168.31.1`。该地址的主机部分通常为`1`，这也是访问路由器管理界面的地址。
 * `dns`：DNS服务器地址建议选择`8.8.8.8`或`8.8.4.4`，选择网关地址通常也是可行的。
 
-4. 停用连接。
+4. 先停用连接：
 
 ```bash
 nmcli connection down <connection>
 ```
 
-5. 启用连接，启用后可再次使用`ip a`查看网络地址。
+5. 再启用连接，之后用 `ip a` 看看地址对不对：
 
 ```bash
 nmcli connection up <connection>
@@ -157,7 +157,7 @@ nmcli connection up <connection>
 
 ### 无线连接
 
-采用无线方式连接的网络，其配置方式与有线连接基本一致，步骤如下：
+无线连接和有线差不多，照着来一遍就行：
 
 1. 确定网络接口名称，可使用以下命令查看网络接口，无线网络接口的名称一般以`wlan`或`wlp`开头。
 
@@ -191,9 +191,14 @@ nmcli connection up <connection>
 
 ### 重置连接
 
-如果设置静态IP后悔了，可以使用`nmcli connection modify <connection> ipv4.method auto`来取消静态IP，然后再次使用`nmcli connection down <connection> && nmcli connection up <connection>`来重新启用连接。这样子做当然没有问题，但可能会导致使用`ip a`时出现两个IPv4地址。
+设完静态 IP 后悔了？一条命令切回自动获取，再重启连接就行：
 
-如果你想更彻底地清除相关连接的配置，达到重置网络连接的目的，步骤如下：
+```bash
+nmcli connection modify <connection> ipv4.method auto
+nmcli connection down <connection> && nmcli connection up <connection>
+```
+
+不过这样操作后，`ip a` 里可能出现两个 IPv4 地址，看着有点吓人，其实问题不大。想彻底重置的话，按下面的步骤来：
 
 1. 确定网络接口名称，可使用以下命令查看网络接口。
 
@@ -207,13 +212,13 @@ ip a
 nmcli connection show
 ```
 
-3. 删除指定的连接。这一步类似于在手机中我们点击了“忘记网络”。
+3. 把连接删掉——就像手机里点"忘记这个网络"一样。
 
 ```bash
 nmcli connection delete <connection>
 ```
 
-4. 添加一个新的有线连接或无线连接。
+4. 然后重新添加一个连接。
 
 如果是有线连接，可使用下面的命令添加一个有线连接：
 
@@ -227,52 +232,51 @@ nmcli connection add type ethernet ifname <interface> con-name <connection>
 nmcli device wifi connect <SSID> --ask
 ```
 
-> `nmcli connection add`甚至可以添加一个拨号连接。不过现如今拨号连接大多在光猫或路由器中设置过了，而且也早已不是电脑主流的上网方式。
-
+> 顺带一提，`nmcli connection add` 甚至能添加拨号连接——不过现在拨号大多在光猫/路由器里就设置好了，电脑早就不干这活了。
 
 ## 设置代理
 
-访问网络后，我们需要经常访问Github或其他网址，如果不设置代理的话经常会导致`git clone`失败和其他网络异常情况。下文将介绍三种不同代理的方法，分别适用于不同的环境。这些代理方式如下：
+不设置代理的话，访问 GitHub 这类网站经常出幺蛾子：`git clone` 超时、网页打不开。下面介绍三种代理方式，适用环境不同：
 
 * 用户代理：本地用户代理，针对于单个用户，适用于物理机或云服务器。
 * 全局代理：本地全局代理，针对于整个系统，适用于物理机或云服务器。
 * 外部代理：借助外部软件和外部设备实现代理，适用于虚拟机。
 
-下文将以{% inlineImg 316f5eff3a89/clash.png %}为例介绍设置代理的方法。如果你想获得更好的网络体验，这一步也是不可或缺的。
+下文将以{% inlineImg 316f5eff3a89/clash.png %}为例介绍设置代理的方法。想要丝滑的网络体验，这一步躲不开。
 
 ### 用户代理
 
-用户代理是为单个用户配置相应的代理，其主要通过修改`~/.bashrc`文件实现，步骤如下：
+用户代理只管当前用户，核心就是改 `~/.bashrc`：
 
-1. 准备文件`clash-linux-amd64-v1.18.0.gz`、`Country.mmdb`、`config.yaml`。
-* `clash-linux-amd64-v1.18.0.gz`：从[地址1](https://www.clash.la/releases/)、[地址2](https://github.com/Loyalsoldier/clash-rules/tree/hidden)中获取，选择`linux-amd64`版本的即可。
-* `Country.mmdb`：从[地址3](https://github.com/Dreamacro/maxmind-geoip/releases)中获取。
+1. 准备文件`mihomo-linux-amd64-v1.19.29.gz`、`Country.mmdb`、`config.yaml`。
+* `mihomo-linux-amd64-v1.19.29.gz`：从[地址1](https://github.com/MetaCubeX/mihomo/releases)中获取，选择`linux-amd64`版本即可。mihomo 是 Clash 的开源后继项目（原名 Clash.Meta），原版 Clash 已停止维护。
+* `Country.mmdb`：从[地址2](https://github.com/Loyalsoldier/geoip/releases)中获取。
 * `config.yaml`：从订阅地址中获取，如果下载下来文件后缀是`.yml`，请手动更改为`.yaml`以便后续使用。
 
-`clash-linux-amd64-v1.18.0.gz`是软件自然不必多说。`Country.mmdb`是数据集文件，它可以利用GeoIP2服务能识别互联网用户的地点位置以供规则分流时使用。`config.yaml`是订阅配置文件。这些文件可以通过`wget`或`curl`获取。
+三个文件各有分工：`mihomo` 本体是软件，`Country.mmdb` 是 GeoIP 数据库，用来识别流量的目的地，好让规则分流；`config.yaml` 是订阅配置文件。用 `wget` 或 `curl` 下载就行。
 
 ```bash
 wget <url>
 ```
 
-2. 将可执行文件解压、重命名、并赋予执行权限。
+2. 把可执行文件解压、重命名、赋予执行权限。
 
 ```bash
-gunzip clash-linux-amd64-v1.18.0.gz   # 解压可执行文件
-mv clash-linux-amd64-v1.18.0 clash    # 重命名
-chmod u+x clash                       # 为当前用户赋予执行权限
+gunzip mihomo-linux-amd64-v1.19.29.gz   # 解压可执行文件
+mv mihomo-linux-amd64-v1.19.29 mihomo   # 重命名
+chmod u+x mihomo                        # 为当前用户赋予执行权限
 ```
 
-3. 移动上述3个文件放入指定位置，存放于用户目录下即可。
+3. 把三个文件放进用户目录下的指定位置。
 
 ```bash
-mkdir ~/.config/clash                 # 创建配置文件夹
-cp Country.mmdb ~/.config/clash/      # 复制配置
-cp config.yaml ~/.config/clash/       # 复制配置
-cp clash ~/.local/bin/                # 复制可执行文件
+mkdir ~/.config/mihomo                # 创建配置文件夹
+cp Country.mmdb ~/.config/mihomo/     # 复制配置
+cp config.yaml ~/.config/mihomo/      # 复制配置
+cp mihomo ~/.local/bin/               # 复制可执行文件
 ```
 
-4. 修改终端的启动运行文件，亦即`~/.bashrc`文件。
+4. 打开 `~/.bashrc`（终端的启动文件）：
 
 ```bash
 vim ~/.bashrc
@@ -281,12 +285,12 @@ vim ~/.bashrc
 文件添加内容如下：
 
 ```bash
-if ! pgrep -x "clash" > /dev/null; then
-  nohup ~/.local/bin/clash -d ~/.config/clash > /dev/null 2>&1 &
+if ! pgrep -x "mihomo" > /dev/null; then
+  nohup ~/.local/bin/mihomo -d ~/.config/mihomo > /dev/null 2>&1 &
 fi
 ```
 
-5. 使用`export`和`unset`设置代理。为了方便使用，可继续将以下内容添加至`~/.bashrc`，并对该文件使用`source`使其在当前环境中生效。
+5. 再用 `export`/`unset` 做一个代理开关注入 `~/.bashrc`，`source` 一下让配置生效。
 
 ```bash
 vim ~/.bashrc
@@ -315,7 +319,7 @@ function proxy() {
 proxy on > /dev/null 2>&1
 ```
 
-文件中地址是`127.0.0.1:7890`，其中端口号为`config.yaml`中的`port`选项，通常为`7890`，如有不同则需要将对应文件内容进行替换。
+里面的端口 `7890` 对应 `config.yaml` 里的 `port` 选项，一般就是 7890，不一致的话记得替换。
 
 重新使文件生效：
 
@@ -323,71 +327,71 @@ proxy on > /dev/null 2>&1
 source ~/.bashrc
 ```
 
-自此，使用`proxy on`即可开启代理，使用`proxy off`即可关闭代理。在需要下载新的`config.yaml`时，可以考虑关闭代理。
+从此 `proxy on` 开代理、`proxy off` 关代理。更新订阅配置时，记得先关代理再下载。
 
 ### 全局代理
 
-全局代理是为整个系统配置相应的代理，其主要通过添加`systemd`系统服务实现，这样可以更好地控制其启动、停止和重启，步骤如下：
+全局代理管整个系统，靠 `systemd` 服务实现，好处是启动、停止、重启都方便管理：
 
-1. 准备文件`clash-linux-amd64-v1.18.0.gz`、`Country.mmdb`、`config.yaml`。
-* `clash-linux-amd64-v1.18.0.gz`：从[地址1](https://www.clash.la/releases/)、[地址2](https://github.com/Loyalsoldier/clash-rules/tree/hidden)中获取，选择`linux-amd64`版本的即可。
-* `Country.mmdb`：从[地址3](https://github.com/Dreamacro/maxmind-geoip/releases)中获取。
+1. 准备文件`mihomo-linux-amd64-v1.19.29.gz`、`Country.mmdb`、`config.yaml`。
+* `mihomo-linux-amd64-v1.19.29.gz`：从[地址1](https://github.com/MetaCubeX/mihomo/releases)中获取，选择`linux-amd64`版本即可。mihomo 是 Clash 的开源后继项目（原名 Clash.Meta），原版 Clash 已停止维护。
+* `Country.mmdb`：从[地址2](https://github.com/Loyalsoldier/geoip/releases)中获取。
 * `config.yaml`：从订阅地址中获取，如果下载下来文件后缀是`.yml`，请手动更改为`.yaml`以便后续使用。
 
-2. 将可执行文件解压、重命名、并赋予执行权限。
+2. 把可执行文件解压、重命名、赋予执行权限。
 
 ```bash
-gunzip clash-linux-amd64-v1.18.0.gz   # 解压可执行文件
-mv clash-linux-amd64-v1.18.0 clash    # 重命名
-chmod u+x clash                       # 为当前用户赋予执行权限
+gunzip mihomo-linux-amd64-v1.19.29.gz   # 解压可执行文件
+mv mihomo-linux-amd64-v1.19.29 mihomo   # 重命名
+chmod u+x mihomo                        # 为当前用户赋予执行权限
 ```
 
-3. 移动上述3个文件放入指定位置，需要存放于系统目录下。
+3. 这次要放进系统目录。
 
 ```bash
-sudo mkdir /etc/clash                 # 创建配置文件夹
-sudo cp Country.mmdb /etc/clash/      # 复制配置
-sudo cp config.yaml /etc/clash/       # 复制配置
-sudo cp clash /usr/local/bin/         # 复制可执行文件
+sudo mkdir /etc/mihomo                # 创建配置文件夹
+sudo cp Country.mmdb /etc/mihomo/     # 复制配置
+sudo cp config.yaml /etc/mihomo/      # 复制配置
+sudo cp mihomo /usr/local/bin/        # 复制可执行文件
 ```
 
-4. 创建并编写系统服务文件，并使用`systemctl`设置系统服务。
+4. 创建系统服务文件，用 `systemctl` 管理。
 
 ```bash
-sudoedit /etc/systemd/system/clash.service
+sudoedit /etc/systemd/system/mihomo.service
 ```
 
-> 推荐使用`sudoedit <file>`而不是`sudo vim <file>`。`sudoedit`会根据`EDITOR`环境变量确定需要使用的编辑器。如果你还没有设置过该环境变量的话，可以使用`export EDITOR=vim`，否则将使用默认编辑器，例如`GNU nano`。
+> 推荐用 `sudoedit` 而不是 `sudo vim`——它会跟随 `EDITOR` 环境变量选择编辑器，没设置过的话 `export EDITOR=vim` 即可，否则默认可能是 `GNU nano`。
 
 服务文件内容如下：
 
 ```service
 [Unit]
-Description=Clash daemon, A rule-based proxy in Go.
+Description=Mihomo daemon, A rule-based proxy in Go.
 After=network.target
 
 [Service]
 Type=simple
 Restart=always
-ExecStart=/usr/local/bin/clash -d /etc/clash
+ExecStart=/usr/local/bin/mihomo -d /etc/mihomo
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-设置并启动系统服务：
+注册并启动服务：
 
 ```bash
-sudo systemctl enable clash           # 设置开机自启
-sudo systemctl start clash            # 启动系统服务
-systemctl status clash                # 查看服务状态
+sudo systemctl enable mihomo          # 设置开机自启
+sudo systemctl start mihomo           # 启动系统服务
+systemctl status mihomo               # 查看服务状态
 ```
 
-服务状态显示为`active`即表示运行成功。
+状态显示 `active` 就成了。
 
 ![Clash服务状态](Clash服务状态.png)
 
-5. 使用`export`和`unset`设置代理。为了方便使用，可同样将以下内容添加至`~/.bashrc`，并对该文件使用`source`使其在当前环境中生效。
+5. 代理开关和用户代理一样，加到 `~/.bashrc` 里，`source` 生效。
 
 ```bash
 vim ~/.bashrc
@@ -422,32 +426,34 @@ proxy on > /dev/null 2>&1
 source ~/.bashrc
 ```
 
-同样，使用`proxy on`即可开启代理，使用`proxy off`即可关闭代理。
+同样，`proxy on` 开、`proxy off` 关。
 
 ### 外部代理
 
-外部代理是借助同一网络下外部设备以及外部软件实现的代理。相比于本地代理而言，这种方式可以摆脱订阅的在线设备数量限制，并使得宿主机与虚拟机代理配置保持一致。
+外部代理是让同一网络里的另一台设备（宿主机）帮忙转发流量。好处是绕开订阅的在线设备数量限制，而且宿主机和虚拟机的代理配置还能保持一致。
 
-如果你使用的是虚拟机（特别是WSL）的话，更推荐使用这种方式进行代理，步骤如下：
+用虚拟机（尤其是 WSL）的话，推荐这种方式：
 
-1. 在宿主机安装软件，可从[地址1](https://www.clash.la/releases/)、[地址2](https://github.com/Loyalsoldier/clash-rules/tree/hidden)、[地址3](https://clash.wiki/)中获取。
+1. 在宿主机安装软件，可使用基于 mihomo 内核的图形化客户端，例如 [Clash Verge Rev](https://github.com/clash-verge-rev/clash-verge-rev)，Windows/macOS/Linux 都支持。
 
-2. 在宿主机配置软件，按照图形化操作即可，并且在宿主机软件中**开启局域网访问**。以Windows为例，打开`General`下的`Allow LAN`选项。
+2. 宿主机上按图形界面操作配置，记得**开启局域网访问**（`Allow LAN`）。如果虚拟机连不上，多半是宿主机防火墙拦了代理端口，把对应端口（一般 `7890`）放行即可。
 
 ![允许局域网访问](允许局域网访问.png)
 
-3. 查看宿主机IP地址。在Windows下，使用`ipconfig`命令即可。针对于虚拟机，除过内部网络和仅主机模式无法访问网络外，有两种情况：
+3. 查看宿主机IP地址。在Windows下，使用`ipconfig`命令即可。针对于虚拟机，除了内部网络和仅主机模式无法访问网络外，有两种情况：
 
 * NAT模式：选择宿主机与虚拟机相关的虚拟网卡地址，该地址也可在虚拟机中使用`ip route | grep 'default' | awk '{print $3}' | head -n 1`查看。
 * 桥接模式：选择宿主机上网时所使用的IP地址，这种情况下通常需要对宿主机设置静态IP地址。
 
-4. 在虚拟机中使用`export`和`unset`设置代理。为了方便使用，可同样将以下内容添加至`~/.bashrc`，并对该文件使用`source`使其在当前环境中生效。
+另外，如果 WSL2 开启了镜像网络模式（`.wslconfig` 中的 `networkingMode=mirrored`），宿主机代理直接填 `127.0.0.1:7890` 就行——镜像模式下 localhost 会在 WSL 与 Windows 之间互通；默认的 NAT 模式则要用宿主机 IP。
+
+4. 在虚拟机里把代理开关加到 `~/.bashrc`，`source` 生效。**注意将最后一行进行替换**：
 
 ```bash
 vim ~/.bashrc
 ```
 
-文件添加内容如下，**注意将最后一行进行替换**：
+文件添加内容如下：
 
 ```bash
 function proxy() {
@@ -470,7 +476,7 @@ function proxy() {
 proxy on <address>:<port> > /dev/null 2>&1
 ```
 
-`address`地址当然是上一步查看到宿主机的IP地址，`port`端口号为宿主机`config.yaml`中的`port`选项，通常为`7890`。
+`address` 就是上一步查到的宿主机 IP，`port` 是宿主机 `config.yaml` 里的 `port`，一般 7890。
 
 重新使文件生效：
 
@@ -478,4 +484,16 @@ proxy on <address>:<port> > /dev/null 2>&1
 source ~/.bashrc
 ```
 
-自此，使用`proxy on <address>:<port>`即可开启代理，使用`proxy off`即可关闭代理。配置代理在宿主机中进行即可，由于是采用图形化界面，操作起来也很方便。
+之后 `proxy on <address>:<port>` 开、`proxy off` 关。代理本体配置在宿主机上，图形界面点一点就行，很方便。
+
+## 网络排查
+
+配置完还是连不上？按下面的顺序查一遍，大多数问题都能定位：
+
+1. **网关通不通**：`ping <网关地址>`。不通说明本机到路由器的链路有问题，先查网线、网卡和 IP 配置。
+
+2. **有没有默认路由**：`ip route`，看有没有 `default` 开头的行。没有的话，说明路由没配上，检查静态 IP 的网关设置。
+
+3. **DNS 解析正不正常**：`resolvectl status` 查看 DNS 配置，`ping <域名>` 测试解析。解析不了就换 DNS 服务器（`8.8.8.8`、`223.5.5.5` 都行）。
+
+三步下来，基本能定位是物理链路、路由还是 DNS 的问题。剩下的，就是玄学了。
