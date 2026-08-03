@@ -50,7 +50,7 @@ giscus:
 
 ### 3. 清理 valine 段（第 461-467 行）
 
-删除 `appId` / `appKey` / `serverURLs` 三行（已失效的遗留凭据），其余（`avatar`、`bg`、`visitor`、`option` 等）保留为注释参考。
+删除 `appId` / `appKey` / `serverURLs` 三行（已失效的遗留凭据），段内其余键（`avatar`、`bg`、`visitor`、`option` 等）**原样保留不改动**（valine 段整体不再被加载，保留仅为配置参考）。
 
 ### 4. 最新评论组件
 
