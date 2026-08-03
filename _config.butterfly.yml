@@ -512,6 +512,7 @@ giscus:
     light: light
     dark: dark
   option:
+    data-mapping: title
 
 # Remark42
 # https://remark42.com/docs/configuration/frontend/
