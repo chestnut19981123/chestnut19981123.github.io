@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" width="700" height="700">
+<circle cx="350.0" cy="360.0" r="240.00" fill="#eff6ff" stroke="#93c5fd" stroke-width="3.50" opacity="0.5"/>
+<path d="M 350.0,120.0 350.0,600.0" fill="none" stroke="#94a3b8" stroke-width="2.50" stroke-dasharray="8.0" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 350.0,120.0 142.2,240.0" fill="none" stroke="#94a3b8" stroke-width="2.00" stroke-dasharray="8.0" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 350.0,120.0 557.8,240.0" fill="none" stroke="#94a3b8" stroke-width="2.00" stroke-dasharray="8.0" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 142.2,240.0 350.0,600.0" fill="none" stroke="#3b82f6" stroke-width="3.50" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 350.0,600.0 557.8,240.0" fill="none" stroke="#3b82f6" stroke-width="3.50" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 142.2,240.0 557.8,240.0" fill="none" stroke="#334155" stroke-width="3.50" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="272.1" y="405.0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="30.00" fill="#3b82f6" text-anchor="middle" dominant-baseline="middle" style="font-weight:600">d₁</text>
+<text x="479.9" y="435.0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="30.00" fill="#3b82f6" text-anchor="middle" dominant-baseline="middle" style="font-weight:600">d₂</text>
+<polygon points="142.2,240.0 162.9,228.0 174.9,248.8 154.2,260.8" fill="none" stroke="#334155" stroke-width="2.00" stroke-linejoin="round"/>
+<polygon points="557.8,240.0 537.1,228.0 525.1,248.8 545.8,260.8" fill="none" stroke="#334155" stroke-width="2.00" stroke-linejoin="round"/>
+<path d="M 302.5,517.7 303.6,517.1 304.7,516.5 305.8,515.9 306.9,515.3 308.1,514.8 309.2,514.2 310.3,513.7 311.5,513.2 312.6,512.7 313.8,512.2 315.0,511.7 316.1,511.2 317.3,510.8 318.5,510.4 319.7,510.0 320.9,509.6 322.1,509.2 323.3,508.8 324.5,508.5 325.7,508.2 326.9,507.8 328.2,507.5 329.4,507.3 330.6,507.0 331.9,506.7 333.1,506.5 334.3,506.3 335.6,506.1 336.8,505.9 338.1,505.8 339.3,505.6 340.6,505.5 341.8,505.4 343.1,505.3 344.3,505.2 345.6,505.1 346.9,505.1 348.1,505.0 349.4,505.0 350.6,505.0 351.9,505.0 353.1,505.1 354.4,505.1 355.7,505.2 356.9,505.3 358.2,505.4 359.4,505.5 360.7,505.6 361.9,505.8 363.2,505.9 364.4,506.1 365.7,506.3 366.9,506.5 368.1,506.7 369.4,507.0 370.6,507.3 371.8,507.5 373.1,507.8 374.3,508.2 375.5,508.5 376.7,508.8 377.9,509.2 379.1,509.6 380.3,510.0 381.5,510.4 382.7,510.8 383.9,511.2 385.0,511.7 386.2,512.2 387.4,512.7 388.5,513.2 389.7,513.7 390.8,514.2 391.9,514.8 393.1,515.3 394.2,515.9 395.3,516.5 396.4,517.1 397.5,517.7" fill="none" stroke="#f97316" stroke-width="3.00" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="350.0" cy="120.0" r="6.00" fill="#334155" stroke="#ffffff" stroke-width="0.01"/>
+<text x="350.0" y="86.0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="30.00" fill="#1e293b" text-anchor="middle" dominant-baseline="middle" style="font-weight:600">O</text>
+<circle cx="350.0" cy="600.0" r="6.00" fill="#334155" stroke="#ffffff" stroke-width="0.01"/>
+<text x="350.0" y="634.0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="30.00" fill="#1e293b" text-anchor="middle" dominant-baseline="middle" style="font-weight:600">E</text>
+<circle cx="142.2" cy="240.0" r="6.00" fill="#3b82f6" stroke="#ffffff" stroke-width="0.01"/>
+<text x="108.2" y="240.0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="30.00" fill="#1e293b" text-anchor="end" dominant-baseline="middle" style="font-weight:600">O₁</text>
+<circle cx="557.8" cy="240.0" r="6.00" fill="#f97316" stroke="#ffffff" stroke-width="0.01"/>
+<text x="591.8" y="240.0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="30.00" fill="#1e293b" text-anchor="start" dominant-baseline="middle" style="font-weight:600">O₂</text>
+<text x="376.0" y="490.0" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="30.00" fill="#f97316" text-anchor="start" dominant-baseline="middle" style="font-weight:600">θ</text>
+</svg>
