@@ -41,7 +41,7 @@ category_img: false
 
 ### 3. 文章页（不改动）
 
-文章页横幅取 `page.top_img || page.cover`，保留现状：各篇文章用自己的 `cover` 图做横幅。因此 7 篇文章的 front matter 零改动（其中「常见代码模板」无 cover，本就没有横幅，自动回落到空的 `default_top_img`）。
+文章页横幅取 `page.top_img || page.cover`，保留现状：各篇文章用自己的 `cover` 图做横幅。因此 7 篇文章的 front matter 零改动（其中「常见代码模板」无 cover 字段，由主题 `cover.default_cover` 自动分配共享封面 `/img/cover6.jpg` 作横幅）。
 
 ### 4. 删除图片文件（`source/img/`）
 
