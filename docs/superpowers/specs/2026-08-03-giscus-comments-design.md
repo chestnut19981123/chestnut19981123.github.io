@@ -21,7 +21,7 @@
 
 Giscus 需要三个运行时参数，其中 repo_id 已通过免认证 API 获取（`R_kgDOMEsqYw`），其余需用户完成：
 
-1. **启用 Discussions**：GitHub → 仓库 `li192863/li192863.github.io` → Settings → General → Features → 勾选 Discussions。当前未启用（`/discussions` 返回 404）。
+1. **启用 Discussions**：GitHub → 仓库 `chestnut19981123/chestnut19981123.github.io` → Settings → General → Features → 勾选 Discussions。当前未启用（`/discussions` 返回 404）。
 2. **安装 giscus app**：https://github.com/apps/giscus → Install → 授权到该仓库（需要仓库拥有者操作）。
 3. **获取 category_id**：访问 https://giscus.app/ → 输入仓库名 → 选择一个 Discussion 分类（如 Announcements / General）→ 把生成的 `data-category-id` 值发给实现者（或在配置中选择任意分类，参数由实现者填入）。
 
@@ -39,7 +39,7 @@ use: Giscus
 
 ```yaml
 giscus:
-  repo: li192863/li192863.github.io
+  repo: chestnut19981123/chestnut19981123.github.io
   repo_id: R_kgDOMEsqYw
   category_id: <用户提供>
   theme:

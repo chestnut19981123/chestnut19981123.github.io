@@ -11,7 +11,7 @@
 ## Global Constraints
 
 - 纯使用 Butterfly 主题内置能力，不引入任何自定义代码、CSS 或 JS。
-- Giscus 参数（唯一真源，逐字使用）：`repo: li192863/li192863.github.io`、`repo_id: R_kgDOMEsqYw`、`category_id: DIC_kwDOMEsqY84DCi_i`。
+- Giscus 参数（唯一真源，逐字使用）：`repo: chestnut19981123/chestnut19981123.github.io`、`repo_id: R_kgDOMEsqYw`、`category_id: DIC_kwDOMEsqY84DCi_i`。
 - valine 段仅删除 `appId` / `appKey` / `serverURLs` 三行；段内其余键（`avatar`、`bg`、`visitor`、`option` 等）原样保留不改动。
 - 除上述三段外，`_config.butterfly.yml` 其他任何配置不得改动（尤其 `comments.lazyload: true`、`comments.count: false`、`newest_comments` 段保持原值）。
 - 不修改任何文章、页面内容；不做旧评论迁移。
@@ -49,7 +49,7 @@ giscus:
   option:
 ```
 
-用 Edit 工具，`old_string: "giscus:\n  repo:\n  repo_id:\n  category_id:"`，`new_string: "giscus:\n  repo: li192863/li192863.github.io\n  repo_id: R_kgDOMEsqYw\n  category_id: DIC_kwDOMEsqY84DCi_i"`。`theme` 与 `option` 保持不动。
+用 Edit 工具，`old_string: "giscus:\n  repo:\n  repo_id:\n  category_id:"`，`new_string: "giscus:\n  repo: chestnut19981123/chestnut19981123.github.io\n  repo_id: R_kgDOMEsqYw\n  category_id: DIC_kwDOMEsqY84DCi_i"`。`theme` 与 `option` 保持不动。
 
 - [ ] **Step 3: 删除 valine 段失效凭据**
 
@@ -74,7 +74,7 @@ valine:
 Run: `grep -nE "^(use|repo|repo_id|category_id|appId|appKey|serverURLs):" _config.butterfly.yml`
 Expected:
 - `use: Giscus`
-- `repo: li192863/li192863.github.io`
+- `repo: chestnut19981123/chestnut19981123.github.io`
 - `repo_id: R_kgDOMEsqYw`
 - `category_id: DIC_kwDOMEsqY84DCi_i`
 - `appId:` / `appKey:` / `serverURLs:` 三个键**不再出现**

@@ -37,7 +37,7 @@ highlight_fullpage: true # true: add button to toggle full page
 # formal:
 #   icon: link || the description || color
 social:
-  fab fa-github: https://github.com/li192863 || Github || '#4c4948'
+  fab fa-github: https://github.com/chestnut19981123 || Github || '#4c4948'
   fas fa-envelope: mailto:li1928631@163.com || Email || '#4c4948'
 
 # Image (圖片設置)
@@ -242,7 +242,7 @@ aside:
       enable: true
       icon: fab fa-github
       text: Github主页
-      link: https://github.com/li192863
+      link: https://github.com/chestnut19981123
   card_announcement:
     enable: true
     content: 分享技术与干货，欢迎来到我的博客！
@@ -501,7 +501,7 @@ twikoo:
 # Giscus
 # https://giscus.app/
 giscus:
-  repo: li192863/li192863.github.io
+  repo: chestnut19981123/chestnut19981123.github.io
   repo_id: R_kgDOMEsqYw
   category_id: DIC_kwDOMEsqY84DCi_i
   theme:

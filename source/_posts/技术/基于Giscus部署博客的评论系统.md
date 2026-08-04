@@ -45,7 +45,7 @@ comments:
 
 ```yaml
 giscus:
-  repo: li192863/li192863.github.io
+  repo: chestnut19981123/chestnut19981123.github.io
   repo_id: R_kgDOMEsqYw
   category_id: DIC_kwDOMEsqY84DCi_i
   theme:
