@@ -980,8 +980,10 @@ CDN:
     # giscus:
     # instantpage:
     # instantsearch:
-    # katex:
-    # katex_copytex:
+    # katex 版本需与构建端一致（构建用 katex 0.18.1，0.18 起类名 base/strut 改为 katex-base/katex-strut，
+    # 若 CDN 仍是 0.16.9，其 .base/.strut 规则将失效导致公式布局异常）
+    katex: https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/katex.min.css
+    katex_copytex: https://cdn.jsdelivr.net/npm/katex@0.18.1/dist/contrib/copy-tex.min.js
     # lazyload:
     # local_search:
     # main:
