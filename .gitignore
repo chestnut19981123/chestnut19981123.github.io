@@ -138,3 +138,5 @@ public/
 _multiconfig.yml
 # 设计文档（superpowers）
 docs/superpowers/
+# 视觉伴侣临时文件
+.superpowers/
