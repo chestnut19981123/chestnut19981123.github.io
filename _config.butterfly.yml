@@ -179,6 +179,9 @@ reward:
   enable: true
   text: 请我喝咖啡
   QR_code:
+    - img: /img/wechat.png
+      link:
+      text: 微信
     - img: /img/alipay.png
       link:
       text: 支付宝
