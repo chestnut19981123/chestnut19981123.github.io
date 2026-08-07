@@ -264,6 +264,34 @@ GrepTool: Tool = build_tool(
 
 顺带一提 prompt caching：系统提示、工具定义这些每一轮都一样的内容，其实不用每次从头算——相同前缀的 token 直接复用缓存结果，省时间也省钱。
 
+### 压缩是怎么触发的
+
+三种策略里，「压缩」最有技术含量，值得单独钻进去看看——它到底在什么时机触发？是不是像很多人猜的那样「窗口用了 80% 就自动压一压」？还真不是。下面贴一段压缩触发的真实判定代码（`autocompact.py`，和主线无关的细节用 `...` 省掉了）：
+
+```python
+# Thresholds (mirroring TypeScript autoCompact.ts)
+MAX_OUTPUT_TOKENS_FOR_SUMMARY = 20_000      # 压缩摘要最多用这么多 token
+AUTOCOMPACT_BUFFER_TOKENS = 30_000          # 触发压缩要留的缓冲
+AUTOCOMPACT_FLOOR_BUFFER_TOKENS = 13_000
+WARNING_THRESHOLD_BUFFER_TOKENS = 20_000    # 预警档
+ERROR_THRESHOLD_BUFFER_TOKENS = 20_000      # 告急档
+MIN_INPUT_TOKENS_FOR_AUTOCOMPACT = 10_000   # 输入太小不压缩
+
+def should_auto_compact(input_token_count, context_window, *, ...):
+    """Determine whether autocompact should trigger."""
+    if input_token_count < MIN_INPUT_TOKENS_FOR_AUTOCOMPACT:
+        return False
+    threshold = get_auto_compact_threshold(context_window, max_output_tokens)
+    ...
+    return input_token_count >= threshold   # 达到阈值 → 压缩
+```
+
+**触发不是「用了百分之几」，而是一道减法题。** 最后一行 `input_token_count >= threshold` 才是裁决，真正的门道在 `threshold` 怎么算——它藏在被 `...` 省掉的 `get_auto_compact_threshold` 里，是拿上下文窗口**减**出来的：先减去给摘要预留的输出额度（`MAX_OUTPUT_TOKENS_FOR_SUMMARY`，2 万 token），得到「有效窗口」；再减去一段缓冲（`AUTOCOMPACT_BUFFER_TOKENS`，3 万 token，窗口不够大时退到 1.3 万的保底值）。写成公式就是：**压缩阈值 = 有效上下文窗口 − 输出预留 − 缓冲**。为什么要减这两刀？因为压缩不是目的，是手段：触发那次调用，模型要读完整个历史，还得留出位置写摘要——预留的 2 万 token 就是给摘要的输出腾的地方；压缩完，后面还有几十轮对话要跑，窗口不能刚好压满——缓冲就是给后续留的余量。「用了 80% 就压」那种拍脑袋的规则，既没给摘要留空间，也没给后续留余量，一不小心就把窗口卡死在压缩点上。
+
+函数里第一个 `return False` 也很有意思：输入没到 1 万 token（`MIN_INPUT_TOKENS_FOR_AUTOCOMPACT`）直接拒绝——**这是道最小输入门**：对话太短，压出来的摘要比原文还亏，纯属折腾。再往上看那些常量，触发也不是一步到位，而是**三档渐进**：`WARNING_THRESHOLD_BUFFER_TOKENS` 和 `ERROR_THRESHOLD_BUFFER_TOKENS` 各预留 2 万 token，离压缩点还差 2 万 token 时，warning（预警）和 error（告急）两档灯先亮起来，宿主把状态推到 UI 上，用户提前就能看到「上下文快满了」，而不是下一秒猝不及防被压掉；最顶上还有一道 blocking 硬顶（只留 3 千 token 缓冲），到那儿直接卡住，只能手动压缩。提前预警、逐级逼近，而不是一把梭。
+
+那触发之后，压缩到底干了什么？一句话：**调一次 LLM，把旧历史换成一段摘要。** 宿主把要压的消息整理好，附上专门的压缩提示词，发一次模型调用（`...` 里藏着带重试的调用），拿回摘要。划界靠的是 **boundary marker**：压缩时在消息流里插一条「这里压缩过」的边界消息，下次再触发，只取**上一次边界之后**的消息去压——边界之前的早已是摘要，绝不再压一遍。幂等、可叠加：第二次压的是「摘要 + 第一次边界之后的新对话」，一层一层摞上去。压完的消息列表是「摘要 + 保留的最近消息」，摘要消息开头固定一句 "This session is being continued from a previous conversation."——「本会话是从上一次对话续过来的」——然后才是压缩出的正文。模型读到这句就懂：前面的故事都浓缩在这段里了，接着往下干就行。
+
 ## 安全与权限：不会开火的实习生
 
 §2 结尾说，权限是安全性的核心，要单独开一节细说——现在来兑现。§2 里讲过，模型只有建议权，它输出的全是 JSON 请求，动手的永远是宿主。那问题自然就来了：**宿主凭什么听它的？** 万一它哪轮脑子一热，请求「删掉整个数据库」，宿主也得照办？
