@@ -306,6 +306,51 @@ Claude Code 的权限模式、Codex 的 approval 机制，各家长相不同，�
 
 三态之外还有一层兜底：**沙箱**。文件系统只让读写指定目录，网络走代理、受限，命令有白名单有黑名单——把 Agent 关进指定的笼子，就算它真起了坏心思也出不去。这也顺带解释了工具为什么必须设计得「窄而明确」：`read_file`、跑一条命令，边界清清楚楚；「随便执行任何 Python」这种宽工具就危险了，你根本没法预判它会被拿去干嘛。
 
+### 权限是怎么判定的
+
+概念讲完了，落进代码里看看这三道闸门怎么判。下面贴一段真实实现（`permissions/check.py`，类型标注和多余参数都省掉了）：
+
+```python
+# permissions/check.py —— 一次工具调用的权限判定
+def has_permissions_to_use_tool_inner(tool, tool_input, context):
+    deny_rule = get_deny_rule_for_tool(context, tool)    # ① 用户的拒绝规则
+    if deny_rule:
+        return PermissionDenyDecision(behavior="deny")
+
+    ask_rule = get_ask_rule_for_tool(context, tool)      # ② 用户的询问规则
+    if ask_rule:
+        return PermissionAskDecision(behavior="ask")
+
+    return tool.check_permissions(tool_input, context)   # ③ 工具自带检查
+    # ask 是未决态：外层按权限模式变换
+    # dontAsk → deny；bypassPermissions → allow；否则保持 ask 弹窗
+```
+
+**第一处值得玩味的，是判定的优先级：用户的规则永远排在工具自己的检查前面。** 函数一进来先查 deny 规则——你在配置里写过「禁止 Grep 搜 /etc」，这儿立刻返回 deny，执行的机会都没有；再查 ask 规则——你写了「Grep 碰文件先问我」，这儿返回 ask；两条都落空，才轮到工具自带的 `check_permissions`。还记得 §2 里 Grep 定义上挂着的那把 `_grep_check_permissions` 吗？就是这最后一条退路：它是路径级的，默认在当前目录里搜直接放行，`path` 指到项目目录之外就卡住。用户规则优先、工具自律兜底，优先级排好，「谁说了算」就不打架了。
+
+**第二处：`ask` 不是最终答案，而是「未决态」。** 注意函数拿到 ask 规则后并不裁决，当场返回——把皮球踢给了外层。这个未决态按权限模式变换：`dontAsk` 模式（不询问）里，ask 一律翻成拒绝；`bypassPermissions`（前面说的 auto 模式，源码里的正式名字）和 plan 模式直接放行，连弹窗都省了；其余模式才保持 ask，弹窗交给你裁决。同一个 ask 裁决，默认模式弹窗、dontAsk 拒、bypassPermissions 放——模式一变，结局全变，这就是权限可配置的落点。
+
+那么裁决结果在哪一步落地？另一段真实代码（`tool_system/registry.py`，和主线无关的细节用 `...` 省掉了）把位置亮了出来——权限门就立在工具的执行函数门前：
+
+```python
+# tool_system/registry.py —— 权限门：任何工具执行前必经
+decision = has_permissions_to_use_tool(tool, call.input, context.permission_context)
+
+if decision.behavior == "deny":                          # 拒绝：不执行，结果照常回消息
+    return ToolResult(name=tool.name, output={"error": "permission denied"},
+                      is_error=True, tool_use_id=call.tool_use_id)
+
+if decision.behavior == "ask":                           # 询问：交给用户/钩子裁决
+    final, ... = handle_permission_ask(tool.name, decision, handler_cb, ...)
+    if final.behavior == "deny":
+        return ToolResult(..., output={"error": "permission denied by user"},
+                          is_error=True, ...)
+
+result = _invoke_tool_call(tool, call.input, context)    # 允许才执行
+```
+
+**第三处（也是最重要的一处）：权限门只有一道，任何工具执行前必经。** 看调用顺序：先 `has_permissions_to_use_tool` 拿裁决，deny 当场 return `ToolResult`，根本走不到下一行——下一行 `_invoke_tool_call` 才是真正的执行。无论什么工具、什么参数，想动手先过这道门，没有旁路。更妙的是拒绝的姿势：它不抛异常、不中断循环，而是返回一条 `is_error=True` 的 `ToolResult`，带着「permission denied」的字样，当作一次普普通通的工具结果回填进对话——还记得 §1 的不变式吗？消息列表永远是模型视角的完整对话，这条拒绝消息也是对话的一部分。于是模型下一轮读到的不是「宿主崩了」，而是「这次请求被拒了」，它会自己调整策略：换个路径、换个工具，或者干脆停下来跟你解释。整个循环纹丝不动，拒绝只是对话里的一次普通往返。
+
 最后留个钩子：有的宿主还允许在循环的固定时点挂 hooks，每次工具调用前或后插一段自定义检查。原理不复杂，但能做的不少，值得单独开一篇。
 
 ## 收尾：一条指令的完整旅程
