@@ -1,7 +1,7 @@
 """Agent 总纲文章封面：深蓝背景 + 三角循环几何图（LLM→工具→结果）。"""
 import matplotlib
 matplotlib.use("Agg")
-matplotlib.rcParams["font.sans-serif"] = ["WenQuanYi Zen Hei"]
+matplotlib.rcParams["font.sans-serif"] = ["WenQuanYi Zen Hei", "Noto Sans CJK SC", "sans-serif"]
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 from matplotlib.colors import LinearSegmentedColormap
