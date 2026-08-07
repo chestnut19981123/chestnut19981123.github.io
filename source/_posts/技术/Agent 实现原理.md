@@ -167,6 +167,75 @@ while True:                                              # 外层：Agent 循环
 
 `tool_use_id` 把请求和结果对上号——模型读完，进入下一轮推理。这套「请求 + 回填」结构就是 Claude API 消息格式里工具调用的标准形态；§1 伪代码那两行背后发生的事，到这里也全清楚了。
 
+### 工具到底是什么：一个绑定体
+
+上面这套 JSON 往返，是模型眼里看到的世界。绕到宿主后台看一眼：工具在那儿可不是飘在空中的 schema，而是实打实的一个对象。下面贴一个真实的工具数据结构（`build_tool.py`，和主线无关的字段用 `...` 省掉了）：
+
+```python
+@dataclass
+class Tool:                                              # build_tool.py
+    name: str
+    input_schema: Mapping[str, Any]                      # JSON Schema，发给模型
+    call: Callable[[dict[str, Any], ToolContext], ToolResult]   # 真正的执行函数
+    check_permissions: Callable[[dict[str, Any], ToolContext], PermissionResult]
+    is_concurrency_safe: Callable[[dict[str, Any]], bool]
+    is_read_only: Callable[[dict[str, Any]], bool]
+    ...
+```
+
+一眼扫过去，`Tool` 是个普通的数据类，`name`、`input_schema` 俩字段看着眼熟——上一段 JSON 就是从它俩序列化出来的，宿主拿去发给模型当「牌面」。真正干活的都在后面：
+
+- `call`：执行函数，吃进模型给的参数（`dict[str, Any]`）和上下文（`ToolContext`），吐出 `ToolResult`。读文件、跑命令，全在这个回调里。
+- `check_permissions`：执行前的权限检查，返回 `PermissionResult`——放行还是拒绝，先过它这一关。
+- `is_read_only`、`is_concurrency_safe`：两个标记，一个说「只读」，一个说「并发安全」。宿主靠它们决定工具能不能并行、要不要小心伺候。
+
+**所以一个工具，是「声明 + 执行 + 标注」的绑定体**：给模型看的是 `input_schema`，给机器跑的是 `call`，两个灵魂绑在同一个 `Tool` 对象上，谁也离不开谁——schema 写得再漂亮，没有 `call` 就是空壳；`call` 再能打，模型不知道参数长什么样，也没法正确点菜。
+
+光看抽象类不过瘾，再看一个真实工具的完整定义（`tools/grep.py`——§0 里定位 `LoginController.java:42` 的那把刀，长这样）：
+
+```python
+# tools/grep.py —— 一个真实工具的完整定义
+GrepTool: Tool = build_tool(
+    name="Grep",
+    check_permissions=_grep_check_permissions,
+    input_schema={
+        "type": "object",
+        "additionalProperties": False,
+        "properties": {
+            "pattern": {
+                "type": "string",
+                "description": "The regular expression pattern to search for in file contents",
+            },
+            "path": {
+                "type": "string",
+                "description": "File or directory to search in (rg PATH)",
+            },
+            "output_mode": {
+                "type": "string",
+                "enum": ["content", "files_with_matches", "count"],
+            },
+        },
+        "required": ["pattern"],
+    },
+    call=_grep_call,
+    description="A powerful search tool built on ripgrep",
+    is_read_only=lambda _input: True,
+    is_concurrency_safe=lambda _input: True,
+)
+```
+
+几个值得玩味的细节：
+
+- `required` 里只写了 `pattern`：搜索词必填，`path`、`output_mode` 都可选——不写 `path`，默认在当前目录搜。模型提交的参数必须符合这份 schema，牌面之外的点菜，宿主接不住。
+- `is_read_only=lambda _input: True`、`is_concurrency_safe=lambda _input: True`：永远只读、并发安全。Grep 只翻不写，宿主放心让它随便跑，连问都省了。
+- `check_permissions=_grep_check_permissions`：权限检查挂在这儿，Grep 有自己的路径检查，§4 再细说。
+
+看一眼这个定义就明白了：**模型手里只有 `input_schema` 的牌面，执行权在 `call` 里，而 `call` 握在宿主手里。** 声明归声明，执行归执行，分得清清楚楚——这正是权限能管住它的前提。
+
+而前面那套 JSON 往返，还压着一条硬约束：**`tool_use` 和 `tool_result` 必须一一配对。** 在宿主内部，一次工具请求就是 `ToolCall`、`ToolResult` 两个对象的事，靠 `tool_use_id` 串在一起：每条 `tool_use` 都带一个 `id`（`toolu_01ABC`），每条 `tool_result` 用 `tool_use_id` 指回去。宿主下次调 API 时，消息列表里任何一条 `tool_use` 都得有对应的 `tool_result`——要是上一轮模型请求了工具，宿主却忘了回填，留下一条没人认领的孤儿 `tool_use`，下一次调用直接 400：消息格式不合法，对话当场断掉。
+
+这就解释了 §1 那句「工具结果以消息形式回填」为什么是硬要求：不回填，下一轮根本走不下去。消息必须成对出现，不是协议设计者的洁癖，是这套机制的地基。
+
 **记住这一节最关键的一点：模型只提请求、不碰执行权。** 它输出的从头到尾都是 JSON 文本；读文件、跑命令、改代码这些有副作用的动作，全攥在宿主手里。这让权限控制第一次变得可能：宿主能在执行前拦下请求，问用户「允许 / 询问 / 拒绝」。模型的「手」长在宿主身上，而宿主听谁的，是可以配置的——权限是安全性的核心，后面单独开一节细说。
 
 ![工具调用的往返](fig-toolcall.svg)
