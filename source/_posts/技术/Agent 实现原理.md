@@ -32,7 +32,9 @@ $ claude
 
 回过神来，我发现这事有点反直觉：**这不是一个答案，这是一段行为**。我拿到的不是一句「原因可能是 XXX」，而是一连串动作——查日志、翻代码、改代码、跑测试，一环扣一环。它不是一次性回答，而是**边看边做**：做完一步，看一眼结果，再决定下一步，直到任务完成。
 
-这篇文章想把 Claude Code、Codex 这类工具拆开，看看是什么原理，能让模型从「回答一句话」变成「完成一件事」。先声明立场：我不是这些工具的作者，拿不到内部实现，讲的都是公开原理。官网在 [Claude Code](https://claude.com/claude-code) 和 [Codex](https://openai.com/codex/)，装一个自己试试，比看我写十篇都有用。
+这篇文章想把 Claude Code、Codex 这类工具拆开，看看是什么原理，能让模型从「回答一句话」变成「完成一件事」。官网在 [Claude Code](https://claude.com/claude-code) 和 [Codex](https://openai.com/codex/)，装一个自己试试，比看我写十篇都有用。
+
+> 这类工具的商业实现不开源，但社区有忠实还原其架构的开源实现（MIT 协议）。下面贴的代码都是真实摘录——标注了源文件名，你可以照路径去翻。
 
 ## 核心循环：不是一次回答，而是一串行动
 
@@ -74,6 +76,51 @@ while True:
 - **模型自己判断任务完成**：它不再请求工具，直接给出最终回答，对应伪代码里的 `break`
 - **用户叫停**：随时可以按 Ctrl+C，或者直接说「先别弄了」
 - **步数或时间上限**：宿主兜底，防止模型在一个任务上跑到天荒地老
+
+### 生产级的代码长什么样
+
+伪代码把骨架画清楚了，但它是「理想模型」——真实实现里，每一行都要应付生产的乱局：网络会抖、模型会抽风、用户会中途按 Ctrl+C。下面贴一段真实实现的主循环节选（`query.py`，和主线无关的细节都用 `...` 省掉了）：
+
+```python
+while True:                                              # 外层：Agent 循环本体
+    messages = state.messages
+    ...
+    assistant_messages, tool_use_blocks = await _call_model_sync(
+        provider=params.provider,
+        messages=messages,
+        tools=effective_tools,
+        ...
+    )
+
+    needs_follow_up = len(tool_use_blocks) > 0           # 有工具请求 → 还要继续
+
+    if not needs_follow_up:                              # 没有 → 任务完成
+        set_terminal(holder, natural_termination, Terminal(reason="completed"))
+        return
+
+    tool_results = await _run_tools_partitioned(         # 执行所有工具
+        tool_use_blocks, params.tool_registry, ...
+    )
+
+    state = QueryState(                                  # 重建状态：结果回填进消息
+        messages=[
+            *messages,            # 原始历史
+            *assistant_messages,  # 含 tool_use 的助手回复
+            *tool_results,        # 工具结果作为消息回填
+        ],
+    )
+    # 回到 while True，开始下一轮
+```
+
+骨架和伪代码一模一样：推理 → 判断要不要继续 → 执行 → 回填 → 下一轮。但凑近了看，差距全在细节里。
+
+**第一处差距：消息不裸传，装在状态对象里。** 伪代码里的 `messages` 是个光秃秃的列表，真实实现里它躺在 `QueryState` 状态对象里（`state.messages`）。而且每轮结束，代码不是原地往里塞消息，而是**重建一个全新的 `QueryState`**：原始历史、助手回复、工具结果三部分拼起来，连同轮数、压缩进度这些元信息一起装进去。每轮一个全新快照，谁也污染不了谁。
+
+**第二处差距：模型调用带保险。** 代码块里那个 `await _call_model_sync(...)`，外面还套着一层被 `...` 藏起来的内层循环——那是重试循环：调用失败、超时、被限流（HTTP 529），就退避重试；你按 Esc 或 Ctrl+C，`abort_signal` 立刻把中止信号传进去，重试循环看到信号就地收手，绝不硬着头皮再撞一次。伪代码里一行 `llm(messages)` 写起来潇洒，生产级实现必须回答「调用失败怎么办」这个问题。
+
+**第三处差距：终止不靠 break，靠显式枚举。** 伪代码退出靠 `break`，真实实现里循环的每个出口，都要先 `set_terminal(...)` 记下**为什么**终止，再 `return`。原因不是随手写的字符串，而是一份固定枚举（`TerminalReason`，一共 11 种）：任务自然干完是 `completed`；轮数到上限是 `max_turns`——对应伪代码里那个「宿主兜底」；你在流式输出时按 Ctrl+C，留下的是 `aborted_streaming`，工具跑到一半被叫停，则是 `aborted_tools`。宿主拿到 `Terminal`，才能分清「干完了」「被叫停」「出岔子了」三种结局，而不是两眼一抹黑。
+
+**第四处差距（也是最关键的一处）：工具结果以消息形式回填。** 看重建 `QueryState` 时拼进去的三样东西：`*messages`、`*assistant_messages`、`*tool_results`——工具结果和助手回复一样，是**一条正经消息**。这守住的是一条不变式：**消息列表永远是模型视角的完整对话**。模型下一轮看到的，不是宿主塞来的一坨「工具输出」，而是按对话顺序排好的完整上下文：自己说过的话、要过的东西、得到的回复，一条不少。这正是「观察」环节的实现——结果不是丢给模型，而是成为对话的一部分，模型才能边看边做。
 
 说起来，这个循环跑起来有点像派了个实习生：你得给它反馈，它才能往下走。区别是这个实习生不会累，也不摸鱼——你喂多少轮结果，它就有多少轮产出。
 
