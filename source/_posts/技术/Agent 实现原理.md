@@ -309,7 +309,11 @@ Claude Code 的权限模式、Codex 的 approval 机制，各家长相不同，�
 
 ### 权限是怎么判定的
 
-概念讲完了，落进代码里看看这三道闸门怎么判。下面贴一段真实实现（`permissions/check.py`，类型标注和多余参数都省掉了）：
+概念讲完了，这套流程画成图，长这样：
+
+![一次工具调用的权限判定](fig-permission.svg)
+
+落进代码里看看这三道闸门怎么判。下面贴一段真实实现（`permissions/check.py`，类型标注和多余参数都省掉了）：
 
 ```python
 # permissions/check.py —— 一次工具调用的权限判定
