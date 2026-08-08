@@ -1,6 +1,6 @@
 ---
 title: Agent 实现原理：从一条"修 bug"指令说起
-cover: cover.jpg
+cover: cover.svg
 categories: '技术'
 tags: ['AI', 'Agent']
 date: 2026-08-07
@@ -32,7 +32,7 @@ $ claude
 
 回过神来，我发现这事有点反直觉：**这不是一个答案，这是一段行为**。我拿到的不是一句「原因可能是 XXX」，而是一连串动作——查日志、翻代码、改代码、跑测试，一环扣一环。它不是一次性回答，而是**边看边做**：做完一步，看一眼结果，再决定下一步，直到任务完成。
 
-这篇文章想把 Claude Code、Codex 这类工具拆开，看看是什么原理，能让模型从「回答一句话」变成「完成一件事」。官网在 [Claude Code](https://claude.com/claude-code) 和 [Codex](https://openai.com/codex/)，装一个自己试试，比看我写十篇都有用。
+这篇文章想把 Claude Code、Codex 这类工具拆开，看看是什么原理，能让模型从「回答一句话」变成「完成一件事」。官网在 [Claude Code](https://claude.com/product/claude-code) 和 [Codex](https://openai.com/codex/)，装一个自己试试，比看我写十篇都有用。
 
 > 这类工具的商业实现不开源，但社区有忠实还原其架构的开源实现（MIT 协议）。下面贴的代码都是真实摘录——标注了源文件名，你可以照路径去翻。
 
