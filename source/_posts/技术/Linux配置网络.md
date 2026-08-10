@@ -1,6 +1,6 @@
 ---
 title: Linux配置网络
-categories: '系统'
+categories: '技术'
 tags: ['Linux', '网络']
 date: 2024-06-16 16:15:39
 cover: cover.png

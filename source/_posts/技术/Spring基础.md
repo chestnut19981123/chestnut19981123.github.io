@@ -1,6 +1,6 @@
 ---
 title: Spring基础
-categories: '框架'
+categories: '技术'
 tags: ['Spring']
 date: 2025-03-16 20:40:26
 cover: cover.png
