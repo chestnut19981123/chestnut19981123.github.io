@@ -1,7 +1,7 @@
 ---
 title: Agent 实现原理：从一条"修 bug"指令说起
 cover: cover.png
-categories: '技术'
+categories: 'AI'
 tags: ['AI', 'Agent']
 date: 2026-08-07
 ---
