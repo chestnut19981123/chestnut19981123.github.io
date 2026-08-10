@@ -1,5 +1,6 @@
 ---
 title: Hello World
+categories: '技术'
 cover: cover.jpg
 date: 2024-06-03 20:00:00
 ---
