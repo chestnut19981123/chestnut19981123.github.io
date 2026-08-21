@@ -1,0 +1,365 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="430" viewBox="0 0 800 430">
+
+<defs>
+  <marker id="arr"
+          markerHeight="9"
+          markerWidth="9"
+          orient="auto-start-reverse"
+          refX="8"
+          refY="5"
+          viewBox="0 0 10 10">
+    <path fill="#64748b" d="M 0 0 L 10 5 L 0 10 z"/>
+  </marker>
+</defs>
+
+<!-- 标题 -->
+<text x="400" y="30"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="20" 
+      text-anchor="middle"
+      style="font-weight:600">
+SkillSearchTool 的完整接线
+</text>
+
+<text x="90" y="62"
+      fill="#94a3b8"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="13"
+      text-anchor="start">
+构建期：只发生一次
+</text>
+
+<!-- ================= 上行：构建期 ================= -->
+
+<rect width="160" height="64"
+      x="40" y="78"
+      fill="#eff6ff"
+      stroke="#3b82f6"
+      stroke-width="2.5"
+      rx="12"/>
+
+<text x="120" y="102"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="14"
+      text-anchor="middle"
+      style="font-weight:600">
+定义
+</text>
+
+<text x="120" y="124"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'CaskaydiaCove NF', 'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="12"
+      text-anchor="middle">
+skill_search.py
+</text>
+
+<line x1="200" x2="235" y1="110" y2="110"
+      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+
+<rect width="150" height="64"
+      x="235" y="78"
+      fill="#f8fafc"
+      stroke="#334155"
+      stroke-width="2.5"
+      rx="12"/>
+
+<text x="310" y="102"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'CaskaydiaCove NF', 'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="14"
+      text-anchor="middle"
+      style="font-weight:600">
+ALL_STATIC_TOOLS
+</text>
+
+<text x="310" y="124"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="12"
+      text-anchor="middle">
+51 个核心工具名单
+</text>
+
+<line x1="385" x2="420" y1="110" y2="110"
+      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+
+<rect width="160" height="64"
+      x="420" y="78"
+      fill="#f8fafc"
+      stroke="#334155"
+      stroke-width="2.5"
+      rx="12"/>
+
+<text x="500" y="102"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'CaskaydiaCove NF', 'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="14"
+      text-anchor="middle"
+      style="font-weight:600">
+build_default_
+</text>
+
+<text x="500" y="122"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'CaskaydiaCove NF', 'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="14"
+      text-anchor="middle"
+      style="font-weight:600">
+registry()
+</text>
+
+<text x="500" y="134"
+      fill="#94a3b8"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="11"
+      text-anchor="middle">
+扩展工具延迟到后台（省 3s）
+</text>
+
+<line x1="580" x2="615" y1="110" y2="110"
+      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+
+<rect width="145" height="64"
+      x="615" y="78"
+      fill="#eff6ff"
+      stroke="#3b82f6"
+      stroke-width="2.5"
+      rx="12"/>
+
+<text x="687" y="102"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'CaskaydiaCove NF', 'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="14"
+      text-anchor="middle"
+      style="font-weight:600">
+ToolRegistry
+</text>
+
+<text x="687" y="124"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="12"
+      text-anchor="middle">
+注册，接管一切
+</text>
+
+<!-- 下行标注 -->
+<text x="90" y="182"
+      fill="#94a3b8"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="13"
+      text-anchor="start">
+运行期：每次对话都走一遍
+</text>
+
+<!-- 连接下行 -->
+<line x1="400" x2="400" y1="142" y2="192"
+      stroke="#cbd5e1" stroke-width="2"/>
+<line x1="400" x2="400" y1="192" y2="216"
+      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+
+<!-- ================= 下行：运行期 ================= -->
+
+<rect width="160" height="84"
+      x="40" y="216"
+      fill="#f8fafc"
+      stroke="#334155"
+      stroke-width="2.5"
+      rx="12"/>
+
+<text x="120" y="240"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="14"
+      text-anchor="middle"
+      style="font-weight:600">
+组装工具池
+</text>
+
+<text x="120" y="262"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'CaskaydiaCove NF', 'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="12"
+      text-anchor="middle">
+assemble_tool_pool
+</text>
+
+<text x="120" y="280"
+      fill="#94a3b8"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="11"
+      text-anchor="middle">
+内置在前 MCP 在后（缓存断点）
+</text>
+
+<line x1="200" x2="235" y1="258" y2="258"
+      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+
+<rect width="150" height="84"
+      x="235" y="216"
+      fill="#eff6ff"
+      stroke="#3b82f6"
+      stroke-width="2.5"
+      rx="12"/>
+
+<text x="310" y="240"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="14"
+      text-anchor="middle"
+      style="font-weight:600">
+模型上下文
+</text>
+
+<text x="310" y="262"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="12"
+      text-anchor="middle">
+所有工具的 schema
+</text>
+
+<text x="310" y="280"
+      fill="#94a3b8"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="11"
+      text-anchor="middle">
+「你手里有这些牌」
+</text>
+
+<line x1="385" x2="420" y1="258" y2="258"
+      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+
+<rect width="160" height="84"
+      x="420" y="216"
+      fill="#fff7ed"
+      stroke="#f97316"
+      stroke-width="2.5"
+      rx="12"/>
+
+<text x="500" y="240"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'CaskaydiaCove NF', 'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="14"
+      text-anchor="middle"
+      style="font-weight:600">
+tool_use JSON
+</text>
+
+<text x="500" y="262"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="12"
+      text-anchor="middle">
+模型：我要用 SkillSearch
+</text>
+
+<text x="500" y="280"
+      fill="#94a3b8"
+      dominant-baseline="middle"
+      font-family="'CaskaydiaCove NF', 'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="11"
+      text-anchor="middle">
+{"action": "search", "query": …}
+</text>
+
+<line x1="580" x2="615" y1="258" y2="258"
+      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+
+<rect width="145" height="84"
+      x="615" y="216"
+      fill="#f0fdf4"
+      stroke="#22c55e"
+      stroke-width="2.5"
+      rx="12"/>
+
+<text x="687" y="240"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="14"
+      text-anchor="middle"
+      style="font-weight:600">
+dispatch 执行
+</text>
+
+<text x="687" y="262"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="12"
+      text-anchor="middle">
+校验 → 权限 → 执行
+</text>
+
+<text x="687" y="280"
+      fill="#94a3b8"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="11"
+      text-anchor="middle">
+结果回填对话
+</text>
+
+<!-- 底部说明 -->
+<text x="400" y="336"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="14"
+      text-anchor="middle">
+模型不知道有什么 skill？先搜一把，再决定用哪个
+</text>
+
+<rect width="640" height="56"
+      x="80" y="358"
+      fill="#fef2f2"
+      stroke="#ef4444"
+      stroke-width="2.5"
+      rx="14"/>
+
+<text x="400" y="380"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="15"
+      text-anchor="middle"
+      style="font-weight:600">
+SkillSearch 的 schema 进上下文
+</text>
+
+<text x="400" y="401"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans SC', 'Microsoft YaHei', 'Source Han Sans SC', sans-serif"
+      font-size="13"
+      text-anchor="middle">
+搜索引擎从「躺在仓库里」变成「随叫随到」
+</text>
+
+
+<defs><style>@font-face{font-family:'CaskaydiaCove NF';src:url(data:font/woff2;base64,d09GMgABAAAAABfYABEAAAAALQwAABd6CWcGIAAAAAAAAAAAAAAAAAAAAAAAAAAAGhwbIByEfAZgAIFECIF0CZ8DEQwKoyCcbQE2AiQDagtqAAQgBYN0ByAMhQYbSShlh5B1O1AKRP1MAP7/23FjiEAhZu0ncyEdPkgdVZ7coXPwcODg4TS+Ri4aGZS9MLuMVhZ351P27z/8voPLSYZqBn8xZH2UKeJ9sLSF2WxdpR5lR9GgkdTaM77mKst48+0OFUqXZXn5etvhYosiL9k6S17JT42QZNb/T/fpfW9QYORZyzMGoDlHa+BF0n7bASAFSMHSJ02lAFZOmzJVioqaJpp/fpt/sYjSPbBjaXSAUY2VLM5mMla4r6yZ0RiomMUcumKR+f93rczPJgv/J8f8fAkVubqBAlJ2DBVndq/CkzAVpqqWZ7Jw6pgH4H72VgkUCTagIslSjQKcru+Oj/z74drnC054+Zi2hO6rkkLh6kbG6JKskQRCo1S9/OjgPH6/iTTXe6j7RMEboa/EpaWwmOz7pb9K/SWcdTRVMrSqQ81cDDyAhiHvtf4apKGrCzJjiO0seTL+ucyY/+zg/e8PkH90W/5DPFZJyWxwxS0nbZqsnJb/p7NsR5Jh7tghPg5xvXvhLkWfptH8L1maGWs1pyPJS4YjOyQty0fkIFZ5fapUQIsBwoqgSnVX1GmKFH2Kos2LrTE8QK1W2wT4p2s4/xtIKo6sGITX/ruhIEDuynlOlVgJZjVtMPwHS22mCNa97EkCCBKADo9Fs+QET6JblHu7mNjouME1N/246To297jlPD/T4dXgz0GDKj0fIAAKIChWaqmtihzCwPcuZA3zpGhi0CADzssNIAaQlgqMuRJGlhYeBaDWSB7A+QOpACAWkUgYzkWodyD3AixDWr/b90AKWoCzr+G8v6eQ2npOiR11oBuQCTbA+YiM3MDp8HCutR+QK++2uWQtWk+dvr9Psqa7DWpJwLnIfAOxKAh296TzXsNfXpPf1zkx4CtPjH1HGvsGCznHPP5a8B6v+4FsrLJjMufuPUx/LLRzxrmOSx65naJPnRWMbe9nFZHoe2qCKKimyDqAb9pn4Lf4cBk8sRD1tmt62eGWux1sinIlmPT/CSDqoQfoFkE2ROvqjjYxaGthNWFoF0S0jV2UiXw199l17LWfOTsO3HnyQRIlBUWxUuWVcLwAdUdtza3gzf9aMdL+ufj/oQcEbrtlw5JFM6ZN4Ro0oF+Pbl0ZQIoh6h8hVnejUfVTgO5aht07nAVL4E883L3AN5a+hhv80rCAcOZKnzOOYkpvnj7quhEMO7UkW6ebpnqiC0YrDZZli32vvWMYV4k6rfqMmYdHTIOSXsIncE67vfNxMyg69Bk1Zc6a6x44aj5O3jOCi4FFOy7ypmKbtuKa2y7w81HGX21Zmyt6DBkzY9Ut4M04OnP61MnDhw5Sa2uqqyorystKS4qLCgso+Xm5Odnk13ns27rM0zj0XdvUVVnkmeCMEpwmcRQGvuc6tmUaOjBIwCR+wuR+cg13AfeFlLrkMciHUECXMIhPgzueEKfixjPpdqxzwbJDhPTdelNaaw/phg5uOgNoMVON5zyelkJdXUis2raAODT+fbzdC8HlEeGyP3a9GFec/daukuSuTcgEDGhzN0N4rB5tps4rq/LnSdzxgbHo2bFs+KlscdG3iO07l09UUB9cUrUcS3/j6iVXlFKlwC1sw6CjDvaohswrHOcv+h8owvWIoD0vJ6J9LS2whRVmwpNXVvsKRyFU3e9vb98Qu2YjM1q5oB8Hcyw+GS5ltxzG/TgivzBxGVsh78BNhDgj6gw7AHS3yNwobsx0Wwl2F+lGLSUQ9/q1ivDJWUrIcGm5Mj0wVOOM7IocmszYTJ3dpVl9+aA3YIK5WUWQMTqv9vxMxZN4Gi94CW/KBOa/jHF/I5iE8KuiJQSR2phVfqH6W37T7ghms55aDQ9SF9+zGbsKc8NmOd826sXWbim/5rikTS3GEq3iSZqNbubbnqe26UOwBwjVYrAMIoKT1RDnQl+N1gWnQqcfZti7JOGN5ZBXr9Znu3n58vZYy2k53/AzNFdHIXqddjDZQq49tBSEH664F2lVhvSOD8vh6paGu9jB0ibVenp5ZoiUvxLWZhY+k/TFU/M0E+u8TYtNC1nRwh71zDzTNTE9oLWR/5673KX6a+3xkghxIq/sNiS4HiInyKJls0TLuVAvmg3qZtz2nWZjPM3xIz+5kyqh00ibfmoehLRK52EdZ9kp+rFFfydwuV1TbeTyyKLdgCI5A694iROtEaeQnoBhToOy5IsvStH8Lu9qLqXXeK4VrZKlVbA6uYp6pdNsFI6YtsMVyt4FH/eRX22DoZXDMvIS+OhwC7dbfZX4lrlbDnikEtsGNfQ6d9csqN00txHlTBytw7R5vBiQTSDsSHWC8Ar6dPlZSJbYYNejaPvInn9U9OpFEdLfwz0IJHwnh8ctngyebLKEepHULeeH3EABWp/0uUrKdS8tUELPP1bURmNJltYFyPCCLp115mA1R9sj8bQXa4YtoBFxYO9SDPUAxeB4RMigcjbWVJm2aYLB0ismPrGwUApFSYf7A0weR1WYESGHG3YVgMsQWxgdUP9KI2BYgE3aFE1Lk1Xea0gRVIAOwxBuLc96Thu4BZ2uE+Tv6ZFGCCRusV12AWQL4gnBq1WMZeO7WmlREWajh/I3urJxp3XiDWZrxsiwuo2eHdWoR8Otkq1AIMQwqfBILGKaeJSB1U4BT/k8e+yhVlrzjGeYbcNIAoYEA2TSZKISz3nwuvsECEBIQ+Up5WAFECRqGHtJDJyVUCfwSPbkSwzZPQtFVkwiFLor2mxktmKpKyMnCbHqaS9mq00ijEtFudAHwy0+IkrPOQEbqPMIqysvAsrSb17Wn0RwgsxriInrmK26hxPJgsgpCMEEYZUhF4qXegan4XHbNhyAdSo9E0M3dkfJNAtjHeKFTBh/5+pEsL7rHpro4dm6AbZX+B+OTPvYI/fIo6U1p3e0ikdEq6ubVtNvHKk7cY7dsQU0HpoIw157/pV+iGxptEKwbAcqemx6UHsL1hqwYlA0KsaBpgJbvmjhXxiFLe5fSTIwM5mW1i5IsdrlRdNjtyau/1gnJwKcso9hCAhJtGTygJc9AyNyuOkgXFxdLb0yrDK0gKi4M5S9oMtEU9iUV7hjIppoaEG67RPOB6GxComVWSWShCvSAwgnz9L+IHWPIJulPel85DE3ZVhps7yV8+zVURrl4QZLvoXUP4DxYCnGp/mmBwbUSwvFa7AQZ7xs6Fb5c5DX+PKv6c1KmiFaWkq41XZdx3bksAIBGT5QWSS2BHgLk3mYolfz+Be9ZB1NTEkO1e4rv6OCJJD3QOCzQPhj77NUgKhM9loLOdh0GJAGqkH4hzGthnOYmtIzpHkm6IpwnzbZ3wDYr98B0XzBfFRMKvDZwFu+2dDGLsHe6glGXp7skfYv24CwD4lmWiIrv8PwxBXJJBh2D8p/+9+6cy/SB0dX9wKB6avDrn0iXZmL/NlA7mcf3fNWWMi3EK3oP3CsUVkFVwsbPtCI83ztM/7Lrvh2hPl7r4TW+R29TpBlUQQLsR+5ijrYhQtdpE0FiNS1fsq49RmMZ9+Qp5mXwjUqHpvHP4g8/q0RE4L0ArQ+CKCFqvvv7TULtsD368RCnavdwFupWwmq8GGI7Ydk+I1M0IGSZey3pmlowYOWC25uzCHDrzL3bPKz6fzIut8P9pIIktECKjDPX7hwNDDGXzrgAgznPhHnElfeDtq4XRS/plbfSgvRlPbBV5J19SI92dTOIJIfprZUVd33ksJpzL1BnsdOlz7uG70MMy2g6RZW6EI9nwDbwIq24pjO6BS7PcAW5ZYtACJLGRGt0R4U/4lowFl8APQqZh9DH/XOzwDiBqgtAF4GcAoQdwDE9+FBeO8Q7DmtdqLsyHbyg6KYY6FPQgz0Qsm/SVWMpAGrqtU+v+TEZO5VE0NthIbXa4NBDfZzg0oN+oEwdjw2OnDKXQgBEFyk86axVUq2NTFMN3i8ScTcgrLtUrKFCNTc5PGGunGJzj9ILUQtygoW5v2O9d80BdrgWXX6kr6ID5Zlsq2zwnWsxbTN3+jMd3MCXVPQD1XV7IF2gcKCshZIBb3lcIMCqvay/jqqioE2VCPzYFm+7f0k3jxsxlQ1XMJQ2wTOHbybohJSv0FFNpv+Qer5RUFNiDzPWmWrD3MWquviAYuzNjiDC/0wt5jnaL/rRq9tPc93VwvGXbb932KDGWdOdSVF6wEJ8nJovHGXf/tJatc0HkTP0WWxxX03zx+kXXTWCjVJknHUhZcg6VI87gBOwI/osHAOV2zlu72RmEDLn8juW2bgOoaMw5lmSpzxrrU+Emx2ZA/3qRxvXA6u5VK/kdHNBdqr6bog0KG9F82GKaCyc5P51HbuqLM5Ih9RXmEH1dAk2MP+42j0Mo3Neo1cimlAX9J6VtaIWExFt5sdHre9INlRCc4EZKUWchxMrYeiElOT36dSzgcelQ3KSImEk8kYeMY16wECmqDP0IoagWJh+uFgw7b618nXo63rbH/rMDephZICXSKumeKjw69g3ZIEjCW1ssviCFXOeH6LMwbrZCig1xbmjiFv8b5DNGtuK1L/7EdBxgLXKrt+2WsNg903ohHtXQytrY6Mox4/d7Vvbkpmwtgd2DmN+ug0WXn/x4Oao30v2avl2A+IJs5f6x+T1T7M1dRu135ArQVWbc2d3YaBw6Ee2AdCeaZur0vmCtFArcIDIRlzt5M0CQYBUlEK3DEWBowEA1W+cJ8KZRG95JR4j92TeNNJd1D+LQgkEkRv5QfFlxdBi6LIYBB8HF3nhJs97IR7zuItAz59Lwr7EEGQVWCglXUg2T9xMtnaihyI+jyq8GN1usY+mUt1qlrZCg/5MQ6BRina5OIuudfQSUGYV5nu8VvheuTjtL0OR938pl8Qwf615jqLfT1dDkQW10XchRvNdRN348pYQa/+irzmnaRfOkJtuHjqUzrXsvcNTJjIBLKOtyHgSojLUE0Jpjwg6zC9/+9QEIThPcFgnvDQw8bSe42N90oT64Cse3H3w/2NM6W8fF11+w/A1hDS8relC6nlueXUQ4XSSprQpwEvmeWM/Wu6MYSFymrzr1lNdozRo5z7q+uNdwISIo/VB7mctg1Iyo6NcXILdFHZjPnP7cIorYb4YYPJFecyN6C4Uc4LDsJAGYV8SUQXDxXTL7PbaKxfA09zyeJ6qfRYmvBfMWhsW0hM+N/tLc4Asb18XiseZkhgOUd6BMVRHexSTNW4kOsxlAsCHAr4RQTc9a/85z+faZEcK5L6+prkJ3lPt5oqWig4uQkIrymPFpFUEm4R5O5PPl+y1/WYT8DJS4NX2DNctvtxrBNaatRPohstJQbxdiRQhB05XiE9CxNHKOIDKZhAEpaJyDh6Vj/M1fufSFmyyD+FAbF/qJ9KT268Ev7hFrkmR509wrSvxNlhZEYjJFqQHSmyjYdPF5U2n1GhVXlzvJs0v+WmQMTh51Gi++QjGf2c/io19l3kdACSKdJ8BXyuIWjpKjFhVtmZmbHik1MLcjCsDIJARWmf1lvFsD8hLj30ly6J7/vfTOK6GGt4ldMvw+TQe4M5e1OdOXL5a7MskGMyHEJ15tSrodHrku0C3YMzZ02A2JfzzuL+6TSVr9DIhUUBzZSDsScppYTrhQVUaUiN+hLpEDF9d6Z/chNi0DqUlNiE4KuPY2vF0afaHYI9cB4SXsEhpMw4CtVaybA/Oi4p9Jcmia8+JT4pZdjHCYIEn5XE4J8VBXc/KcLFPikJJigVY51dFRxKHHK6OvME8coqkB8av14sNu50Vtm1bTkCalviWgk9CxlHqON4/xNJLhP5560gCi0LJEXRd9VX/spel2rhU/fH42cTkKGnwtmNiA+1DfNDyYR3gwr4RZwIZ47zptf/V85Ww0tLqO26eHxsayvfMcHrMPWZkihU1I51xktNJuOZeNdzTdZOuvs9P1ud1aJRirpRLTq0gxBx2BdeKmrR32bptN9O20F89sBlLcbBqo6fDAW9KsLHnUXBbRQHZcu3fcR5xKsoyanXz0K5IKRGndBUtMJ76MrQAnucPx6WFBuZT6F1mfPjm4ntAUjcNiSd1pwn434fOXEJqsBdLDWtSZKNVxcQL1Dx4gZUAaS2YDFBf76SV4+XMQA7T1eDdfyHXVRJOLKKr7JvsNaXWIUUjE6rdjIUp2lrqmGlnKFhdDpA2ZGt43U1IN3CC4WQ6lK3FZF3GZMwkVBhOBmppponteY0wFQbYK2p4Zaq6YaOp40J5tCUi7ytqJpUF8ILJVO5be79WahmKxrjCZsTjE8zTfYWy/C21Ho13Su05SSZq6Y6GTFUdxmDVZklov5teKPMM1gBOl5sR+WA0xpGyhlWGramcZrJkHarTgomVuGLVrDdL4sjE3JJl1jBSlsdfvyMP93VKJwuQCxfQFJAewx17hNCFL/O1h+D/tdZ4jWxSHkk4WUP6QPYGvE2r9HvcXPon+dosy7rsk53H2MHALYBsaGSemdewnO+LhGjfKyUxKl6vi6Mw+bqO6a87CfRVuDyfOXqN9DZescq5sTTQjyHXAg+iJ65Bn6yGCrmlOtji6JhXX/SQsgKB1Tm7u5lz6/DsYSOTXKuejTPNuC5tIdgZzQbNV+78bmQOF8jy00eioVbwOOiDtbQ3jVVCx3rzvpwu4DScikQK0LaevMqlrsVt3vaEqySLI5pu3gfX0xmn7eiTr5lho7XQh1sNZES5aKEeKswsF+1YVQ1KijErHFVXv4pm82nN+xhj7XRWOIc6tWe+LQ5PgxoOC25TQl2jdtWiRJSgyclh5bJO1FmEhWBqHQ9OmIazPF3ud3kydYQa0ss2dyKAxL2rpxugW7wqC7ckNtksxsGyrWNRGQDfMbrMzrFXQfhCPMF2rv4nj6xNWyRj+N0tF3W1Ri4sRNGqgWEutcf/7oxrlf2d7IjkPR5QjPOPzGtco5VUCK9FAlcnMfZkcNqxODulmcYhDbsHZdJYVaDfziO8aURxOOaQ622MVZcwgmdlE3I8qUjEJe9kPNurieF5y5UbXkBebpEXalWo47NOOkRDvdwj1VPHcw0R9dhJYWTGcTzAc+bMyH33NbwE/lSJlp5hd79RTWWXx0EAIC/vg8TAIC/j2U7Gymn4zoUABoDAIL/G0DJK4P+C7x2L1xCXxZVABVgT0Io/BE6S3N3wj6BWP6HZ6LzVKear3jRLjgiWgVH0ViYmGJlYzmCJZqvs5zRmPjGMg77ClI9pNvG4i3aCsd4EXLVyqmXO4AB8I7oEKYoG1O9etQDXNZrGXHil7GlPlgmnENbJh2ysUx52r+JtQOhdFylbM062Dy320Rl95Z2Xu0luXGAJKV75+3F51V+r+kXFkjc0x4hjXq0dYfLPYSvY77u4KeIr9hR0rzKH5Vfa/x+gVyguB6pyHA9d1tHT+Z2HLeGLknEycLt71wbv+zY6u39gmhw1yG88rCfDEIODrZo7ujA7/jyJTYNnRP7U/CxcL3KikS+wkXmhTHZfwvxvDLzaiKK6+q28rXGwFwNF38Mzn5Mgf+G4v2W78XkeT/k+jA5vh28eWLw6sFopodnxCrdjdM0t0p1eJriUsmuGk1y0kQbTbCfLt5+E2ehsVYaYz5dtOlTlOl0kcYJjI2nCzcWYGg4Xai+A339OMH6HXS13wK1qshaPiXpVIBOqb9G+alj6qsex0d94632Q1llp/NU3ngoX8Zd2YG80gU5JYKsQpWzvJ86yZUj0nEc0AQSyA5x6KMx4DYxjUiVlUyVpYRLLSR/eHPJNnYz9VbB5diB02EEu20HVosV9FoX6LQx0FKk1ZFGTNcOCWh1pBLpQCnEqAo5IEdbQBIBbwQCLsg+I0v5GHkeRs4nNA0FAZ5nKOrp/N87V5jg/YjBxWozXYw2q8/oUyVsaJzSNS84CphYLKCdL2RDP8VhRWKXrMUR44LjkH6lrzHix5XpZmPYgTvQJ60fjuC/Ayvo+x1jtLyTTPTl5HdffIEtrTG+HpZfBFI3aMjllEClKLfM3pUUWtizLk5uL0qEYQV4aFtXz5ycAkDOzcltxStb3IvxSdQBAAA=) format('woff2');font-weight:400;}</style></defs>
+</svg>

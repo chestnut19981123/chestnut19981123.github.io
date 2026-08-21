@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+<defs>
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/>
+  </marker>
+  <style>
+    .cn{font-family:'PingFang SC','Microsoft YaHei',sans-serif}
+    .mono{font-family:monospace}
+  </style>
+</defs>
+
+<rect width="900" height="520" fill="#ffffff"/>
+
+<text x="450" y="45" text-anchor="middle" class="cn" font-size="22" font-weight="700" fill="#1e293b">
+从 <tspan class="mono">Skill</tspan> 到 <tspan class="mono">SkillSearchDocument</tspan>：一次无痛瘦身
+</text>
+
+<!-- main flow -->
+<rect x="45" y="110" width="240" height="210" rx="16" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+<text x="165" y="145" text-anchor="middle" class="cn" font-size="18" font-weight="700" fill="#1e293b"><tspan class="mono">Skill</tspan>（30+ 字段）</text>
+<text x="165" y="180" text-anchor="middle" class="mono" font-size="13" fill="#64748b">name / display_name</text>
+<text x="165" y="207" text-anchor="middle" class="mono" font-size="13" fill="#64748b">description / when_to_use</text>
+<text x="165" y="234" text-anchor="middle" class="mono" font-size="13" fill="#64748b">markdown_content</text>
+<text x="165" y="261" text-anchor="middle" class="mono" font-size="13" fill="#64748b">allowed_tools</text>
+<text x="165" y="288" text-anchor="middle" class="mono" font-size="13" fill="#64748b">source / loaded_from</text>
+
+<rect x="365" y="145" width="170" height="130" rx="16" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="450" y="180" text-anchor="middle" class="mono" font-size="16" font-weight="700" fill="#1e293b">extract_search_</text>
+<text x="450" y="205" text-anchor="middle" class="mono" font-size="16" font-weight="700" fill="#1e293b">document()</text>
+<text x="450" y="240" text-anchor="middle" class="cn" font-size="13" fill="#64748b">description ← when_to_use</text>
+
+<rect x="615" y="110" width="240" height="210" rx="16" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+<text x="735" y="145" text-anchor="middle" class="mono" font-size="18" font-weight="700" fill="#1e293b">SkillSearchDocument</text>
+<text x="735" y="180" text-anchor="middle" class="mono" font-size="13" fill="#64748b">id（SHA-256 前16位）</text>
+<text x="735" y="207" text-anchor="middle" class="mono" font-size="13" fill="#64748b">name / title</text>
+<text x="735" y="234" text-anchor="middle" class="mono" font-size="13" fill="#64748b">description / body</text>
+<text x="735" y="261" text-anchor="middle" class="mono" font-size="13" fill="#64748b">source / tags</text>
+<text x="735" y="288" text-anchor="middle" class="mono" font-size="13" fill="#64748b">weight</text>
+
+<line x1="285" y1="215" x2="365" y2="215" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+<line x1="535" y1="215" x2="615" y2="215" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+<text x="450" y="360" text-anchor="middle" class="cn" font-size="16" font-weight="700" fill="#1e293b">
+来源权重：越贴近当前工作，分数越高
+</text>
+
+<g>
+<rect x="90" y="405" width="160" height="65" rx="14" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+<text x="170" y="433" text-anchor="middle" class="mono" font-size="15">project ×1.3</text>
+<text x="170" y="455" text-anchor="middle" class="cn" font-size="12">当前项目</text>
+
+<rect x="280" y="405" width="160" height="65" rx="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+<text x="360" y="433" text-anchor="middle" class="mono" font-size="15">local ×1.1</text>
+<text x="360" y="455" text-anchor="middle" class="cn" font-size="12">本机 / 插件</text>
+
+<rect x="470" y="405" width="160" height="65" rx="14" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<text x="550" y="433" text-anchor="middle" class="mono" font-size="15">template ×1.0</text>
+<text x="550" y="455" text-anchor="middle" class="cn" font-size="12">模板生成</text>
+
+<rect x="660" y="405" width="160" height="65" rx="14" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+<text x="740" y="433" text-anchor="middle" class="mono" font-size="15">mcp ×0.9</text>
+<text x="740" y="455" text-anchor="middle" class="cn" font-size="12">MCP工具</text>
+</g>
+</svg>
