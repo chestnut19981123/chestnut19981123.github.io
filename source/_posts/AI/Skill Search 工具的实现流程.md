@@ -10,7 +10,7 @@ date: 2026-08-20
 
 先讲一个每天都在发生的尴尬场景。Agent 里的 skill 越攒越多——`browser-playwright`、`git-commit-helper`、`code-review`、`sop-converter`……一坨又一坨。但你有没有想过一个问题：**skill 多了，模型真的知道它们存在吗？**
 
-它不知道。模型不是搜索引擎，它看到的 skill 列表里夹着三十个 SKILL.md 的标题和简介，翻了半天也没搞明白哪个能派上用场。就像你衣柜里堆了八十件衣服，早上出门时能想起来的永远是那三件。
+它不知道。模型不是搜索引擎，它看到的 skill 列表里夹着三十个 SKILL.md 的标题和简介，翻了半天也没搞明白哪个能派上用场。就像你衣柜里堆了八十件衣服，早上出门时能想起来的永远是那三件——剩下七十七件不是不好看，是你根本不知道它们挂在哪儿。
 
 那怎么办？办法很朴素：**给 Agent 装一个搜索工具**。让它遇到问题先搜一把：「我要干浏览器自动化，有没有对应的 skill？」——一个工具，把 skill 从「躺在仓库里」变成「随叫随到」。
 
@@ -44,6 +44,8 @@ def _extract_description(skill: "Skill") -> str:
     return skill.description or ""
 ```
 
+> 作者注：为什么 `when_to_use` 比 `description` 更值得搜？想想 SKILL.md 是怎么写出来的——`description` 是给目录页看的，作者多少端着；`when_to_use` 回答的是「什么场景该想起我」，作者会掏心窝子。搜索搜的是意图，当然挑掏心窝子的那段读。
+
 **标签从哪来？** Skill 模型根本没有 `tags` 字段，那就硬造：从 `allowed_tools`（比如 `["bash", "python"]`）、名字里的命名空间（`browser:playwright` → `["browser", "playwright"]`）、来源（`userSettings`）三个地方拼出来。注释里写得很诚实：「等哪天 SKILL.md 加了 tags 字段，直接读就行」——**先用着，将来再说**，这就是工程。
 
 **文档 ID 怎么生成？** `make_id` 用 SHA-256 对 `"source:name"` 哈希取前 16 位。这样同一个来源 + 同一个名字，无论在哪个进程、哪台机器上算，ID 都一样——索引可以落盘、加载、增量更新而不会对不上号。
@@ -74,7 +76,7 @@ class LangProcessor(ABC):
 每个处理器管一段字符范围，靠 `priority` 排优先级。内置了三个：
 
 - **LatinProcessor**（priority 10）：管英文和数字。它能拆 camelCase——`BrowserPlaywright` 被正则拆成 `Browser` + `Playwright`；还能拆大写缩写——`XMLParser` 拆成 `XML` + `Parser`；大小写折叠 + 停用词过滤（`the`、`and`、`how` 这类词直接扔掉）。
-- **CJKProcessor**（priority 20）：管中日韩。中文没有空格分词，默认用**字符二元组**（bigram）：`"浏览器"` 变成 `"浏览"` + `"览器"`。如果装了 jieba，就升级成词级分词——`create_default_tokenizer` 的 `cjk_word_tokenizer="auto"` 参数会尝试 `import jieba`，装了就 `jieba.lcut`，没装就退回 bigram。
+- **CJKProcessor**（priority 20）：管中日韩。中文没有空格分词，默认用**字符二元组**（bigram）：`"浏览器"` 变成 `"浏览"` + `"览器"`。如果装了 jieba，就升级成词级分词——`create_default_tokenizer` 的 `cjk_word_tokenizer="auto"` 参数会尝试 `import jieba`，装了就 `jieba.lcut`，没装就退回 bigram（有 jieba 吃大餐，没 jieba 吃泡面，反正饿不死）。
 - **FallbackProcessor**（priority 9999）：兜底。西里尔字母、泰文、阿拉伯文……谁都不认识的字，它把每个字符单独保留。**保证数据不丢**——搜不到是算法问题，丢数据是事故。
 
 分词主流程 `Tokenizer.tokenize` 四步走：
@@ -127,13 +129,13 @@ score(doc, query) = doc.weight × Σ_{term ∈ query} [
 四个因子，逐个拆：
 
 - **`tf / √total_tokens`**：词频归一化。一个词在文档里出现 3 次比 1 次相关，但长文档天然词频高，除以总 token 数的平方根拉平。这是标准的 **length normalization**——不然每篇 skill 都写两千字长文，谁字多谁赢，那叫水文比赛。
-- **`idf(term)²`**：稀有词加权。`idf = log((N+1)/(df+1)) + 1`（平滑 IDF，加 1 保证恒正），**再平方**——让罕见的词权重更高。搜「playwright」时，所有 skill 里只有两篇提过这个词，这个信号就该比「browser」这种烂大街的词值钱。
+- **`idf(term)²`**：稀有词加权。`idf = log((N+1)/(df+1)) + 1`（平滑 IDF，加 1 保证恒正），**再平方**——让罕见的词权重更高。搜「playwright」时，所有 skill 里只有两篇提过这个词，这个信号就该比「browser」这种烂大街的词值钱。（打个比方：在广场上喊「喂」，全街回头；喊你的名字，只有认识你的人回头——越冷门的声音，指向越明确。）
 - **`field_boost`**：字段加权。名字和标题里命中 = 3.0，标签 = 2.5，描述 = 2.0，正文 = 1.0。一个词出现在 skill 名字里，显然比深埋在正文某段里更说明问题。实现上很鸡贼：**索引时就把 boost 烘进词频里**——`_tokenize_and_count` 按字段分词，`name` 里出现的词计 3 次，`body` 里计 1 次，打分时一个字都不用改。
 - **`doc.weight`**：就是前面说的来源权重（project 1.3 / local 1.1 / …）。乘在最外层。
 
 搜完按分数降序排，`min_score` 过滤掉低于阈值的噪声，`top_k` 截断（默认 8 个）。每个结果还带上 `matched_terms` 和一行人类可读的 `reason`——`matched "browser", "playwright"`——模型拿到的不是「第 3 个结果」，而是「为什么是它」。
 
-**索引的增删改**也值得一说。`build()` 全量重建；`upsert()` 增量更新（先 `remove` 旧的再插新的，最后 `_recompute_all_idf()` 全表重算）；`remove()` 把倒排索引里的引用删干净，词频递减到 0 的 term 连根拔起。每次变更后 IDF 全量重算——索引不过几千篇文档，重算一次几毫秒，值得。
+**索引的增删改**也值得一说。`build()` 全量重建；`upsert()` 增量更新（先 `remove` 旧的再插新的，最后 `_recompute_all_idf()` 全表重算）；`remove()` 把倒排索引里的引用删干净，词频递减到 0 的 term 连根拔起。注意这里的「增量」边界：`doc_store`、`token_counts`、`total_docs` 按文档增删，`inverted_index` 和 `doc_freq` 只动被改文档涉及的词条——唯独 `idf` 没法按文档增量维护，它的公式里带着全局文档数 N，每增删一篇，全词汇表每个词的 `idf` 都要按新 N 重算。好在重算成本只随词表大小走（几百个词，亚毫秒级），索引不过几千篇文档，重算一次几毫秒——值得。
 
 **持久化**走原子写：先写 `.tmp` 文件，再 `os.replace` 换名覆盖。这保证磁盘上要么是旧版本、要么是完整新版本，**永远不会读到写一半的烂文件**。加载时检查格式版本号，对不上直接抛 `IndexCorruptError`。
 
@@ -146,7 +148,7 @@ score(doc, query) = doc.weight × Σ_{term ∈ query} [
 - **`pin() / unpin()`**：把高频 skill 钉在顶上，`pinned.json` 持久化。
 - **`inspect() / stats()`**：看某个 skill 的逐字段 token 拆分，或索引统计——调优时的放大镜。
 
-最后是 `SkillIndexWatcher`，一个勤快的小工。skill 注册是动态的——用户随时可能往 `~/.agent/skills/` 丢一个新 skill。watcher 监听注册表事件，来了新 skill 就增量 `upsert` 进内存索引，**不必全量重建**。为了避免频繁写盘，保存做了 5 秒冷却：连续注册十个 skill，只写一次盘。全程 `threading.Lock` 保护，注册在哪个线程都不怕。
+最后是 `SkillIndexWatcher`，一个勤快的小工。skill 注册是动态的——用户随时可能往 `~/.agent/skills/` 丢一个新 skill。watcher 监听注册表事件，来了新 skill 就增量 `upsert` 进内存索引，**不必全量重建**。为了避免频繁写盘，保存做了 5 秒冷却：连续注册十个 skill，只写一次盘——攒了一周的碗，一次开机全洗完。全程 `threading.Lock` 保护，注册在哪个线程都不怕。
 
 到这里，搜索引擎本体完工。但注意：它现在还只是一堆类和一个函数，**没有任何入口让模型碰到它**。接下来的三章，就是给这台发动机装三个方向盘——三个接入面。
 
@@ -209,7 +211,7 @@ def dispatch(self, call: ToolCall, context: ToolContext) -> ToolResult:
     return result
 ```
 
-`validate_tool_input` 做语义强转——模型传来 `"true"`（字符串）会被转成 `True`（布尔）；权限层分 `allow` / `deny` / `ask` 三态，`ask` 时弹窗问用户；plan 模式下对写文件的工具直接拒绝。**所有工具共用这一套安检**，新工具零成本获得权限系统、校验系统、并发控制。
+`validate_tool_input` 做语义强转——模型传来 `"true"`（字符串）会被转成 `True`（布尔）；权限层分 `allow` / `deny` / `ask` 三态，`ask` 时弹窗问用户；plan 模式下对写文件的工具直接拒绝。**所有工具共用这一套安检**，新工具零成本获得权限系统、校验系统、并发控制——像机场安检，头等舱、经济舱过的是同一道闸机，谁也别想插队。
 
 ### SkillSearchTool 的接入
 
@@ -247,7 +249,7 @@ SkillSearchTool: Tool = build_tool(
 )
 ```
 
-一个工具，六个动作：`search` / `pin` / `unpin` / `inspect` / `rebuild` / `stats`。这个设计挺有意思——把「一个工具」当成「一个小型 API 的入口」，用 `action` 字段区分功能。好处是模型只需要记住一个名字；坏处是 schema 里的 `query` / `name` 等参数是不同 action 共用的，描述里得不断声明「仅 search 用」。
+一个工具，六个动作：`search` / `pin` / `unpin` / `inspect` / `rebuild` / `stats`。这个设计挺有意思——把「一个工具」当成「一个小型 API 的入口」，用 `action` 字段区分功能。好处是模型只需要记住一个名字；坏处是 schema 里的 `query` / `name` 等参数是不同 action 共用的，描述里得不断声明「仅 search 用」——像药品说明书上那句「忌与酒同服」。
 
 `call` 指向的 `_skill_search_call` 就是个简单的 action 分发器，每个 handler 很薄，比如 search 就是拿 query 调 `searcher.search()` 再把结果排成文本。它背后靠一个**懒加载单例** `_get_searcher()`：
 
@@ -305,7 +307,7 @@ def register(name: str) -> Callable[[SubcommandHandler], SubcommandHandler]:
 
 ### 接入：一条通用的 `tool` 子命令
 
-问题来了：Skill Search 只是 51 个工具之一，总不能给每个工具都写一个 `skill-search` 子命令吧？argparse 不支持通配子命令，导入期全量注册又违背「零配置」原则。于是 `tool_cmd/` 模块给出了答案：**只注册一个 `tool` 子命令，第一个参数是工具名，其余参数转发**：
+问题来了：Skill Search 只是 51 个工具之一，总不能给每个工具都写一个 `skill-search` 子命令吧？（一个工具一条命令？51 个工具 51 条，命令名先背哭你。）argparse 不支持通配子命令，导入期全量注册又违背「零配置」原则。于是 `tool_cmd/` 模块给出了答案：**只注册一个 `tool` 子命令，第一个参数是工具名，其余参数转发**：
 
 ```text
 tool SkillSearch --action search --query "browser automation"
@@ -318,7 +320,9 @@ tool --help SkillSearch                                      # 查看某个工�
 
 **第一段：构造独立环境。** CLI 是独立进程，不共享 REPL 的内存，所以 `_build_tool_registry()` 现造一个默认注册表；`_build_tool_context()` 造一个 ToolContext，权限模式设为 `bypassPermissions`——操作者都敲了 `tool <name>` 了，等于声明「这工具的副作用我认了」。工作目录设为 `$PWD`，这样 Read/Write 类工具按操作者的当前目录解析路径。
 
-**第二段：JSON Schema → argparse。** `schema_parser.build_arg_parser()` 把工具的 `input_schema` 编译成 `argparse` 解析器——`query` 字段变成 `--query` 参数，`enum` 变成 `choices`，`required` 变成必填。**工具定义一次，命令行参数自动生成**，零手写。
+> 作者注：`bypassPermissions` 听着吓人，其实只对人肉调用生效——命令都亲手敲出来了，再弹一次权限确认框纯属多此一举。模型走的是另一条道，该问的照问，不耽误。
+
+**第二段：JSON Schema → argparse。** `schema_parser.build_arg_parser()` 把工具的 `input_schema` 编译成 `argparse` 解析器——`query` 字段变成 `--query` 参数，`enum` 变成 `choices`，`required` 变成必填。**工具定义一次，命令行参数自动生成**，零手写——schema 写对了，参数表自己长出来。
 
 **第三段：复用同一条通路。** 解析出的参数包成 `ToolCall`，直接丢进 `registry.dispatch()`——和模型调用走的是**同一个函数**，校验、权限、执行，一点不差。唯一的差别是 bypass 权限模式，以及 `core_filter` 会拦下核心工具（Bash、Read、Write 这些），防止你把核心系统工具当子命令乱调。
 
@@ -403,7 +407,7 @@ class DynamicToolCommand:
 
 ![斜杠命令双路径](fig-dual.svg)
 
-`DynamicToolCommand` 有个贴心设计：它只快照工具的**名字和 schema**，每次调用时通过 `context.tool_registry` 解析**当前**的工具——所以运行时工具被替换（resume、热切换）命令依然工作；工具被卸载时返回友好报错而不是崩溃。冲突时也不强占：**已存在的命令名，动态命令直接让路**。
+`DynamicToolCommand` 有个贴心设计：它只快照工具的**名字和 schema**，每次调用时通过 `context.tool_registry` 解析**当前**的工具——所以运行时工具被替换（resume、热切换）命令依然工作；工具被卸载时返回友好报错而不是崩溃。冲突时也不强占：**已存在的命令名，动态命令直接让路**——毕竟是新来的，抢座不合适。
 
 两条路径对比：
 
