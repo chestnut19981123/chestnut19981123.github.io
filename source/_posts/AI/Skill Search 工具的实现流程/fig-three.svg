@@ -125,7 +125,7 @@ SkillSearch --action stats
       font-size="14"
       text-anchor="middle"
       style="font-weight:700">
-/SkillSearch
+/skills
 </text>
 
 <text x="650" y="132"
