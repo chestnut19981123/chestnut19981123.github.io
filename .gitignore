@@ -140,3 +140,6 @@ _multiconfig.yml
 docs/superpowers/
 # 视觉伴侣临时文件
 .superpowers/
+
+# Playwright
+.playwright-mcp/

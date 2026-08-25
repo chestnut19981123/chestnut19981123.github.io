@@ -1,358 +1,465 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="430" viewBox="0 0 800 430">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="800"
+     height="430"
+     viewBox="0 0 800 430"
+     preserveAspectRatio="xMidYMid meet">
 
 <defs>
-  <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-    <path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/>
+  <marker id="arr"
+          markerWidth="8"
+          markerHeight="8"
+          refX="7"
+          refY="4"
+          orient="auto"
+          markerUnits="userSpaceOnUse">
+    <path d="M0,0 L8,4 L0,8 Z"
+          fill="#64748b"/>
   </marker>
 </defs>
 
-<rect width="800" height="430" fill="#ffffff"/>
+<rect width="800"
+      height="430"
+      fill="#ffffff"/>
+
+
 <!-- 标题 -->
-<text x="400" y="30"
+<text x="400"
+      y="30"
       fill="#1e293b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
-      font-size="22" 
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
+      font-size="22"
       text-anchor="middle"
+      dy="0.35em"
       style="font-weight:700">
 SkillSearchTool 的完整接线
 </text>
 
-<text x="90" y="62"
+
+<!-- 构建期标题 -->
+<text x="40"
+      y="62"
       fill="#64748b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="13"
-      text-anchor="start">
+      text-anchor="start"
+      dy="0.35em">
 构建期：只发生一次
 </text>
 
-<!-- ================= 上行：构建期 ================= -->
 
-<rect width="160" height="64"
-      x="40" y="78"
+<!-- 定义 -->
+<rect width="160"
+      height="64"
+      x="40"
+      y="78"
       fill="#eff6ff"
       stroke="#3b82f6"
       stroke-width="2"
       rx="14"/>
 
-<text x="120" y="102"
+<text x="120"
+      y="102"
       fill="#1e293b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="14"
       text-anchor="middle"
+      dy="0.35em"
       style="font-weight:700">
 定义
 </text>
 
-<text x="120" y="124"
+<text x="120"
+      y="124"
       fill="#64748b"
-      dominant-baseline="middle"
       font-family="monospace"
       font-size="12"
-      text-anchor="middle">
+      text-anchor="middle"
+      dy="0.35em">
 skill_search.py
 </text>
 
-<line x1="200" x2="235" y1="110" y2="110"
-      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
 
-<rect width="150" height="64"
-      x="235" y="78"
+<line x1="200"
+      x2="235"
+      y1="110"
+      y2="110"
+      stroke="#64748b"
+      stroke-width="2.5"
+      marker-end="url(#arr)"/>
+
+
+<!-- ALL_STATIC_TOOLS -->
+<rect width="150"
+      height="64"
+      x="235"
+      y="78"
       fill="#f8fafc"
       stroke="#334155"
       stroke-width="2"
       rx="14"/>
 
-<text x="310" y="102"
+<text x="310"
+      y="102"
       fill="#1e293b"
-      dominant-baseline="middle"
       font-family="monospace"
       font-size="14"
       text-anchor="middle"
+      dy="0.35em"
       style="font-weight:700">
 ALL_STATIC_TOOLS
 </text>
 
-<text x="310" y="124"
+<text x="310"
+      y="124"
       fill="#64748b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="12"
-      text-anchor="middle">
+      text-anchor="middle"
+      dy="0.35em">
 53 个核心工具名单
 </text>
 
-<line x1="385" x2="420" y1="110" y2="110"
-      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
 
-<rect width="160" height="64"
-      x="420" y="78"
+<line x1="385"
+      x2="420"
+      y1="110"
+      y2="110"
+      stroke="#64748b"
+      stroke-width="2.5"
+      marker-end="url(#arr)"/>
+
+<!-- build_default_registry -->
+<rect width="160"
+      height="76"
+      x="420"
+      y="72"
       fill="#f8fafc"
       stroke="#334155"
       stroke-width="2"
       rx="14"/>
 
-<text x="500" y="102"
+<text x="500"
+      y="94"
       fill="#1e293b"
-      dominant-baseline="middle"
       font-family="monospace"
       font-size="14"
       text-anchor="middle"
+      dy="0.35em"
       style="font-weight:700">
 build_default_
 </text>
 
-<text x="500" y="122"
+<text x="500"
+      y="114"
       fill="#1e293b"
-      dominant-baseline="middle"
       font-family="monospace"
       font-size="14"
       text-anchor="middle"
+      dy="0.35em"
       style="font-weight:700">
 registry()
 </text>
 
-<text x="500" y="134"
+<text x="500"
+      y="140"
       fill="#64748b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="11"
-      text-anchor="middle">
-扩展工具延迟到后台（省 3s）
+      text-anchor="middle"
+      dy="0.35em">
+生成运行时注册结果
 </text>
 
-<line x1="580" x2="615" y1="110" y2="110"
-      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
 
-<rect width="145" height="64"
-      x="615" y="78"
+<line x1="580"
+      x2="615"
+      y1="110"
+      y2="110"
+      stroke="#64748b"
+      stroke-width="2.5"
+      marker-end="url(#arr)"/>
+
+
+<!-- ToolRegistry -->
+<rect width="145"
+      height="64"
+      x="615"
+      y="78"
       fill="#eff6ff"
       stroke="#3b82f6"
       stroke-width="2"
       rx="14"/>
 
-<text x="687" y="102"
+<text x="687"
+      y="102"
       fill="#1e293b"
-      dominant-baseline="middle"
       font-family="monospace"
       font-size="14"
       text-anchor="middle"
+      dy="0.35em"
       style="font-weight:700">
 ToolRegistry
 </text>
 
-<text x="687" y="124"
+<text x="687"
+      y="124"
       fill="#64748b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="12"
-      text-anchor="middle">
-注册，接管一切
+      text-anchor="middle"
+      dy="0.35em">
+注册，统一管理
 </text>
 
-<!-- 下行标注 -->
-<text x="90" y="182"
+
+<!-- 运行期标题 -->
+<text x="40"
+      y="200"
       fill="#64748b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="13"
-      text-anchor="start">
-运行期：每次对话都走一遍
+      text-anchor="start"
+      dy="0.35em">
+运行期：每次对话都会经过
 </text>
 
-<!-- 连接下行 -->
-<line x1="400" x2="400" y1="142" y2="192"
-      stroke="#cbd5e1" stroke-width="2"/>
-<line x1="400" x2="400" y1="192" y2="216"
-      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
 
-<!-- ================= 下行：运行期 ================= -->
-
-<rect width="160" height="84"
-      x="40" y="216"
+<!-- 组装工具池 -->
+<rect width="160"
+      height="84"
+      x="40"
+      y="216"
       fill="#f8fafc"
       stroke="#334155"
       stroke-width="2"
       rx="14"/>
 
-<text x="120" y="240"
+<text x="120"
+      y="240"
       fill="#1e293b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="14"
       text-anchor="middle"
+      dy="0.35em"
       style="font-weight:700">
 组装工具池
 </text>
 
-<text x="120" y="262"
+<text x="120"
+      y="262"
       fill="#64748b"
-      dominant-baseline="middle"
       font-family="monospace"
       font-size="12"
-      text-anchor="middle">
+      text-anchor="middle"
+      dy="0.35em">
 assemble_tool_pool
 </text>
 
-<text x="120" y="280"
+<text x="120"
+      y="280"
       fill="#64748b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="11"
-      text-anchor="middle">
-内置在前 MCP 在后（缓存断点）
+      text-anchor="middle"
+      dy="0.35em">
+内置工具优先，MCP 按需加载
 </text>
 
-<line x1="200" x2="235" y1="258" y2="258"
-      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
 
-<rect width="150" height="84"
-      x="235" y="216"
+<line x1="200"
+      x2="235"
+      y1="258"
+      y2="258"
+      stroke="#64748b"
+      stroke-width="2.5"
+      marker-end="url(#arr)"/>
+
+
+<!-- 模型上下文 -->
+<rect width="150"
+      height="84"
+      x="235"
+      y="216"
       fill="#eff6ff"
       stroke="#3b82f6"
       stroke-width="2"
       rx="14"/>
 
-<text x="310" y="240"
+<text x="310"
+      y="240"
       fill="#1e293b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="14"
       text-anchor="middle"
+      dy="0.35em"
       style="font-weight:700">
 模型上下文
 </text>
 
-<text x="310" y="262"
+<text x="310"
+      y="262"
       fill="#64748b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="12"
-      text-anchor="middle">
-所有工具的 schema
+      text-anchor="middle"
+      dy="0.35em">
+SkillSearchTool schema
 </text>
 
-<text x="310" y="280"
+<text x="310"
+      y="280"
       fill="#64748b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="11"
-      text-anchor="middle">
-「你手里有这些牌」
+      text-anchor="middle"
+      dy="0.35em">
+模型知道如何发现能力
 </text>
 
-<line x1="385" x2="420" y1="258" y2="258"
-      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
 
-<rect width="160" height="84"
-      x="420" y="216"
+<line x1="385"
+      x2="420"
+      y1="258"
+      y2="258"
+      stroke="#64748b"
+      stroke-width="2.5"
+      marker-end="url(#arr)"/>
+
+<!-- tool_use JSON -->
+<rect width="160"
+      height="84"
+      x="420"
+      y="216"
       fill="#fff7ed"
       stroke="#f97316"
       stroke-width="2"
       rx="14"/>
 
-<text x="500" y="240"
+<text x="500"
+      y="240"
       fill="#1e293b"
-      dominant-baseline="middle"
       font-family="monospace"
       font-size="14"
       text-anchor="middle"
+      dy="0.35em"
       style="font-weight:700">
 tool_use JSON
 </text>
 
-<text x="500" y="262"
+<text x="500"
+      y="262"
       fill="#64748b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="12"
-      text-anchor="middle">
-模型：我要用 SkillSearch
+      text-anchor="middle"
+      dy="0.35em">
+模型请求 SkillSearch
 </text>
 
-<text x="500" y="280"
+<text x="500"
+      y="280"
       fill="#64748b"
-      dominant-baseline="middle"
       font-family="monospace"
       font-size="11"
-      text-anchor="middle">
-{"action": "search", "query": …}
+      text-anchor="middle"
+      dy="0.35em">
+{"action":"search","query":"..."}
 </text>
 
-<line x1="580" x2="615" y1="258" y2="258"
-      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
 
-<rect width="145" height="84"
-      x="615" y="216"
+<line x1="580"
+      x2="615"
+      y1="258"
+      y2="258"
+      stroke="#64748b"
+      stroke-width="2.5"
+      marker-end="url(#arr)"/>
+
+
+<!-- dispatch 执行 -->
+<rect width="145"
+      height="84"
+      x="615"
+      y="216"
       fill="#f0fdf4"
       stroke="#22c55e"
       stroke-width="2"
       rx="14"/>
 
-<text x="687" y="240"
+<text x="687"
+      y="240"
       fill="#1e293b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="14"
       text-anchor="middle"
+      dy="0.35em"
       style="font-weight:700">
 dispatch 执行
 </text>
 
-<text x="687" y="262"
+<text x="687"
+      y="262"
       fill="#64748b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="12"
-      text-anchor="middle">
+      text-anchor="middle"
+      dy="0.35em">
 校验 → 权限 → 执行
 </text>
 
-<text x="687" y="280"
+<text x="687"
+      y="280"
       fill="#64748b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="11"
-      text-anchor="middle">
+      text-anchor="middle"
+      dy="0.35em">
 结果回填对话
 </text>
 
+
 <!-- 底部说明 -->
-<text x="400" y="336"
+<text x="400"
+      y="336"
       fill="#64748b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="14"
-      text-anchor="middle">
-模型不知道有什么 skill？先搜一把，再决定用哪个
+      text-anchor="middle"
+      dy="0.35em">
+模型不知道有什么 skill？先搜索，再决定调用哪个
 </text>
 
-<rect width="640" height="56"
-      x="80" y="358"
+
+<!-- 核心结论 -->
+<rect width="640"
+      height="56"
+      x="80"
+      y="358"
       fill="#fef2f2"
       stroke="#ef4444"
       stroke-width="2"
       rx="14"/>
 
-<text x="400" y="380"
+<text x="400"
+      y="380"
       fill="#1e293b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="15"
       text-anchor="middle"
+      dy="0.35em"
       style="font-weight:700">
-SkillSearch 的 schema 进上下文
+SkillSearchTool schema 进入上下文
 </text>
 
-<text x="400" y="401"
+<text x="400"
+      y="401"
       fill="#64748b"
-      dominant-baseline="middle"
-      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"
       font-size="13"
-      text-anchor="middle">
-搜索引擎从「躺在仓库里」变成「随叫随到」
+      text-anchor="middle"
+      dy="0.35em">
+从静态工具仓库变成动态能力发现入口
 </text>
 
 
