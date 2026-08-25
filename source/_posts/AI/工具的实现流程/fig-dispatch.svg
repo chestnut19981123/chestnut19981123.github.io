@@ -1,0 +1,255 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="430" viewBox="0 0 800 430">
+
+<defs>
+  <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/>
+  </marker>
+</defs>
+
+<rect width="800" height="430" fill="#ffffff"/>
+<!-- 标题 -->
+<text x="400" y="30"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-size="22"
+      text-anchor="middle"
+      style="font-weight:700">
+一次 dispatch 的安检之旅
+</text>
+
+<text x="400" y="52"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-size="13"
+      text-anchor="middle">
+四道关卡，谁也别想插队
+</text>
+
+<!-- ================= 入口：ToolCall ================= -->
+
+<rect width="340" height="56"
+      x="230" y="66"
+      fill="#eff6ff"
+      stroke="#3b82f6"
+      stroke-width="2"
+      rx="14"/>
+
+<text x="400" y="88"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="monospace"
+      font-size="15"
+      text-anchor="middle"
+      style="font-weight:700">
+ToolCall
+</text>
+
+<text x="400" y="108"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-size="12"
+      text-anchor="middle">
+模型 tool_use JSON，丢进来
+</text>
+
+<!-- 入口 → 总线 → 四站 -->
+
+<line x1="400" x2="400" y1="122" y2="138"
+      stroke="#64748b" stroke-width="2.5"/>
+<line x1="122" x2="668" y1="138" y2="138"
+      stroke="#64748b" stroke-width="2.5"/>
+<line x1="122" x2="122" y1="138" y2="150"
+      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+<line x1="304" x2="304" y1="138" y2="150"
+      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+<line x1="486" x2="486" y1="138" y2="150"
+      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+<line x1="668" x2="668" y1="138" y2="150"
+      stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+
+<!-- ================= 四道关卡 ================= -->
+
+<rect width="165" height="88"
+      x="40" y="150"
+      fill="#f8fafc"
+      stroke="#334155"
+      stroke-width="2"
+      rx="14"/>
+
+<text x="122" y="174"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-size="15"
+      text-anchor="middle"
+      style="font-weight:700">
+① 找工具
+</text>
+
+<text x="122" y="196"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="monospace"
+      font-size="11"
+      text-anchor="middle">
+resolve_tool
+</text>
+
+<text x="122" y="222"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-size="11"
+      text-anchor="middle">
+找不到 → 报错返回
+</text>
+
+<rect width="165" height="88"
+      x="222" y="150"
+      fill="#eff6ff"
+      stroke="#3b82f6"
+      stroke-width="2"
+      rx="14"/>
+
+<text x="304" y="174"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-size="15"
+      text-anchor="middle"
+      style="font-weight:700">
+② 语义强转
+</text>
+
+<text x="304" y="196"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="monospace"
+      font-size="11"
+      text-anchor="middle">
+validate_input
+</text>
+
+<text x="304" y="222"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-size="11"
+      text-anchor="middle">
+"true" → True，清洗后往下走
+</text>
+
+<rect width="165" height="88"
+      x="404" y="150"
+      fill="#fff7ed"
+      stroke="#f97316"
+      stroke-width="2"
+      rx="14"/>
+
+<text x="486" y="174"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-size="15"
+      text-anchor="middle"
+      style="font-weight:700">
+③ 权限三态
+</text>
+
+<text x="486" y="196"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="monospace"
+      font-size="11"
+      text-anchor="middle">
+has_permissions
+</text>
+
+<text x="486" y="222"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-size="11"
+      text-anchor="middle">
+allow / deny / ask
+</text>
+
+<rect width="165" height="88"
+      x="586" y="150"
+      fill="#f0fdf4"
+      stroke="#22c55e"
+      stroke-width="2"
+      rx="14"/>
+
+<text x="668" y="174"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-size="15"
+      text-anchor="middle"
+      style="font-weight:700">
+④ 执行 call
+</text>
+
+<text x="668" y="196"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="monospace"
+      font-size="11"
+      text-anchor="middle">
+call(input, ctx)
+</text>
+
+<text x="668" y="222"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-size="11"
+      text-anchor="middle">
+ToolResult 回填对话
+</text>
+
+<!-- ================= 底部：plan 模式与自定义关卡 ================= -->
+
+<rect width="640" height="56"
+      x="80" y="264"
+      fill="#fef2f2"
+      stroke="#ef4444"
+      stroke-width="2"
+      rx="14"/>
+
+<text x="400" y="286"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-size="14"
+      text-anchor="middle"
+      style="font-weight:700">
+plan 模式写文件直接拒（临时路径除外）· 自定义 validate_input 还能加关卡
+</text>
+
+<text x="400" y="306"
+      fill="#64748b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-size="12"
+      text-anchor="middle">
+所有工具共用这一套安检
+</text>
+
+<!-- ================= 底部点题 ================= -->
+
+<text x="400" y="408"
+      fill="#1e293b"
+      dominant-baseline="middle"
+      font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+      font-size="15"
+      text-anchor="middle"
+      style="font-weight:700">
+新工具零成本获得：校验、权限、并发控制
+</text>
+
+</svg>
