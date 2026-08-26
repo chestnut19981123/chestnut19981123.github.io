@@ -1,0 +1,14 @@
+<svg width="470" height="220" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica Neue, Arial, sans-serif">
+  <path d="M70 160 C150 20 300 20 390 160" fill="none" stroke="#333333" stroke-width="2.5"/>
+  <line x1="70" y1="160" x2="150" y2="20" stroke="#b0b0b0" stroke-width="1.2"/>
+  <line x1="150" y1="20" x2="300" y2="20" stroke="#b0b0b0" stroke-width="1.2"/>
+  <line x1="300" y1="20" x2="390" y2="160" stroke="#b0b0b0" stroke-width="1.2"/>
+  <circle cx="70" cy="160" r="5.5" fill="#1a1a1a"/>
+  <circle cx="390" cy="160" r="5.5" fill="#1a1a1a"/>
+  <circle cx="150" cy="20" r="6" fill="#e5484d"/>
+  <circle cx="300" cy="20" r="6" fill="#e5484d"/>
+  <text x="50" y="185" font-size="14" fill="#333333">P&#8320;</text>
+  <text x="138" y="12" font-size="14" fill="#e5484d">P&#8321;</text>
+  <text x="296" y="12" font-size="14" fill="#e5484d">P&#8322;</text>
+  <text x="378" y="185" font-size="14" fill="#333333">P&#8323;</text>
+</svg>
