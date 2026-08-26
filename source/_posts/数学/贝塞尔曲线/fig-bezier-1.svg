@@ -1,9 +1,1 @@
-<svg width="420" height="120" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica Neue, Arial, sans-serif">
-  <line x1="60" y1="60" x2="340" y2="60" stroke="#333333" stroke-width="2.5"/>
-  <circle cx="60" cy="60" r="5.5" fill="#1a1a1a"/>
-  <circle cx="340" cy="60" r="5.5" fill="#1a1a1a"/>
-  <circle cx="200" cy="60" r="5" fill="#ffffff" stroke="#e5484d" stroke-width="2"/>
-  <text x="40" y="45" font-size="14" fill="#333333">P&#8320;</text>
-  <text x="330" y="45" font-size="14" fill="#333333">P&#8321;</text>
-  <text x="196" y="98" font-size="13" fill="#e5484d">B(0.5)</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="120" font-family="Helvetica Neue, Arial, sans-serif"><line x1="60" x2="340" y1="60" y2="60" stroke="#333" stroke-width="2.5"/><circle cx="60" cy="60" r="5.5" fill="#1a1a1a"/><circle cx="340" cy="60" r="5.5" fill="#1a1a1a"/><circle cx="200" cy="60" r="5" fill="#fff" stroke="#e5484d" stroke-width="2"/><text x="40" y="45" fill="#333" font-size="14">P₀</text><text x="330" y="45" fill="#333" font-size="14">P₁</text><text x="196" y="98" fill="#e5484d" font-size="13">B(0.5)</text></svg>
