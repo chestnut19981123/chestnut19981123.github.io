@@ -1,0 +1,428 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="800"
+     height="430"
+     viewBox="0 0 800 430">
+
+  <defs>
+    <marker id="arr" markerWidth="9" markerHeight="9"
+            refX="8" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#f97316"/>
+    </marker>
+    <style>
+      .font {
+        font-family: ui-sans-serif, system-ui, -apple-system,
+          "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      }
+      .mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo,
+          Consolas, monospace;
+      }
+    </style>
+  </defs>
+
+  <!-- title -->
+  <text x="400" y="28"
+        fill="#1e293b"
+        dominant-baseline="middle"
+        class="font"
+        font-size="20"
+        text-anchor="middle"
+        font-weight="600">
+    页码管组内座次，档位管你站哪个组
+  </text>
+
+  <!-- ================= LEFT: REGISTRY ================= -->
+
+  <rect x="24" y="64" width="300" height="310"
+        fill="#f8fafc"
+        stroke="#94a3b8"
+        stroke-width="2.5"
+        rx="14"/>
+
+  <text x="40" y="90"
+        fill="#1e293b"
+        dominant-baseline="middle"
+        class="font"
+        font-size="14"
+        font-weight="600">
+    ① 两本表
+  </text>
+
+  <!-- table header -->
+  <text x="40" y="116"
+        fill="#64748b"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="12">
+    章节
+  </text>
+
+  <text x="190" y="116"
+        fill="#64748b"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="12">
+    页码
+  </text>
+
+  <text x="230" y="116"
+        fill="#64748b"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="12">
+    档位
+  </text>
+
+  <!-- rows -->
+  <text x="40" y="148"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13">
+    intro
+  </text>
+  <text x="190" y="148"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13">
+    0
+  </text>
+  <text x="230" y="148"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13">
+    global
+  </text>
+
+  <text x="40" y="186"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13">
+    system
+  </text>
+  <text x="190" y="186"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13">
+    1
+  </text>
+  <text x="230" y="186"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13">
+    global
+  </text>
+
+  <text x="40" y="224"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13">
+    doing_tasks
+  </text>
+  <text x="190" y="224"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13">
+    2
+  </text>
+  <text x="230" y="224"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13">
+    global
+  </text>
+
+  <text x="40" y="262"
+        fill="#94a3b8"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13">
+    ⋯
+  </text>
+
+  <!-- highlighted request row -->
+  <rect x="32" y="284"
+        width="284"
+        height="32"
+        fill="#fff7ed"
+        rx="8"/>
+
+  <text x="40" y="300"
+        fill="#c2410c"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13"
+        font-weight="600">
+    environment
+  </text>
+
+  <text x="190" y="300"
+        fill="#c2410c"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13"
+        font-weight="600">
+    20
+  </text>
+
+  <text x="230" y="300"
+        fill="#c2410c"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13"
+        font-weight="600">
+    request
+  </text>
+
+  <text x="40" y="338"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13">
+    memory
+  </text>
+
+  <text x="190" y="338"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13">
+    25
+  </text>
+
+  <text x="230" y="338"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="13">
+    request
+  </text>
+
+
+  <!-- ================= CENTER: TRANSFORMATION ================= -->
+
+  <line x1="332" y1="218"
+        x2="455" y2="218"
+        stroke="#f97316"
+        stroke-width="2.5"
+        marker-end="url(#arr)"/>
+
+  <text x="394" y="194"
+        fill="#c2410c"
+        dominant-baseline="middle"
+        class="font"
+        font-size="12"
+        text-anchor="middle"
+        font-weight="600">
+    排序 + 分组
+  </text>
+
+  <text x="394" y="246"
+        fill="#64748b"
+        dominant-baseline="middle"
+        class="font"
+        font-size="11.5"
+        text-anchor="middle">
+    order 决定组内顺序
+  </text>
+
+  <text x="394" y="264"
+        fill="#64748b"
+        dominant-baseline="middle"
+        class="font"
+        font-size="11.5"
+        text-anchor="middle">
+    scope 决定所属组
+  </text>
+
+
+  <!-- ================= RIGHT: FINAL QUEUE ================= -->
+
+  <rect x="476" y="64"
+        width="300"
+        height="310"
+        fill="#f8fafc"
+        stroke="#94a3b8"
+        stroke-width="2.5"
+        rx="14"/>
+
+  <text x="492" y="90"
+        fill="#1e293b"
+        dominant-baseline="middle"
+        class="font"
+        font-size="14"
+        font-weight="600">
+    ② 最终队列
+  </text>
+
+  <!-- GLOBAL -->
+  <rect x="492" y="108"
+        width="268"
+        height="48"
+        fill="#eff6ff"
+        stroke="#3b82f6"
+        stroke-width="1.8"
+        rx="9"/>
+
+  <rect x="500" y="117"
+        width="58"
+        height="30"
+        fill="#3b82f6"
+        rx="7"/>
+
+  <text x="529" y="132"
+        fill="#ffffff"
+        dominant-baseline="middle"
+        class="font"
+        font-size="11"
+        text-anchor="middle"
+        font-weight="600">
+    global
+  </text>
+
+  <text x="660" y="132"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="font"
+        font-size="12"
+        text-anchor="middle">
+    intro · … · output_efficiency
+  </text>
+
+
+  <!-- BOUNDARY -->
+  <line x1="492" y1="170"
+        x2="760" y2="170"
+        stroke="#94a3b8"
+        stroke-width="1.5"
+        stroke-dasharray="6 4"/>
+
+  <rect x="584" y="160"
+        width="84"
+        height="20"
+        fill="#f8fafc"/>
+
+  <text x="626" y="170"
+        fill="#64748b"
+        dominant-baseline="middle"
+        class="mono"
+        font-size="10.5"
+        text-anchor="middle">
+    __boundary__
+  </text>
+
+
+  <!-- SESSION -->
+  <rect x="492" y="184"
+        width="268"
+        height="48"
+        fill="#f0fdf4"
+        stroke="#16a34a"
+        stroke-width="1.8"
+        rx="9"/>
+
+  <rect x="500" y="193"
+        width="58"
+        height="30"
+        fill="#16a34a"
+        rx="7"/>
+
+  <text x="529" y="208"
+        fill="#ffffff"
+        dominant-baseline="middle"
+        class="font"
+        font-size="11"
+        text-anchor="middle"
+        font-weight="600">
+    session
+  </text>
+
+  <text x="660" y="208"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="font"
+        font-size="11.5"
+        text-anchor="middle">
+    tool_docs · … · output_style
+  </text>
+
+
+  <!-- REQUEST -->
+  <rect x="492" y="244"
+        width="268"
+        height="54"
+        fill="#fff7ed"
+        stroke="#f97316"
+        stroke-width="2"
+        rx="9"/>
+
+  <rect x="500" y="255"
+        width="58"
+        height="32"
+        fill="#f97316"
+        rx="7"/>
+
+  <text x="529" y="271"
+        fill="#ffffff"
+        dominant-baseline="middle"
+        class="font"
+        font-size="11"
+        text-anchor="middle"
+        font-weight="600">
+    request
+  </text>
+
+  <!-- <text x="660" y="271"
+        fill="#c2410c"
+        dominant-baseline="middle"
+        class="font"
+        font-size="12"
+        text-anchor="middle"
+        font-weight="600">
+    environment · memory
+  </text> -->
+  <text x="660" y="271"
+        fill="#334155"
+        dominant-baseline="middle"
+        class="font"
+        font-size="12"
+        text-anchor="middle">
+    environment · … · iteration_meta
+  </text>
+  
+
+  <!-- tail indicator -->
+  <line x1="492" y1="320"
+        x2="760" y2="320"
+        stroke="#f97316"
+        stroke-width="2"/>
+
+  <text x="626" y="340"
+        fill="#c2410c"
+        dominant-baseline="middle"
+        class="font"
+        font-size="12"
+        text-anchor="middle"
+        font-weight="600">
+    prompt 尾部
+  </text>
+
+  <!-- footer -->
+  <text x="400" y="408"
+        fill="#64748b"
+        dominant-baseline="middle"
+        class="font"
+        font-size="12"
+        text-anchor="middle">
+    页码只决定组内座次；scope 先分组，最终形成 global → session → request
+  </text>
+
+</svg>
