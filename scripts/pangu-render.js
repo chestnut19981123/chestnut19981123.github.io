@@ -5,8 +5,19 @@
 const cheerio = require('cheerio')
 const pangu = require('pangu')
 
-// 跳过这些元素内部的文本：脚本/样式、代码块、KaTeX 公式
-const SKIP_SELECTOR = 'script, style, pre, code, .katex'
+// 跳过这些元素内部的文本：脚本/样式、代码块、键盘按键/程序输出、KaTeX 公式、
+// SVG（防内联图表文字被插空格）、原生 MathML（防公式渲染器变化时被污染）
+const SKIP_SELECTOR = [
+  'script',
+  'style',
+  'pre',
+  'code',
+  'kbd',
+  'samp',
+  '.katex',
+  'math',
+  'svg'
+].join(', ')
 
 hexo.extend.filter.register('after_render:html', function (html) {
   const $ = cheerio.load(html)
