@@ -1,5 +1,5 @@
 ---
-title: 基于Giscus部署博客的评论系统
+title: 基于 Giscus 部署博客的评论系统
 cover: cover.png
 categories: '技术'
 tags: ['博客', '评论', 'Giscus']

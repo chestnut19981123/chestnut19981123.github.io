@@ -1,5 +1,5 @@
 ---
-title: Linux配置网络
+title: Linux 配置网络
 categories: '技术'
 tags: ['Linux', '网络']
 date: 2024-06-16 16:15:39
@@ -9,8 +9,8 @@ cover: cover.png
 
 现在这个时代，谁离得开网络呢。连接网络的方式无非两种：有线、无线。家庭或办公室的典型布局是这样的链路：
 
-* 调制解调器连接到ISP：调制解调器从ISP接收互联网信号。
-* 调制解调器连接到路由器：通过网线，将调制解调器连接到路由器的WAN端口。
+* 调制解调器连接到 ISP：调制解调器从 ISP 接收互联网信号。
+* 调制解调器连接到路由器：通过网线，将调制解调器连接到路由器的 WAN 端口。
 * 路由器连接到本地设备：路由器通过有线或无线方式连接到本地的计算机、手机或其他设备。
 
 下文就按这套布局来。在 Linux 中，物理机联网靠 `nmcli` 这个命令行工具，虚拟机则直接在虚拟机软件里配置。
@@ -79,7 +79,7 @@ nmcli device wifi connect <SSID> --ask
 
 虚拟机的网络由虚拟机软件管理，常见模式有这几种：
 
-* NAT模式：虚拟机通过宿主机的IP地址和端口与外部网络通信。
+* NAT 模式：虚拟机通过宿主机的 IP 地址和端口与外部网络通信。
 * 桥接模式：虚拟机直接连接到物理网络，就像一台独立的物理主机。
 * 内部网络：多个虚拟机之间可以相互通信，但不能与宿主机或外部网络通信。
 * 仅主机模式：虚拟机只能与宿主机通信，不能访问外部网络。
@@ -96,8 +96,8 @@ nmcli device wifi connect <SSID> --ask
 
 为什么要设静态 IP？因为 IP 一变，`ssh` 连接就找不到人了，虚拟机场景里尤其常见。IP 分配通常有两种方式：
 
-* DHCP：通过DHCP服务器自动分配IP地址和配置其他网络参数。
-* 静态地址：手动分配IP地址和配置其他网络参数，设备的IP地址在配置后不会改变。
+* DHCP：通过 DHCP 服务器自动分配 IP 地址和配置其他网络参数。
+* 静态地址：手动分配 IP 地址和配置其他网络参数，设备的 IP 地址在配置后不会改变。
 
 下面介绍用 `nmcli` 绑定静态 IP 的方法。
 
@@ -136,12 +136,12 @@ nmcli connection show
 nmcli connection modify <connection> ipv4.method manual ipv4.addresses <address> ipv4.gateway <gateway> ipv4.dns <dns>
 ```
 
-`connection`为连接名称，`address`为IP地址，`gateway`为网关地址，`dns`为DNS服务器地址。以上述网络为例：
+`connection`为连接名称，`address`为 IP 地址，`gateway`为网关地址，`dns`为 DNS 服务器地址。以上述网络为例：
 
 * `connection`：连接名称为上一步查看到的连接名称，连接名称要与相应的接口相关联。
-* `address`：IP地址建议选择`192.168.31.102/24`。该地址只要属于可选范围且不被占用即可。
+* `address`：IP 地址建议选择`192.168.31.102/24`。该地址只要属于可选范围且不被占用即可。
 * `gateway`：网关地址为`192.168.31.1`。该地址的主机部分通常为`1`，这也是访问路由器管理界面的地址。
-* `dns`：DNS服务器地址建议选择`8.8.8.8`或`8.8.4.4`，选择网关地址通常也是可行的。
+* `dns`：DNS 服务器地址建议选择`8.8.8.8`或`8.8.4.4`，选择网关地址通常也是可行的。
 
 4. 先停用连接：
 
@@ -165,13 +165,13 @@ nmcli connection up <connection>
 ip a
 ```
 
-2. 确定无线连接名称，可使用以下命令查看已有连接，该连接名称需要与上一步查看的接口名称相关联，其名称通常为WLAN名称。
+2. 确定无线连接名称，可使用以下命令查看已有连接，该连接名称需要与上一步查看的接口名称相关联，其名称通常为 WLAN 名称。
 
 ```bash
 nmcli connection show
 ```
 
-3. 设置静态连接所需的IP地址、网关以及DNS等信息。
+3. 设置静态连接所需的 IP 地址、网关以及 DNS 等信息。
 
 ```bash
 nmcli connection modify <connection> ipv4.method manual ipv4.addresses <address> ipv4.gateway <gateway> ipv4.dns <dns>
@@ -249,8 +249,8 @@ nmcli device wifi connect <SSID> --ask
 用户代理只管当前用户，核心就是改 `~/.bashrc`：
 
 1. 准备文件`mihomo-linux-amd64-v1.19.29.gz`、`Country.mmdb`、`config.yaml`。
-* `mihomo-linux-amd64-v1.19.29.gz`：从[地址1](https://github.com/MetaCubeX/mihomo/releases)中获取，选择`linux-amd64`版本即可。mihomo 是 Clash 的开源后继项目（原名 Clash.Meta），原版 Clash 已停止维护。
-* `Country.mmdb`：从[地址2](https://github.com/Loyalsoldier/geoip/releases)中获取。
+* `mihomo-linux-amd64-v1.19.29.gz`：从[地址 1](https://github.com/MetaCubeX/mihomo/releases)中获取，选择`linux-amd64`版本即可。mihomo 是 Clash 的开源后继项目（原名 Clash.Meta），原版 Clash 已停止维护。
+* `Country.mmdb`：从[地址 2](https://github.com/Loyalsoldier/geoip/releases)中获取。
 * `config.yaml`：从订阅地址中获取，如果下载下来文件后缀是`.yml`，请手动更改为`.yaml`以便后续使用。
 
 三个文件各有分工：`mihomo` 本体是软件，`Country.mmdb` 是 GeoIP 数据库，用来识别流量的目的地，好让规则分流；`config.yaml` 是订阅配置文件。用 `wget` 或 `curl` 下载就行。
@@ -334,8 +334,8 @@ source ~/.bashrc
 全局代理管整个系统，靠 `systemd` 服务实现，好处是启动、停止、重启都方便管理：
 
 1. 准备文件`mihomo-linux-amd64-v1.19.29.gz`、`Country.mmdb`、`config.yaml`。
-* `mihomo-linux-amd64-v1.19.29.gz`：从[地址1](https://github.com/MetaCubeX/mihomo/releases)中获取，选择`linux-amd64`版本即可。mihomo 是 Clash 的开源后继项目（原名 Clash.Meta），原版 Clash 已停止维护。
-* `Country.mmdb`：从[地址2](https://github.com/Loyalsoldier/geoip/releases)中获取。
+* `mihomo-linux-amd64-v1.19.29.gz`：从[地址 1](https://github.com/MetaCubeX/mihomo/releases)中获取，选择`linux-amd64`版本即可。mihomo 是 Clash 的开源后继项目（原名 Clash.Meta），原版 Clash 已停止维护。
+* `Country.mmdb`：从[地址 2](https://github.com/Loyalsoldier/geoip/releases)中获取。
 * `config.yaml`：从订阅地址中获取，如果下载下来文件后缀是`.yml`，请手动更改为`.yaml`以便后续使用。
 
 2. 把可执行文件解压、重命名、赋予执行权限。
@@ -389,7 +389,7 @@ systemctl status mihomo               # 查看服务状态
 
 状态显示 `active` 就成了。
 
-![Clash服务状态](Clash服务状态.png)
+![Clash 服务状态](Clash服务状态.png)
 
 5. 代理开关和用户代理一样，加到 `~/.bashrc` 里，`source` 生效。
 
@@ -440,10 +440,10 @@ source ~/.bashrc
 
 ![允许局域网访问](允许局域网访问.png)
 
-3. 查看宿主机IP地址。在Windows下，使用`ipconfig`命令即可。针对于虚拟机，除了内部网络和仅主机模式无法访问网络外，有两种情况：
+3. 查看宿主机 IP 地址。在 Windows 下，使用`ipconfig`命令即可。针对于虚拟机，除了内部网络和仅主机模式无法访问网络外，有两种情况：
 
-* NAT模式：选择宿主机与虚拟机相关的虚拟网卡地址，该地址也可在虚拟机中使用`ip route | grep 'default' | awk '{print $3}' | head -n 1`查看。
-* 桥接模式：选择宿主机上网时所使用的IP地址，这种情况下通常需要对宿主机设置静态IP地址。
+* NAT 模式：选择宿主机与虚拟机相关的虚拟网卡地址，该地址也可在虚拟机中使用`ip route | grep 'default' | awk '{print $3}' | head -n 1`查看。
+* 桥接模式：选择宿主机上网时所使用的 IP 地址，这种情况下通常需要对宿主机设置静态 IP 地址。
 
 另外，如果 WSL2 开启了镜像网络模式（`.wslconfig` 中的 `networkingMode=mirrored`），宿主机代理直接填 `127.0.0.1:7890` 就行——镜像模式下 localhost 会在 WSL 与 Windows 之间互通；默认的 NAT 模式则要用宿主机 IP。
 

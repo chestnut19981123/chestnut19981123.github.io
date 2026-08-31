@@ -1,5 +1,5 @@
 ---
-title: Spring基础
+title: Spring 基础
 categories: '技术'
 tags: ['Spring']
 date: 2025-03-16 20:40:26
@@ -11,8 +11,8 @@ cover: cover.png
 ## 概述
 
 1. 官网：https://spring.io/（文档：https://spring.io/projects/spring-framework#learn）
-2. Spring框架：让 Java EE 开发快起来的框架。
-3. Spring体系结构：
+2. Spring 框架：让 Java EE 开发快起来的框架。
+3. Spring 体系结构：
 
 ![spring-overview](spring-overview.png)
 
@@ -79,7 +79,7 @@ SpringMVC：
 </dependency>
 ```
 
-整合JUnit：
+整合 JUnit：
 
 ```xml
 <!-- spring-test 用于整合JUnit -->
@@ -92,9 +92,9 @@ SpringMVC：
 </dependency>
 ```
 
-## Spring配置
+## Spring 配置
 
-### XML配置
+### XML 配置
 
 早期 Spring 全靠 XML 配置文件撑场面，现在注解虽然成了主流，但 XML 还是经常见到——老项目里、面试题里都是它。
 
@@ -108,7 +108,7 @@ SpringMVC：
 </beans>
 ```
 
-* 常用XML配置文件头部：
+* 常用 XML 配置文件头部：
 
 `applicationContext.xml`：
 
@@ -208,29 +208,29 @@ public class AppConfig  {
 ```
 
 * `@Configuration`：指定当前类是一个配置类
-  * 属性：`proxyBeanMethods`用于指定代理Bean的方法
-  * 配置类组件无依赖关系使用Full模式（`proxyBeanMethods=true`，默认），配置类组件有依赖关系使用Lite模式（`proxyBeanMethods=false`）
+  * 属性：`proxyBeanMethods`用于指定代理 Bean 的方法
+  * 配置类组件无依赖关系使用 Full 模式（`proxyBeanMethods=true`，默认），配置类组件有依赖关系使用 Lite 模式（`proxyBeanMethods=false`）
 * `@ComponentScan`：指定配置类创建容器需扫描的包
   * 属性：`value`用于指定创建容器需扫描的包名
-* `@EnableAspectJAutoProxy`：指定配置类开启注解配置AOP
-* `@Bean`：指定（配置类中）当前方法的返回值为bean对象存入容器中
-  * 属性：`name`用于指定bean的id，默认值为当前方法的名称
-  * 若方法有参数，则Spring会按照类型（必要时依据变量名）注入bean对象
+* `@EnableAspectJAutoProxy`：指定配置类开启注解配置 AOP
+* `@Bean`：指定（配置类中）当前方法的返回值为 bean 对象存入容器中
+  * 属性：`name`用于指定 bean 的 id，默认值为当前方法的名称
+  * 若方法有参数，则 Spring 会按照类型（必要时依据变量名）注入 bean 对象
 
 导入类：
 
-* **`@Import`**：指定当前类导入组件（这些类会被创建并放入Spring容器中）
+* **`@Import`**：指定当前类导入组件（这些类会被创建并放入 Spring 容器中）
   * 属性：`value`用于指定导入组件的字节码
-* `@ImportResource`：指定当前类导入某一资源文件（如Spring的`applicationContext.xml`）
+* `@ImportResource`：指定当前类导入某一资源文件（如 Spring 的`applicationContext.xml`）
   * 属性：`value`用于指定资源文件的名称
-* `@PropertySource`：指定当前类导入properties文件的位置及名称（可使用`@Value`注解以及`SpEL`导入数据）
-  * 属性：`value`用于指定properties文件的位置及名称
+* `@PropertySource`：指定当前类导入 properties 文件的位置及名称（可使用`@Value`注解以及`SpEL`导入数据）
+  * 属性：`value`用于指定 properties 文件的位置及名称
 
 条件注解：
 
 * `@ConditionalOnProperty`：指定当前类当配置文件中有对应属性和值时才被初始化
 * `@ConditionalOnClass`：指定当前类当环境中有字节码时才被初始化
-* `@ConditionalOnMissingBean`：指定当前类当环境中没有对应Bean时才被初始化
+* `@ConditionalOnMissingBean`：指定当前类当环境中没有对应 Bean 时才被初始化
 
 
 
@@ -269,7 +269,7 @@ factory.addBeanPostProcessor(new MyBeanPostProcessor());
 // now start using the factory
 ```
 
-`BeanFactory`构建核心容器时创建对象采用延迟加载（根据id获取对象时创建）的方式
+`BeanFactory`构建核心容器时创建对象采用延迟加载（根据 id 获取对象时创建）的方式
 
 ### 创建对象
 
@@ -283,7 +283,7 @@ factory.addBeanPostProcessor(new MyBeanPostProcessor());
 <bean name="anotherExample" class="examples.ExampleBeanTwo"/>
 ```
 
-对应Java类：
+对应 Java 类：
 
 ```java
 public class ExampleBean {
@@ -317,7 +317,7 @@ public class ExampleBeanTwo {
     factory-method="createAccountServiceInstance"/>
 ```
 
-对应Java类：
+对应 Java 类：
 
 ```java
 public class DefaultServiceLocator {
@@ -344,7 +344,7 @@ public class DefaultServiceLocator {
     factory-method="createInstance"/>
 ```
 
-对应Java类：
+对应 Java 类：
 
 ```java
 public class ClientService {
@@ -359,14 +359,14 @@ public class ClientService {
 
 #### 注解
 
-* `@Component`：指定其他层类为bean对象存入容器中
-  * 属性：`value`用于指定bean的id，默认值为当前类类名（首字母小写）
-* `@Controller`：指定表现层类为bean对象存入容器中
-  * 属性：`value`用于指定bean的id，默认值为当前类类名（首字母小写）
-* `@Service`：指定业务层类为bean对象存入容器中
-  * 属性：`value`用于指定bean的id，默认值为当前类类名（首字母小写）
-* `@Repository`：指定持久层类为bean对象存入容器中
-  * 属性：`value`用于指定bean的id，默认值为当前类类名（首字母小写）
+* `@Component`：指定其他层类为 bean 对象存入容器中
+  * 属性：`value`用于指定 bean 的 id，默认值为当前类类名（首字母小写）
+* `@Controller`：指定表现层类为 bean 对象存入容器中
+  * 属性：`value`用于指定 bean 的 id，默认值为当前类类名（首字母小写）
+* `@Service`：指定业务层类为 bean 对象存入容器中
+  * 属性：`value`用于指定 bean 的 id，默认值为当前类类名（首字母小写）
+* `@Repository`：指定持久层类为 bean 对象存入容器中
+  * 属性：`value`用于指定 bean 的 id，默认值为当前类类名（首字母小写）
 
 ### 依赖注入
 
@@ -391,7 +391,7 @@ public class ClientService {
 <bean id="yetAnotherBean" class="examples.YetAnotherBean"/>
 ```
 
-对应Java类：
+对应 Java 类：
 
 ```java
 public class ExampleBean {
@@ -415,12 +415,12 @@ public class ExampleBean {
 | 属性    | 描述                                                 |
 | :------ | :--------------------------------------------------- |
 | `type`  | 指定注入的数据（构造函数参数）类型                   |
-| `index` | 指定注入的数据（构造函数参数）索引，索引从0开始      |
+| `index` | 指定注入的数据（构造函数参数）索引，索引从 0 开始      |
 | `name`  | 指定注入的数据（构造函数参数）名称                   |
 | `value` | 指定注入数据的值，值类型为基本数据类型或`String`类型 |
-| `ref`   | 指定注入数据引用，值类型为其他Bean类型               |
+| `ref`   | 指定注入数据引用，值类型为其他 Bean 类型               |
 
-* Set方法依赖注入（set方法+`property`标签）
+* Set 方法依赖注入（set 方法+`property`标签）
 
 ```xml
 <bean id="exampleBean" class="examples.ExampleBean">
@@ -438,7 +438,7 @@ public class ExampleBean {
 <bean id="yetAnotherBean" class="examples.YetAnotherBean"/>
 ```
 
-对应Java类：
+对应 Java 类：
 
 ```java
 public class ExampleBean {
@@ -467,9 +467,9 @@ public class ExampleBean {
 
 | 属性    | 描述                                                         |
 | :------ | :----------------------------------------------------------- |
-| `name`  | 指定注入的数据（set方法名(`setBeanOne`)中的参数名(`beanOne`)）名称 |
+| `name`  | 指定注入的数据（set 方法名(`setBeanOne`)中的参数名(`beanOne`)）名称 |
 | `value` | 指定注入数据的值，值类型为基本数据类型或`String`类型         |
-| `ref`   | 指定注入数据引用，值类型为其他Bean类型                       |
+| `ref`   | 指定注入数据引用，值类型为其他 Bean 类型                       |
 
 `<property>`标签中的子标签：
 
@@ -518,14 +518,14 @@ public class ExampleBean {
 
 #### 注解
 
-* `@Autowired`：指定注入数据的变量或方法，按照类型（必要时依据变量名）注入bean对象（容器只要有唯一bean对象与之匹配）
-  * 若有0个对应bean对象则报错，若有2个或以上对应bean对象则按变量名进行匹配，若无一致变量名则报错。
-* `@Qualifier`：指定注入数据的变量或方法，按照名称（bean的id）注入bean对象（对类成员注入时需配合`@Autowired`一起使用）
-  * 属性：`value`用于指定注入bean的`id`
-* `@Resource`：指定注入数据的变量或方法，按照名称（bean的id）注入bean对象
-  * 属性：`name`用于指定注入bean的`id`
+* `@Autowired`：指定注入数据的变量或方法，按照类型（必要时依据变量名）注入 bean 对象（容器只要有唯一 bean 对象与之匹配）
+  * 若有 0 个对应 bean 对象则报错，若有 2 个或以上对应 bean 对象则按变量名进行匹配，若无一致变量名则报错。
+* `@Qualifier`：指定注入数据的变量或方法，按照名称（bean 的 id）注入 bean 对象（对类成员注入时需配合`@Autowired`一起使用）
+  * 属性：`value`用于指定注入 bean 的`id`
+* `@Resource`：指定注入数据的变量或方法，按照名称（bean 的 id）注入 bean 对象
+  * 属性：`name`用于指定注入 bean 的`id`
 * `@Value`：指定注入数据的变量或方法，按照数据值注入基本数据类型或`String`类型
-  * 属性：`value`用于指定注入bean的值（可使用`SpEL`）
+  * 属性：`value`用于指定注入 bean 的值（可使用`SpEL`）
 
 ### 作用范围
 
@@ -545,7 +545,7 @@ public class ExampleBean {
 #### 注解
 
 * `@Scope`：指定当前类的作用范围
-  * 属性：`value`用于指定bean的作用范围（`singleton`、`prototype`）
+  * 属性：`value`用于指定 bean 的作用范围（`singleton`、`prototype`）
 
 ### 生命周期
 
@@ -563,7 +563,7 @@ public class ExampleBean {
 <bean id="exampleInitBean" class="examples.ExampleBean" init-method="init"/>
 ```
 
-对应Java类：
+对应 Java 类：
 
 ```java
 public class ExampleBean {
@@ -580,7 +580,7 @@ public class ExampleBean {
 <bean id="exampleInitBean" class="examples.ExampleBean" destroy-method="cleanup"/>
 ```
 
-对应Java类：
+对应 Java 类：
 
 ```java
 public class ExampleBean {
@@ -610,7 +610,7 @@ AOP 的概念术语不少，初次接触容易晕。先把下面这串名词过�
 
   - Advice：增强，指特定连接点上执行的动作
 
-  - Introduction：引介，指为一个已有的Java对象动态地增加新的接口
+  - Introduction：引介，指为一个已有的 Java 对象动态地增加新的接口
 
   - Weaving：织入，指将切面整合到程序的执行流程中
 
@@ -618,7 +618,7 @@ AOP 的概念术语不少，初次接触容易晕。先把下面这串名词过�
 
   - Target Object：目标对象，即真正执行业务的核心逻辑对象
 
-  - AOP Proxy：AOP代理，是客户端持有的增强后的对象引用
+  - AOP Proxy：AOP 代理，是客户端持有的增强后的对象引用
 
 
 ### 声明切面
@@ -814,7 +814,7 @@ public Object doBasicProfiling(ProceedingJoinPoint pjp) {
 </tx:advice>
 ```
 
-3. 配置AOP
+3. 配置 AOP
 
 ```xml
 <!-- 配置AOP -->
@@ -828,7 +828,7 @@ public Object doBasicProfiling(ProceedingJoinPoint pjp) {
 
 #### 注解
 
-* `@Transactional`：指定当前类中所有public方法都具有该类型的事务属性或指定当前方法具有该类型的事务属性
+* `@Transactional`：指定当前类中所有 public 方法都具有该类型的事务属性或指定当前方法具有该类型的事务属性
 
 1. 配置事务管理器
 
@@ -863,28 +863,28 @@ Spring MVC 是 Web 层的 MVC 框架。先认识它的几个核心组件，再�
 
 * 组件：
 
-  * `DispatcherServlet`：前端控制器，MVC控制流程核心
+  * `DispatcherServlet`：前端控制器，MVC 控制流程核心
 
-  * `HandlerMapping`：处理器映射器，根据用户请求找到Handler
+  * `HandlerMapping`：处理器映射器，根据用户请求找到 Handler
 
   * `Handler`：处理器，对具体的用户请求进行响应
 
-  * `HandlerAdapter`：处理器适配器，对Handler进行执行
+  * `HandlerAdapter`：处理器适配器，对 Handler 进行执行
 
-  * `ViewResolver`：视图解析器，根据结果生产View视图
+  * `ViewResolver`：视图解析器，根据结果生产 View 视图
   * `View`：视图
 
-* 使用Spring MVC时，整个Web应用程序按如下顺序启动：
+* 使用 Spring MVC 时，整个 Web 应用程序按如下顺序启动：
 
-  1. 启动Tomcat服务器
-  2. Tomcat读取web.xml并初始化DispatcherServlet
-  3. DispatcherServlet创建IoC容器并自动注册到ServletContext中
+  1. 启动 Tomcat 服务器
+  2. Tomcat 读取 web.xml 并初始化 DispatcherServlet
+  3. DispatcherServlet 创建 IoC 容器并自动注册到 ServletContext 中
 
-  启动后，浏览器发出的HTTP请求全部由DispatcherServlet接收，并根据配置转发到指定Controller的指定方法处理。
+  启动后，浏览器发出的 HTTP 请求全部由 DispatcherServlet 接收，并根据配置转发到指定 Controller 的指定方法处理。
 
 * 执行流程
 
-![SpringMVC执行流程](SpringMVC执行流程.png)
+![SpringMVC 执行流程](SpringMVC执行流程.png)
 
 ### 常用组件
 
@@ -1235,7 +1235,7 @@ public String method(String username) {...} // 请求参数名为username
 <input type="text" name="username" />
 ```
 
-* 可通过参数列表获取封装后bean类型
+* 可通过参数列表获取封装后 bean 类型
 
 控制器方法参数：
 
@@ -1360,9 +1360,9 @@ public User testJSON(){
 }
 ```
 
-### Rest风格
+### Rest 风格
 
-* Restful制作表现层接口
+* Restful 制作表现层接口
   * 新增：POST
   * 删除：DELETE
   * 修改：PUT
@@ -1497,56 +1497,56 @@ public class ProjectExceptionAdvice {
 
 ### 常用注解
 
-* **`@RequestMapping`**：指定当前方法（处理请求方法）或当前类（处理请求方法类）与请求URL之间的关联
-  * 属性：`value`用于指定请求URL的路径，`method`用于指定请求方式，`params`用于指定限制请求参数的条件
+* **`@RequestMapping`**：指定当前方法（处理请求方法）或当前类（处理请求方法类）与请求 URL 之间的关联
+  * 属性：`value`用于指定请求 URL 的路径，`method`用于指定请求方式，`params`用于指定限制请求参数的条件
   * `method`指定注解：`@GetMapping`、`@PostMapping`、`@PutMapping`、`@DeleteMapping`
-  * `params`常用格式：`params={"name"}`表示请求参数必须含有`name`，`params={"money!100"}`表示请求参数`money`不能为100
-* **`@ResponseBody`**：指定当前控制器方法返回字符串（控制器方法返回`String`）或对象或集合（控制器方法返回对象或集合，对象或集合会被转换为JSON）至HTTP响应体
-* **`@RequestBody`**：指定当前控制器方法参数从HTTP请求体中获取字符串（控制器方法参数为`String`）或对象或集合（控制器方法参数为对象或集合，JSON会被转换为对象或集合）
-* **`@PathVarible`**：指定当前控制器方法参数获取URL中的占位符
-  * 属性：`value`用于指定URL中的占位符名称
+  * `params`常用格式：`params={"name"}`表示请求参数必须含有`name`，`params={"money!100"}`表示请求参数`money`不能为 100
+* **`@ResponseBody`**：指定当前控制器方法返回字符串（控制器方法返回`String`）或对象或集合（控制器方法返回对象或集合，对象或集合会被转换为 JSON）至 HTTP 响应体
+* **`@RequestBody`**：指定当前控制器方法参数从 HTTP 请求体中获取字符串（控制器方法参数为`String`）或对象或集合（控制器方法参数为对象或集合，JSON 会被转换为对象或集合）
+* **`@PathVarible`**：指定当前控制器方法参数获取 URL 中的占位符
+  * 属性：`value`用于指定 URL 中的占位符名称
 * `@RequestParam`：指定当前控制器方法参数获取指定名称的请求参数值
   * 属性：`value`用于指定请求参数的名称，`required`用于指定参数是否必须传入（默认`true`），`defaultValue`用于指定参数默认值
 
-* `@RequestHeader`：指定当前控制器方法参数获取指定Header值
-  * 属性：`value`用于指定Header的键值
-* `@CookieValue`：指定当前控制器方法参数获取Cookie值
-  * 属性：`value`用于指定Cookie的键值
+* `@RequestHeader`：指定当前控制器方法参数获取指定 Header 值
+  * 属性：`value`用于指定 Header 的键值
+* `@CookieValue`：指定当前控制器方法参数获取 Cookie 值
+  * 属性：`value`用于指定 Cookie 的键值
 * `@ModelAttribute`：指定当前方法先于当前控制器每个方法执行之前执行，如果有返回值，则自动将该返回值加入到`ModelMap`中。
   * 修饰方法时，`value`用于指定存入`Model`中的键值对的`key`值（键值对的值为函数返回值），若未指定则使用默认值
   * 修饰参数时，`value`用于指定取出`Model`中的键值为`key`的值
-* `@SessionAttributes`：指定当前类存入`Model`中的某参数至session域
-  * 属性：`value`用于指定`Model`中的某参数名称（并将其存入session域）
-* `@RestController`：指定当前类为Rest风格控制器（相当于`@ResponseBody` + `@Controller`）
-* `@RestControllerAdvice`：指定当前类为Rest风格异常控制器（相当于`@ResponseBody` + `@ControllerAdvice`）
+* `@SessionAttributes`：指定当前类存入`Model`中的某参数至 session 域
+  * 属性：`value`用于指定`Model`中的某参数名称（并将其存入 session 域）
+* `@RestController`：指定当前类为 Rest 风格控制器（相当于`@ResponseBody` + `@Controller`）
+* `@RestControllerAdvice`：指定当前类为 Rest 风格异常控制器（相当于`@ResponseBody` + `@ControllerAdvice`）
 * `@ExceptionHandler`：指定当前控制器方法处理指定类型错误
 
 ## Spring Boot
 
 Spring 传统开发最让人头疼的就是配置和依赖，Spring Boot 就是为了解决这俩痛点来的。
 
-* Spring Boot文档：https://spring.io/projects/spring-boot#learn
-* Spring传统缺点：
-  * 配置繁琐：SpringBoot采用自动配置技术
-  * 依赖繁琐：SpringBoot采用起步依赖技术
-* Spring Boot优点：Spring Boot并不是对Spring功能上的增强，而是提供了一种快速使用Spring的方式。
+* Spring Boot 文档：https://spring.io/projects/spring-boot#learn
+* Spring 传统缺点：
+  * 配置繁琐：SpringBoot 采用自动配置技术
+  * 依赖繁琐：SpringBoot 采用起步依赖技术
+* Spring Boot 优点：Spring Boot 并不是对 Spring 功能上的增强，而是提供了一种快速使用 Spring 的方式。
   * 自动配置
   * 起步依赖
   * 辅助功能
-* Parent：开发Spring Boot应用需继承`spring-boot-starter-parent`（Spring Boot父工程）。
+* Parent：开发 Spring Boot 应用需继承`spring-boot-starter-parent`（Spring Boot 父工程）。
   * `spring-boot-starter-parent`定义了若干坐标版本号，以达到减少依赖冲突的目的。
   * `spring-boot-starter-parent`各版本间存在诸多坐标版本不同。
 
-* Starter：开发Spring Boot应用需导入若干starter（starter根据功能不同通常会包含多个依赖坐标）。
-  * starter定义了当前项目使用的所有依赖坐标，以达到减少依赖配置的目的。
-  * 依赖配置使用任意坐标时，仅书写GA即可（V由Spring Boot提供），若Spring Boot未提供V则指定V（要小心版本冲突）。
+* Starter：开发 Spring Boot 应用需导入若干 starter（starter 根据功能不同通常会包含多个依赖坐标）。
+  * starter 定义了当前项目使用的所有依赖坐标，以达到减少依赖配置的目的。
+  * 依赖配置使用任意坐标时，仅书写 GA 即可（V 由 Spring Boot 提供），若 Spring Boot 未提供 V 则指定 V（要小心版本冲突）。
 
-* 引导类：Spring Boot应用的入口需使用`@SpringBootApplication`注解。
-  * Spring Boot应用提供引导类用来启动程序，运行引导类的`main`方法可以启动项目。
-  * Spring Boot应用运行后会初始化Spring容器（`ConfigurableApplicationContext`），扫描引导类所在包并加载bean。
+* 引导类：Spring Boot 应用的入口需使用`@SpringBootApplication`注解。
+  * Spring Boot 应用提供引导类用来启动程序，运行引导类的`main`方法可以启动项目。
+  * Spring Boot 应用运行后会初始化 Spring 容器（`ConfigurableApplicationContext`），扫描引导类所在包并加载 bean。
 
-* Profile：Profile是用来完成不同环境下、配置动态切换功能的。
-  * 配置方式：多profile方式、yml多文档方式
+* Profile：Profile 是用来完成不同环境下、配置动态切换功能的。
+  * 配置方式：多 profile 方式、yml 多文档方式
   * 激活方式：配置文件（`spring.profiles.active=dev`）、虚拟机参数（`-Dspring.profiles.active=dev`）、命令行参数（`java -jar xxx.jar --spring.profiles.active=dev`）
 
 ### 配置文件
@@ -1626,7 +1626,7 @@ private Person person;
 
 ### Profile
 
-* 多profile文件方式：提供多个配置环境，每个文件代表一个环境
+* 多 profile 文件方式：提供多个配置环境，每个文件代表一个环境
 
 `application-dev.properties`：
 
@@ -1652,7 +1652,7 @@ server.port=8083
 spring.profiles.active=dev
 ```
 
-* yml多文档方式：使用`---`分隔不同配置
+* yml 多文档方式：使用`---`分隔不同配置
 
 ```yml
 ---
@@ -1683,12 +1683,12 @@ spring:
 
 * 内部配置加载顺序：从上至下依次加载。
 
-1. file:./config/当前项目config目录下
+1. file:./config/当前项目 config 目录下
 2. file:./当前项目根目录
-3. classpath:/config/类路径的config目录
+3. classpath:/config/类路径的 config 目录
 4. classpath:/类路径的根目录
 
-## SSM整合
+## SSM 整合
 
 SSM = Spring + SpringMVC + Mybatis，老三样了。整合思路其实就一句话：各管各的——Spring 管对象，SpringMVC 管请求，Mybatis 管数据库，再把它们串起来。下面是完整步骤：
 
@@ -1786,7 +1786,7 @@ SSM = Spring + SpringMVC + Mybatis，老三样了。整合思路其实就一句�
 
 4. 相应类中添加`@Repository`、`@Service`、`@Controller`、`@Component`注解
 
-### 集成Druid
+### 集成 Druid
 
 1. 导入相关依赖
 
@@ -1834,7 +1834,7 @@ druid.password=123456
 </bean>
 ```
 
-### 集成JUnit
+### 集成 JUnit
 
 1. 导入相关依赖
 
@@ -1858,9 +1858,9 @@ druid.password=123456
 </dependency>
 ```
 
-2. 测试类添加`@RunWith(SpringJUnit4ClassRunner.class)`替换原先运行期（使用`@RunWith`替换原JUnit的`main`方法）
-3. 测试类添加`@ContextConfiguration(...)`指定配置文件或文件类（告知Spring的运行器容器的创建方式）
-   1. 可使用`locations`告知XML配置文件
+2. 测试类添加`@RunWith(SpringJUnit4ClassRunner.class)`替换原先运行期（使用`@RunWith`替换原 JUnit 的`main`方法）
+3. 测试类添加`@ContextConfiguration(...)`指定配置文件或文件类（告知 Spring 的运行器容器的创建方式）
+   1. 可使用`locations`告知 XML 配置文件
    2. 可使用`classes`告知注解类位置
 
 ```java
@@ -1889,7 +1889,7 @@ public class DataSourceTest {
 
 5. 编写并运行测试代码
 
-### 集成Mybatis
+### 集成 Mybatis
 
 1. 导入相关依赖
 
@@ -2073,7 +2073,7 @@ public class User implements Serializable {
 
 7. 持久层接口/类中添加`@Repository`注解
 
-### 集成Spring MVC
+### 集成 Spring MVC
 
 1. 导入相关依赖
 
@@ -2325,7 +2325,7 @@ private AdminService adminService;
 </build>
 ```
 
-2. 定义Controller
+2. 定义 Controller
 
 ```java
 package com.lee.controller;
@@ -2364,7 +2364,7 @@ public class MyApplication {
 
 4. 启动测试
 
-### 集成Lombok
+### 集成 Lombok
 
 1. 导入起步依赖
 
@@ -2376,9 +2376,9 @@ public class MyApplication {
 ```
 
 2. 实体类添加数据库表列名字段的对应属性
-3. 实体类添加`@Data`注解，Lombok自动提供getter、setter、`toString`、`hashCode`、`equals`等方法（pojo/domain/bean）
+3. 实体类添加`@Data`注解，Lombok 自动提供 getter、setter、`toString`、`hashCode`、`equals`等方法（pojo/domain/bean）
 
-### 集成Druid
+### 集成 Druid
 
 1. 导入起步依赖
 
@@ -2411,7 +2411,7 @@ spring:
       password: 123456
 ```
 
-### 集成JUnit
+### 集成 JUnit
 
 1. 导入起步依赖
 
@@ -2450,7 +2450,7 @@ class MyApplicationTests {
 
 4. 编写并运行测试代码
 
-### 集成Mybatis
+### 集成 Mybatis
 
 1. 导入起步依赖
 
@@ -2506,9 +2506,9 @@ mybatis-plus:
       id-type: auto
 ```
 
-3. 编写实体类（若使用Lombok则实体类直接添加`@Data`注解），**需使用`@TableName`指定表名**（pojo/domain/bean）
+3. 编写实体类（若使用 Lombok 则实体类直接添加`@Data`注解），**需使用`@TableName`指定表名**（pojo/domain/bean）
 
-4. 编写持久层接口（若使用Mybatis Plus则可直接继承`BaseMapper<T>`），**需使用`@Mapper`注解标明此类**（dao/mapper）
+4. 编写持久层接口（若使用 Mybatis Plus 则可直接继承`BaseMapper<T>`），**需使用`@Mapper`注解标明此类**（dao/mapper）
 5. 编写持久层类方法注解或持久层类的映射配置文件
 
 差不多就这些，从 Spring 到 Spring Boot 的常见内容都过了一遍。祝写代码不报错——真有报错的话，就交给 agent 工具吧。
