@@ -909,9 +909,6 @@ inject:
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
     # - <script src="xxxx"></script>
-    # pangu：中英文自动空格（5.3.0 起主题移除，手动注入替代；脚本在 #body-wrap 内，pjax 切换会重跑，故用全局标记保证幂等）
-    - <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
-    - <script>(()=>{if(window.__panguInit){if(window.pangu)pangu.autoSpacingPage();return}window.__panguInit=true;window.addEventListener('DOMContentLoaded',()=>{if(window.pangu)pangu.autoSpacingPage()})})()</script>
 
 # CDN
 # Don't modify the following settings unless you know how they work
