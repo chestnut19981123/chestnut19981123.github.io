@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380" font-family="Alibaba PuHuiTi, WenQuanYi Zen Hei, PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#49b1f5"/>
+    </marker>
+    <marker id="arrow-gold" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9a96a"/>
+    </marker>
+  </defs>
+
+  <!-- 节点：可微 / 可导 / 连续 -->
+  <rect x="70"  y="100" width="150" height="72" rx="14" fill="#e8f2fa" stroke="#49b1f5" stroke-width="2.5"/>
+  <rect x="285" y="100" width="150" height="72" rx="14" fill="#e8f2fa" stroke="#49b1f5" stroke-width="2.5"/>
+  <rect x="500" y="100" width="150" height="72" rx="14" fill="#49b1f5" stroke="#49b1f5" stroke-width="2.5"/>
+  <text x="145" y="150" text-anchor="middle" font-size="22" fill="#3a3a3a">可微</text>
+  <text x="360" y="150" text-anchor="middle" font-size="22" fill="#3a3a3a">可导</text>
+  <text x="575" y="150" text-anchor="middle" font-size="22" fill="#ffffff">连续</text>
+
+  <!-- 可微 ⇌ 可导：等价（双向箭头） -->
+  <line x1="220" y1="128" x2="285" y2="128" stroke="#49b1f5" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="285" y1="144" x2="220" y2="144" stroke="#49b1f5" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="252" y="112" text-anchor="middle" font-size="15" fill="#2c6f9e">等价</text>
+
+  <!-- 可导 → 连续 -->
+  <line x1="435" y1="136" x2="500" y2="136" stroke="#49b1f5" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 连续 ⇏ 可导：虚线返回 -->
+  <path d="M 545 172 C 545 240, 360 240, 360 172" fill="none" stroke="#c9a96a" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow-gold)"/>
+  <text x="452" y="252" text-anchor="middle" font-size="15" fill="#a8864a">不一定</text>
+
+  <!-- 反例卡片 -->
+  <rect x="500" y="290" width="190" height="64" rx="12" fill="#faf6ec" stroke="#c9a96a" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="595" y="318" text-anchor="middle" font-size="15" fill="#a8864a">反例：</text>
+  <text x="595" y="340" text-anchor="middle" font-size="16" fill="#3a3a3a">y = |x| 连续但不可导</text>
+</svg>
