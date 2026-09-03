@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380" font-family="Alibaba PuHuiTi, WenQuanYi Zen Hei, PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2c6f9e"/>
+    </marker>
+  </defs>
+
+  <!-- ===== 左：旋转体 ===== -->
+  <!-- 旋转轴 -->
+  <line x1="55" y1="265" x2="400" y2="265" stroke="#3a3a3a" stroke-width="1.5"/>
+  <text x="400" y="248" font-size="14" fill="#3a3a3a">旋转轴</text>
+  <text x="405" y="282" font-size="14" fill="#3a3a3a">x</text>
+
+  <!-- 截面椭圆（前后两端） -->
+  <ellipse cx="105" cy="265" rx="18" ry="52" fill="#e8f2fa" stroke="#49b1f5" stroke-width="2"/>
+  <ellipse cx="360" cy="265" rx="18" ry="52" fill="#e8f2fa" stroke="#49b1f5" stroke-width="2"/>
+
+  <!-- 旋转体轮廓：上轮廓（山峰）+ 下轮廓（镜像），中间淡色填充 -->
+  <path d="M 105 317 C 160 372, 250 376, 360 317" fill="none" stroke="#49b1f5" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 105 213 C 160 155, 250 150, 360 213 L 360 317 C 250 376, 160 372, 105 317 Z" fill="#49b1f5" fill-opacity="0.15" stroke="none"/>
+  <path d="M 105 213 C 160 155, 250 150, 360 213" fill="none" stroke="#49b1f5" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- 区域内一点：质心 G + 轨迹圆弧 -->
+  <circle cx="230" cy="185" r="4" fill="#c9a96a"/>
+  <text x="238" y="178" font-size="15" fill="#a8864a">G</text>
+  <path d="M 230 140 A 45 45 0 0 1 290 185" fill="none" stroke="#c9a96a" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="230" y1="185" x2="230" y2="265" stroke="#c9a96a" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <text x="190" y="235" font-size="14" fill="#a8864a">r</text>
+
+  <!-- ===== 右：公式卡 ===== -->
+  <rect x="440" y="95" width="250" height="170" rx="16" fill="#faf6ec" stroke="#c9a96a" stroke-width="2"/>
+  <text x="565" y="135" text-anchor="middle" font-size="22" fill="#3a3a3a">V = 2π∬<tspan dy="5" font-size="15">D</tspan> r dD</text>
+  <text x="565" y="170" text-anchor="middle" font-size="14" fill="#a8864a">r：到旋转轴的距离</text>
+  <line x1="465" y1="186" x2="665" y2="186" stroke="#c9a96a" stroke-width="1" stroke-dasharray="5 4"/>
+  <text x="565" y="212" text-anchor="middle" font-size="15" fill="#3a3a3a">帕普斯定理</text>
+  <text x="565" y="236" text-anchor="middle" font-size="14" fill="#2c6f9e">体积 = 截面面积</text>
+  <text x="565" y="256" text-anchor="middle" font-size="14" fill="#2c6f9e">× 质心绕轴一周的路程</text>
+
+  <!-- 顶部标题 -->
+  <text x="227" y="52" text-anchor="middle" font-size="20" fill="#3a3a3a">区域 D 绕 x 轴旋转 → 旋转体</text>
+</svg>

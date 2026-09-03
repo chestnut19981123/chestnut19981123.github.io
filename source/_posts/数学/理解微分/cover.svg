@@ -1,0 +1,143 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+
+  <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900">
+    <stop stop-color="#F8FAFC"/>
+    <stop offset="1" stop-color="#E9F1FB"/>
+  </linearGradient>
+
+  <linearGradient id="mainCurve" x1="350" y1="700" x2="1300" y2="220">
+    <stop stop-color="#0F172A"/>
+    <stop offset="0.45" stop-color="#2563EB"/>
+    <stop offset="1" stop-color="#38BDF8"/>
+  </linearGradient>
+
+  <linearGradient id="pointGlow" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#3B82F6" stop-opacity="0.35"/>
+    <stop offset="1" stop-color="#3B82F6" stop-opacity="0"/>
+  </linearGradient>
+
+  <filter id="blur">
+    <feGaussianBlur stdDeviation="70"/>
+  </filter>
+
+</defs>
+
+
+<!-- Background -->
+<rect width="1600" height="900" fill="url(#bg)"/>
+
+
+<!-- Soft light -->
+<ellipse cx="900" cy="420" rx="360" ry="260"
+fill="url(#pointGlow)"
+filter="url(#blur)"/>
+
+
+<!-- Minimal coordinate system -->
+<path d="M300 700H1350"
+stroke="#CBD5E1"
+stroke-width="2"/>
+
+<path d="M420 760V160"
+stroke="#CBD5E1"
+stroke-width="2"/>
+
+
+<!-- Subtle grid -->
+<g stroke="#DDE6F2" stroke-width="1">
+  <path d="M560 250V700"/>
+  <path d="M720 250V700"/>
+  <path d="M880 250V700"/>
+  <path d="M1040 250V700"/>
+  <path d="M1200 250V700"/>
+
+  <path d="M420 350H1350"/>
+  <path d="M420 500H1350"/>
+  <path d="M420 620H1350"/>
+</g>
+
+
+<!-- Main curve -->
+<path d="
+M350 650
+C500 640 610 600 720 520
+C850 425 900 280 1040 330
+C1150 370 1200 480 1320 240
+"
+stroke="url(#mainCurve)"
+stroke-width="12"
+stroke-linecap="round"
+fill="none"/>
+
+
+<!-- Tangent line showing instantaneous change -->
+<path d="
+M760 470
+L1120 220
+"
+stroke="#64748B"
+stroke-width="3"
+stroke-dasharray="12 14"/>
+
+
+<!-- Small differential segment -->
+<path d="
+M820 430
+L870 395
+"
+stroke="#2563EB"
+stroke-width="10"
+stroke-linecap="round"/>
+
+
+<!-- Highlight point -->
+<circle cx="820" cy="430" r="18"
+fill="#2563EB"/>
+
+<circle cx="820" cy="430" r="45"
+stroke="#2563EB"
+stroke-opacity="0.22"
+stroke-width="4"/>
+
+
+<!-- Local zoom circle -->
+<circle cx="820" cy="430" r="95"
+stroke="#94A3B8"
+stroke-opacity="0.35"
+stroke-width="2"
+stroke-dasharray="6 12"/>
+
+
+<!-- Floating points -->
+<g fill="#2563EB">
+  <circle cx="350" cy="650" r="6"/>
+  <circle cx="1040" cy="330" r="5"/>
+  <circle cx="1320" cy="240" r="7"/>
+</g>
+
+
+<!-- Decorative arcs -->
+<path d="
+M170 220
+C430 80 700 90 900 160
+"
+stroke="#94A3B8"
+stroke-opacity="0.35"
+stroke-width="2"
+fill="none"/>
+
+<path d="
+M1100 760
+C1320 700 1440 560 1500 420
+"
+stroke="#94A3B8"
+stroke-opacity="0.35"
+stroke-width="2"
+fill="none"/>
+
+
+<!-- No title/text -->
+
+</svg>

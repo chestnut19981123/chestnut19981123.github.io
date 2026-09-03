@@ -1,0 +1,126 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+  <linearGradient id="background" x1="0" y1="0" x2="1600" y2="900">
+    <stop stop-color="#F8FAFC"/>
+    <stop offset="1" stop-color="#E7EEF8"/>
+  </linearGradient>
+
+  <linearGradient id="areaGradient" x1="600" y1="300" x2="1100" y2="700">
+    <stop stop-color="#2563EB" stop-opacity="0.35"/>
+    <stop offset="1" stop-color="#60A5FA" stop-opacity="0.08"/>
+  </linearGradient>
+
+  <linearGradient id="curveGradient" x1="300" y1="700" x2="1300" y2="250">
+    <stop stop-color="#0F172A"/>
+    <stop offset="0.5" stop-color="#2563EB"/>
+    <stop offset="1" stop-color="#38BDF8"/>
+  </linearGradient>
+
+  <filter id="softBlur">
+    <feGaussianBlur stdDeviation="70"/>
+  </filter>
+</defs>
+
+
+<!-- Background -->
+<rect width="1600" height="900" fill="url(#background)"/>
+
+
+<!-- Ambient light -->
+<ellipse cx="900" cy="430" rx="380" ry="220"
+fill="#60A5FA"
+fill-opacity="0.15"
+filter="url(#softBlur)"/>
+
+
+<!-- Coordinate system -->
+<path d="M300 720H1350"
+stroke="#CBD5E1"
+stroke-width="2"/>
+
+<path d="M420 780V170"
+stroke="#CBD5E1"
+stroke-width="2"/>
+
+
+<!-- Minimal grid -->
+<g stroke="#DCE5F0" stroke-width="1">
+  <path d="M560 250V720"/>
+  <path d="M720 250V720"/>
+  <path d="M880 250V720"/>
+  <path d="M1040 250V720"/>
+  <path d="M1200 250V720"/>
+
+  <path d="M420 360H1350"/>
+  <path d="M420 500H1350"/>
+  <path d="M420 620H1350"/>
+</g>
+
+
+<!-- Integral accumulated area -->
+<path d="
+M420 650
+C600 620 700 560 820 470
+C960 360 1080 300 1280 250
+L1280 720
+L420 720
+Z"
+fill="url(#areaGradient)"/>
+
+
+<!-- Riemann rectangles -->
+<g fill="#2563EB" opacity="0.12">
+  <rect x="560" y="600" width="45" height="120"/>
+  <rect x="620" y="570" width="45" height="150"/>
+  <rect x="680" y="530" width="45" height="190"/>
+  <rect x="740" y="485" width="45" height="235"/>
+  <rect x="800" y="440" width="45" height="280"/>
+  <rect x="860" y="395" width="45" height="325"/>
+  <rect x="920" y="360" width="45" height="360"/>
+</g>
+
+
+<!-- Smooth integral curve -->
+<path d="
+M420 650
+C600 620 700 560 820 470
+C960 360 1080 300 1280 250"
+stroke="url(#curveGradient)"
+stroke-width="12"
+stroke-linecap="round"
+fill="none"/>
+
+
+<!-- Highlight point -->
+<circle cx="820" cy="470" r="16" fill="#2563EB"/>
+<circle cx="820" cy="470" r="38"
+stroke="#2563EB"
+stroke-opacity="0.25"
+stroke-width="3"/>
+
+
+<!-- Floating mathematical particles -->
+<g fill="#2563EB">
+  <circle cx="520" cy="650" r="6"/>
+  <circle cx="1080" cy="300" r="5"/>
+  <circle cx="1280" cy="250" r="7"/>
+</g>
+
+
+<!-- Decorative curves -->
+<path d="M180 220C420 100 700 100 900 170"
+stroke="#94A3B8"
+stroke-width="2"
+stroke-opacity="0.35"
+fill="none"/>
+
+<path d="M1120 760C1300 700 1430 570 1500 430"
+stroke="#94A3B8"
+stroke-width="2"
+stroke-opacity="0.35"
+fill="none"/>
+
+
+<!-- No text -->
+</svg>

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380" font-family="Alibaba PuHuiTi, WenQuanYi Zen Hei, PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#49b1f5"/>
+    </marker>
+    <marker id="arrow-down" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2c6f9e"/>
+    </marker>
+    <marker id="arrow-both" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a8864a"/>
+    </marker>
+  </defs>
+
+  <!-- ===== 左：黎曼和主图 ===== -->
+  <!-- 坐标轴 -->
+  <line x1="55" y1="315" x2="415" y2="315" stroke="#3a3a3a" stroke-width="1.5"/>
+  <line x1="55" y1="45"  x2="55" y2="315" stroke="#3a3a3a" stroke-width="1.5"/>
+
+  <!-- 六个小矩形：x 起点 75,129,183,237,291,345，宽 54 -->
+  <rect x="75"  y="85"  width="54" height="230" fill="#e8f2fa" stroke="#49b1f5" stroke-width="1.2"/>
+  <rect x="129" y="105" width="54" height="210" fill="#e8f2fa" stroke="#49b1f5" stroke-width="1.2"/>
+  <rect x="183" y="135" width="54" height="180" fill="#e8f2fa" stroke="#49b1f5" stroke-width="1.2"/>
+  <rect x="237" y="175" width="54" height="140" fill="#e8f2fa" stroke="#49b1f5" stroke-width="1.2"/>
+  <rect x="291" y="215" width="54" height="100" fill="#e8f2fa" stroke="#49b1f5" stroke-width="1.2"/>
+  <rect x="345" y="245" width="54" height="70"  fill="#e8f2fa" stroke="#49b1f5" stroke-width="1.2"/>
+
+  <!-- 曲线 y=f(x) -->
+  <path d="M 75 85 C 120 95, 150 115, 185 135 C 215 152, 230 165, 240 175 C 255 190, 275 205, 295 215 C 320 228, 340 238, 350 245 C 375 257, 390 264, 400 270"
+        fill="none" stroke="#49b1f5" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- 刻度与端点 -->
+  <line x1="75"  y1="315" x2="75"  y2="323" stroke="#3a3a3a" stroke-width="1.2"/>
+  <line x1="399" y1="315" x2="399" y2="323" stroke="#3a3a3a" stroke-width="1.2"/>
+  <line x1="129" y1="315" x2="129" y2="322" stroke="#a8864a" stroke-width="1.2"/>
+  <text x="75"  y="338" text-anchor="middle" font-size="16" fill="#3a3a3a">a</text>
+  <text x="399" y="338" text-anchor="middle" font-size="16" fill="#3a3a3a">b</text>
+  <text x="129" y="338" text-anchor="middle" font-size="15" fill="#a8864a">ξ<tspan dy="4" font-size="11">i</tspan></text>
+  <text x="62" y="60"  font-size="15" fill="#3a3a3a">y</text>
+  <text x="408" y="338" font-size="15" fill="#3a3a3a">x</text>
+
+  <!-- Δxi 双箭头（矩形 2 底部） -->
+  <line x1="129" y1="356" x2="183" y2="356" stroke="#a8864a" stroke-width="1.5" marker-start="url(#arrow-both)" marker-end="url(#arrow-both)"/>
+  <text x="156" y="346" text-anchor="middle" font-size="15" fill="#a8864a">Δx<tspan dy="4" font-size="11">i</tspan></text>
+
+  <!-- f(ξi) 竖双箭头（矩形 2 右侧） -->
+  <line x1="192" y1="105" x2="192" y2="305" stroke="#2c6f9e" stroke-width="1.5" marker-start="url(#arrow-both)" marker-end="url(#arrow-both)"/>
+  <text x="206" y="213" font-size="15" fill="#2c6f9e">f(ξ<tspan dy="4" font-size="11">i</tspan>)</text>
+
+  <!-- 求和区域括号 -->
+  <text x="236" y="96" font-size="17" fill="#49b1f5">f(x)</text>
+
+  <!-- ===== 右：三步流程 ===== -->
+  <rect x="440" y="45"  width="250" height="58" rx="14" fill="#e8f2fa" stroke="#49b1f5" stroke-width="2.5"/>
+  <text x="565" y="72" text-anchor="middle" font-size="22" fill="#3a3a3a">分割</text>
+  <text x="565" y="92" text-anchor="middle" font-size="13" fill="#2c6f9e">把 [a, b] 切成 n 小段</text>
+
+  <line x1="565" y1="103" x2="565" y2="140" stroke="#49b1f5" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <rect x="440" y="145" width="250" height="58" rx="14" fill="#e8f2fa" stroke="#49b1f5" stroke-width="2.5"/>
+  <text x="565" y="172" text-anchor="middle" font-size="22" fill="#3a3a3a">求和</text>
+  <text x="565" y="192" text-anchor="middle" font-size="13" fill="#2c6f9e">Σ f(ξ<tspan dy="3" font-size="10">i</tspan>)·Δx<tspan dy="3" font-size="10">i</tspan></text>
+
+  <line x1="565" y1="203" x2="565" y2="240" stroke="#49b1f5" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <rect x="440" y="245" width="250" height="58" rx="14" fill="#49b1f5" stroke="#49b1f5" stroke-width="2.5"/>
+  <text x="565" y="272" text-anchor="middle" font-size="22" fill="#ffffff">取极限</text>
+  <text x="565" y="292" text-anchor="middle" font-size="13" fill="#e8f2fa">n→∞：得定积分 ∫ f(x)dx</text>
+
+  <!-- 底部公式 -->
+  <text x="235" y="378" text-anchor="middle" font-size="15" fill="#2c6f9e">∫ f(x)dx = lim Σ f(ξ<tspan dy="4" font-size="11">i</tspan>)·Δx<tspan dy="4" font-size="11">i</tspan></text>
+</svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380" font-family="Alibaba PuHuiTi, WenQuanYi Zen Hei, PingFang SC, Microsoft YaHei, sans-serif">
+  <!-- ===== 左面板：x → +∞，p>1 收敛 ===== -->
+  <!-- 坐标轴 -->
+  <line x1="55" y1="300" x2="345" y2="300" stroke="#3a3a3a" stroke-width="1.5"/>
+  <line x1="55" y1="50"  x2="55" y2="300" stroke="#3a3a3a" stroke-width="1.5"/>
+  <text x="340" y="318" font-size="13" fill="#3a3a3a">x</text>
+  <text x="60"  y="60"  font-size="13" fill="#3a3a3a">y</text>
+
+  <!-- 1/x^2（p=2，收敛，蓝）：x=1 → x 处 x=70..335 -->
+  <path d="M 70 60 C 110 60, 150 120, 200 185 C 245 240, 300 278, 335 290"
+        fill="none" stroke="#49b1f5" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- 1/x（p=1，发散，金） -->
+  <path d="M 70 150 C 120 160, 180 210, 240 255 C 285 282, 315 292, 335 296"
+        fill="none" stroke="#c9a96a" stroke-width="2.5" stroke-dasharray="2 0" stroke-linecap="round"/>
+
+  <!-- 收敛阴影：p=2 尾巴下 -->
+  <path d="M 200 185 C 245 240, 300 278, 335 290 L 335 300 L 200 300 Z" fill="#49b1f5" fill-opacity="0.18" stroke="none"/>
+
+  <line x1="70" y1="300" x2="70" y2="308" stroke="#3a3a3a" stroke-width="1.2"/>
+  <text x="70" y="322" text-anchor="middle" font-size="15" fill="#3a3a3a">1</text>
+
+  <text x="150" y="120" font-size="15" fill="#2c6f9e">p = 2 收敛</text>
+  <text x="225" y="230" font-size="15" fill="#a8864a">p = 1 发散</text>
+
+  <text x="200" y="48" text-anchor="middle" font-size="20" fill="#3a3a3a">尾巴（1 → +∞）</text>
+  <text x="200" y="350" text-anchor="middle" font-size="16" fill="#2c6f9e">p &gt; 1 收敛，p ≤ 1 发散</text>
+
+  <!-- ===== 右面板：x → 0+，p<1 收敛 ===== -->
+  <!-- 坐标轴：x=1 在右端 -->
+  <line x1="380" y1="300" x2="670" y2="300" stroke="#3a3a3a" stroke-width="1.5"/>
+  <line x1="670" y1="50"  x2="670" y2="300" stroke="#3a3a3a" stroke-width="1.5"/>
+  <text x="665" y="318" font-size="13" fill="#3a3a3a">x</text>
+
+  <!-- 1/sqrt(x)（p=1/2，收敛，蓝）：x=1 在 655 -->
+  <path d="M 655 60 C 600 60, 560 100, 520 150 C 480 200, 440 260, 415 285"
+        fill="none" stroke="#49b1f5" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- 1/x（p=1，发散，金） -->
+  <path d="M 655 150 C 600 155, 560 185, 520 225 C 480 262, 440 290, 415 296"
+        fill="none" stroke="#c9a96a" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- 收敛阴影：p=1/2 尾巴下 -->
+  <path d="M 520 150 C 480 200, 440 260, 415 285 L 415 300 L 520 300 Z" fill="#49b1f5" fill-opacity="0.18" stroke="none"/>
+
+  <line x1="655" y1="300" x2="655" y2="308" stroke="#3a3a3a" stroke-width="1.2"/>
+  <text x="655" y="322" text-anchor="middle" font-size="15" fill="#3a3a3a">1</text>
+  <text x="392" y="280" text-anchor="middle" font-size="15" fill="#a8864a">0</text>
+
+  <text x="505" y="100" font-size="15" fill="#2c6f9e">p = 1/2 收敛</text>
+  <text x="505" y="240" font-size="15" fill="#a8864a">p = 1 发散</text>
+
+  <text x="525" y="48" text-anchor="middle" font-size="20" fill="#3a3a3a">爆点（0 → 1）</text>
+  <text x="525" y="350" text-anchor="middle" font-size="16" fill="#2c6f9e">p &lt; 1 收敛，p ≥ 1 发散</text>
+</svg>

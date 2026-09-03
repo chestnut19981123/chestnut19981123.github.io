@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380" font-family="Alibaba PuHuiTi, WenQuanYi Zen Hei, PingFang SC, Microsoft YaHei, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2c6f9e"/>
+    </marker>
+    <marker id="arrow-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9a96a"/>
+    </marker>
+  </defs>
+
+  <!-- ===== 列头 ===== -->
+  <text x="180" y="42" text-anchor="middle" font-size="20" fill="#3a3a3a">数量场：算总量</text>
+  <text x="540" y="42" text-anchor="middle" font-size="20" fill="#3a3a3a">向量场：算流动</text>
+
+  <!-- ===== 左上：第一类线积分（对弧长） ===== -->
+  <rect x="30" y="58" width="300" height="138" rx="16" fill="#faf6ec" stroke="#c9a96a" stroke-width="2"/>
+  <text x="180" y="86" text-anchor="middle" font-size="18" fill="#3a3a3a">第一类线积分</text>
+  <!-- 弧线 + ds 微元 -->
+  <path d="M 70 180 C 120 130, 200 120, 290 160" fill="none" stroke="#49b1f5" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 140 152 C 155 144, 172 141, 188 142" fill="none" stroke="#c9a96a" stroke-width="3.5" stroke-linecap="round"/>
+  <text x="118" y="146" font-size="15" fill="#a8864a">ds</text>
+  <text x="180" y="185" text-anchor="middle" font-size="13" fill="#2c6f9e">∫<tspan font-size="10">L</tspan> f ds，对弧长求和</text>
+
+  <!-- ===== 左下：第一类面积分（对面积） ===== -->
+  <rect x="30" y="212" width="300" height="138" rx="16" fill="#faf6ec" stroke="#c9a96a" stroke-width="2"/>
+  <text x="180" y="240" text-anchor="middle" font-size="18" fill="#3a3a3a">第一类面积分</text>
+  <!-- 曲面片（平行四边形网格感） -->
+  <path d="M 90 330 L 200 300 L 290 320 L 180 350 Z" fill="#e8f2fa" stroke="#49b1f5" stroke-width="2"/>
+  <path d="M 110 300 L 100 330 M 150 290 L 140 322 M 190 281 L 180 313 M 230 290 L 220 322 M 270 300 L 260 330"
+        stroke="#49b1f5" stroke-width="1" opacity="0.6"/>
+  <path d="M 95 318 L 190 340 M 140 308 L 235 330 M 185 297 L 280 320" stroke="#49b1f5" stroke-width="1" opacity="0.6"/>
+  <text x="228" y="286" font-size="15" fill="#a8864a">dS</text>
+  <text x="180" y="372" text-anchor="middle" font-size="13" fill="#2c6f9e">∬<tspan font-size="10">S</tspan> f dS，对面积求和</text>
+
+  <!-- ===== 右上：第二类线积分（有向弧长） ===== -->
+  <rect x="390" y="58" width="300" height="138" rx="16" fill="#e8f2fa" stroke="#49b1f5" stroke-width="2"/>
+  <text x="540" y="86" text-anchor="middle" font-size="18" fill="#3a3a3a">第二类线积分</text>
+  <path d="M 430 180 C 480 130, 560 120, 650 160" fill="none" stroke="#49b1f5" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <text x="438" y="146" font-size="15" fill="#a8864a">dr</text>
+  <text x="540" y="185" text-anchor="middle" font-size="13" fill="#2c6f9e">∫<tspan font-size="10">L</tspan> F·dr，有向、反向变号</text>
+
+  <!-- ===== 右下：第二类面积分（有向面积） ===== -->
+  <rect x="390" y="212" width="300" height="138" rx="16" fill="#e8f2fa" stroke="#49b1f5" stroke-width="2"/>
+  <text x="540" y="240" text-anchor="middle" font-size="18" fill="#3a3a3a">第二类面积分</text>
+  <path d="M 450 330 L 560 300 L 650 320 L 540 350 Z" fill="#faf6ec" stroke="#49b1f5" stroke-width="2"/>
+  <path d="M 470 300 L 460 330 M 510 290 L 500 322 M 550 281 L 540 313 M 590 290 L 580 322 M 630 300 L 620 330"
+        stroke="#49b1f5" stroke-width="1" opacity="0.6"/>
+  <path d="M 455 318 L 550 340 M 500 308 L 595 330 M 545 297 L 640 320" stroke="#49b1f5" stroke-width="1" opacity="0.6"/>
+  <line x1="600" y1="285" x2="615" y2="255" stroke="#c9a96a" stroke-width="2.5" marker-end="url(#arrow-n)"/>
+  <text x="568" y="258" font-size="15" fill="#a8864a">dS</text>
+  <text x="540" y="372" text-anchor="middle" font-size="13" fill="#2c6f9e">∬<tspan font-size="10">S</tspan> F·dS，有向、换侧变号</text>
+</svg>
