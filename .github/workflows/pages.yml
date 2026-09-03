@@ -14,6 +14,16 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           # If your repository depends on submodule, please see: https://github.com/actions/checkout
           submodules: recursive
+          # 完整历史：构建前要从 git 还原文章 mtime（见下一步），浅克隆拿不到历史
+          fetch-depth: 0
+      # checkout 会把所有文件写为同一时刻，导致 updated_option: mtime 下
+      # 每篇文章的「更新于」都坍缩成构建时刻。这里逐篇还原为该文件
+      # 最后一次提交的时刻，让 Hexo 构建时读到真实的修改时间。
+      - name: Restore posts mtime from git
+        run: |
+          git -c core.quotePath=false ls-files 'source/_posts/*.md' 'source/_posts/*/*.md' | while read -r f; do
+            touch -d "$(git log -1 --format=%cI -- "$f")" "$f"
+          done
       - name: Use Node.js 18.20.3
         uses: actions/setup-node@v4
         with:
