@@ -149,6 +149,8 @@ print(a.T)
 #  [2 5]]    元素 (i, j) 跑到了 (j, i)
 ```
 
+PyTorch 用户看这里：任意轴序的重排它叫 `a.permute(2, 0, 1)`，和 `np.transpose(2, 0, 1)` 一一对应；而 `torch.transpose(a, 0, 2)` 一次只能交换两根轴，更接近 `np.swapaxes`。`.T` 在二维时两边同义；对三维及以上的倒序，torch 已给 `.T` 标了弃用警告，请写 `a.permute(2, 1, 0)`。
+
 ### meshgrid：一维坐标铺成网格
 
 `np.meshgrid(x, y)` 把两根一维坐标「广播」成网格——每个输出都是和网格一样大的二维数组，分别装着每个格点的 x、y 坐标：
@@ -172,6 +174,8 @@ print(Y2)  # 每个位置装 y[j]：[[3 4] [3 4] [3 4]]
 <center><img src="fig-meshgrid.svg" alt="meshgrid 把 x 与 y 铺成网格：xy 模式 y 走行形状 (2, 3)，ij 模式 x 走行形状 (3, 2)" width="85%" height="85%"></center>
 
 > 导图原文（numpy 文档口径）：`xy` 模式下输出形状 `(s1, s0, …, s[n-1])`，各输出 `Gᵢ` 由把输入 `Tᵢ` 扩展到结果形状（再转置）得到；`ij` 模式则不需要转置那一步。
+
+PyTorch 用户留意：`torch.meshgrid` 同名，但默认是 `indexing='ij'`——和 NumPy 默认的 `'xy'` 正好相反，照抄上文会得到 (3, 2) 而不是 (2, 3)。想要画图语义，得显式写 `indexing='xy'`（torch 官方预告将来必须显式传 `indexing`，顺手养成习惯）。
 
 ### stack：叠出新轴
 
@@ -209,6 +213,8 @@ print(c.shape)          # (2, 6, 4)：第 1 轴 3+3=6
 
 对比记忆：**stack 加维度（形状多一位），concatenate 只加长度（形状位数不变）**。拼接后想再切回去，`np.split` 按等长段切，正好是 `concatenate` 的逆操作。
 
+PyTorch 里它叫 `torch.cat`：`torch.cat([a, a], dim=1)` 效果相同（维度参数照例写作 `dim`）。
+
 ### squeeze / expand_dims：脱/穿长度为 1 的轴
 
 形状里长度 1 的轴通常没信息量，`squeeze` 把它们全部脱掉；`expand_dims` 反过来，在指定位置穿上一根长度为 1 的轴：
@@ -221,7 +227,7 @@ b = np.arange(24).reshape(2, 3, 4)
 print(b[:, None].shape)         # (2, 1, 3, 4)：None 就是 expand_dims(b, 1) 的简写
 ```
 
-`[:, None]` 是广播前的经典预备动作（详见下节），写多了你会觉得 `None` 比 `expand_dims` 顺手。
+`[:, None]` 是广播前的经典预备动作（详见下节），写多了你会觉得 `None` 比 `expand_dims` 顺手。PyTorch 里穿轴叫 `torch.unsqueeze`（`b[:, None]` 简写同样有效），脱轴的 `squeeze` 则同名通用。
 
 ## 引用规则
 
