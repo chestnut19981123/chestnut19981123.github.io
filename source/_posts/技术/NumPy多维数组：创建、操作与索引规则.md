@@ -492,6 +492,8 @@ print(b.shape)   # (3, 3, 3)
 # True 的位置是 a[0,0]、a[1,0]、a[1,1] 三块 (3, 3)，按顺序拼起来
 ```
 
+<center><img src="fig-bool-mask.svg" alt="(2, 2) 掩码与 a 前两轴一一对应：True 的 a[0,0]、a[1,0]、a[1,1] 三块整块取出按行优先拼成 (3, 3, 3)，False 的 a[0,1] 扔掉" width="85%" height="85%"></center>
+
 掩码最常见的来源是**比较运算**——不用手写 `True/False`，一行条件生成：
 
 ```python
