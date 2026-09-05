@@ -74,7 +74,7 @@ print(a.mean(axis=0)) # [1.5 2.5 3.5]，按列求平均
 A = np.array([[1., 2.], [3., 4.]])
 print(A.T)            # [[1. 3.] [2. 4.]]
 print(A @ A)          # [[7. 10.] [15. 22.]]
-print(np.linalg.det(A))  # -2.0
+print(np.round(np.linalg.det(A), 1))  # -2.0
 print(np.linalg.inv(A))  # [[-2.   1. ] [ 1.5 -0.5]]
 ```
 
@@ -101,7 +101,7 @@ a = np.arange(6).reshape(2, 3)   # 形状 (2, 3)
 ```python
 a = np.arange(6).reshape(2, 3)
 print(a.sum(axis=0))             # [3 5 7]，每列求和
-print(a.sum(axis=1))             # [3 12]，每行求和
+print(a.sum(axis=1))             # [ 3 12]，每行求和
 print(a.sum(axis=0, keepdims=True).shape)   # (1, 3)，轴没消失，只是长度变 1
 ```
 
