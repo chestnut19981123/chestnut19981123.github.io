@@ -166,6 +166,8 @@ print(Y2)  # 每个位置装 y[j]：[[3 4] [3 4] [3 4]]
 - `'xy'`：默认，适合**画图**。横轴 x、纵轴 y，输出形状先 y 后 x `(len(y), len(x))`，正好对齐 `plt.plot` / `plt.imshow` 的习惯；
 - `'ij'`：适合**矩阵/数组操作**。把输入当矩阵的 i（行）、j（列）下标，输出形状与输入顺序一致 `(len(x), len(y))`。
 
+<center><img src="fig-meshgrid.svg" alt="meshgrid 把 x 与 y 铺成网格：xy 模式 y 走行形状 (2, 3)，ij 模式 x 走行形状 (3, 2)" width="85%" height="85%"></center>
+
 > 导图原文（numpy 文档口径）：`xy` 模式下输出形状 `(s1, s0, …, s[n-1])`，各输出 `Gᵢ` 由把输入 `Tᵢ` 扩展到结果形状（再转置）得到；`ij` 模式则不需要转置那一步。
 
 ### stack：叠出新轴

@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+    .num { font-size: 20px; font-weight: 600; fill: #64748b; text-anchor: middle; }
+    .chip { font-size: 20px; font-weight: 600; text-anchor: middle; }
+    .cap { font-size: 15px; fill: #64748b; text-anchor: middle; }
+    .shape { font-size: 20px; font-weight: 600; fill: #1e293b; text-anchor: middle; }
+  </style>
+
+  <!-- ══════════ 面板 L：indexing='xy'（默认）行=y 列=x → (2, 3) ══════════ -->
+  <!-- x 数组（蓝）：3 个，放顶部作列头 -->
+  <g fill="#eff6ff" stroke="#3b82f6" stroke-width="2.5">
+    <rect x="177" y="145" width="44" height="44" rx="9"/>
+    <rect x="243" y="145" width="44" height="44" rx="9"/>
+    <rect x="309" y="145" width="44" height="44" rx="9"/>
+  </g>
+  <g class="chip" fill="#1d4ed8">
+    <text x="199" y="174">0</text>
+    <text x="265" y="174">1</text>
+    <text x="331" y="174">2</text>
+  </g>
+
+  <!-- y 数组（橙）：2 个，放左侧作行头 -->
+  <g fill="#fff7ed" stroke="#f97316" stroke-width="2.5">
+    <rect x="108" y="211" width="44" height="44" rx="9"/>
+    <rect x="108" y="277" width="44" height="44" rx="9"/>
+  </g>
+  <g class="chip" fill="#c2410c">
+    <text x="130" y="240">3</text>
+    <text x="130" y="306">4</text>
+  </g>
+
+  <!-- 网格：2 行（y）× 3 列（x），格点 = (x, y) -->
+  <g fill="#f8fafc" stroke="#334155" stroke-width="2.5">
+    <rect x="172" y="206" width="54" height="54" rx="10"/>
+    <rect x="238" y="206" width="54" height="54" rx="10"/>
+    <rect x="304" y="206" width="54" height="54" rx="10"/>
+    <rect x="172" y="272" width="54" height="54" rx="10"/>
+    <rect x="238" y="272" width="54" height="54" rx="10"/>
+    <rect x="304" y="272" width="54" height="54" rx="10"/>
+  </g>
+  <g class="num">
+    <text x="199" y="240">(<tspan fill="#1d4ed8">0</tspan>,<tspan fill="#c2410c">3</tspan>)</text>
+    <text x="265" y="240">(<tspan fill="#1d4ed8">1</tspan>,<tspan fill="#c2410c">3</tspan>)</text>
+    <text x="331" y="240">(<tspan fill="#1d4ed8">2</tspan>,<tspan fill="#c2410c">3</tspan>)</text>
+    <text x="199" y="306">(<tspan fill="#1d4ed8">0</tspan>,<tspan fill="#c2410c">4</tspan>)</text>
+    <text x="265" y="306">(<tspan fill="#1d4ed8">1</tspan>,<tspan fill="#c2410c">4</tspan>)</text>
+    <text x="331" y="306">(<tspan fill="#1d4ed8">2</tspan>,<tspan fill="#c2410c">4</tspan>)</text>
+  </g>
+
+  <text class="cap" x="233" y="358">xy（默认）：y 走行、x 走列</text>
+  <text class="shape" x="233" y="394">输出形状 (<tspan fill="#c2410c">2</tspan>,<tspan fill="#1d4ed8"> 3</tspan>)</text>
+
+  <!-- ══════════ 面板 R：indexing='ij' 行=x 列=y → (3, 2) ══════════ -->
+  <!-- y 数组（橙）：2 个，放顶部作列头 -->
+  <g fill="#fff7ed" stroke="#f97316" stroke-width="2.5">
+    <rect x="577" y="79" width="44" height="44" rx="9"/>
+    <rect x="643" y="79" width="44" height="44" rx="9"/>
+  </g>
+  <g class="chip" fill="#c2410c">
+    <text x="599" y="108">3</text>
+    <text x="665" y="108">4</text>
+  </g>
+
+  <!-- x 数组（蓝）：3 个，放左侧作行头 -->
+  <g fill="#eff6ff" stroke="#3b82f6" stroke-width="2.5">
+    <rect x="514" y="145" width="44" height="44" rx="9"/>
+    <rect x="514" y="211" width="44" height="44" rx="9"/>
+    <rect x="514" y="277" width="44" height="44" rx="9"/>
+  </g>
+  <g class="chip" fill="#1d4ed8">
+    <text x="536" y="174">0</text>
+    <text x="536" y="240">1</text>
+    <text x="536" y="306">2</text>
+  </g>
+
+  <!-- 网格：3 行（x）× 2 列（y），格点 = (x, y) -->
+  <g fill="#f8fafc" stroke="#334155" stroke-width="2.5">
+    <rect x="572" y="140" width="54" height="54" rx="10"/>
+    <rect x="638" y="140" width="54" height="54" rx="10"/>
+    <rect x="572" y="206" width="54" height="54" rx="10"/>
+    <rect x="638" y="206" width="54" height="54" rx="10"/>
+    <rect x="572" y="272" width="54" height="54" rx="10"/>
+    <rect x="638" y="272" width="54" height="54" rx="10"/>
+  </g>
+  <g class="num">
+    <text x="599" y="174">(<tspan fill="#1d4ed8">0</tspan>,<tspan fill="#c2410c">3</tspan>)</text>
+    <text x="665" y="174">(<tspan fill="#1d4ed8">0</tspan>,<tspan fill="#c2410c">4</tspan>)</text>
+    <text x="599" y="240">(<tspan fill="#1d4ed8">1</tspan>,<tspan fill="#c2410c">3</tspan>)</text>
+    <text x="665" y="240">(<tspan fill="#1d4ed8">1</tspan>,<tspan fill="#c2410c">4</tspan>)</text>
+    <text x="599" y="306">(<tspan fill="#1d4ed8">2</tspan>,<tspan fill="#c2410c">3</tspan>)</text>
+    <text x="665" y="306">(<tspan fill="#1d4ed8">2</tspan>,<tspan fill="#c2410c">4</tspan>)</text>
+  </g>
+
+  <text class="cap" x="603" y="358">ij：x 走行、y 走列</text>
+  <text class="shape" x="603" y="394">输出形状 (<tspan fill="#1d4ed8">3</tspan>,<tspan fill="#c2410c"> 2</tspan>)</text>
+</svg>
