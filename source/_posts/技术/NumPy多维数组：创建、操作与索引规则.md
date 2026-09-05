@@ -3,6 +3,7 @@ title: NumPy 多维数组：创建、操作与索引规则
 categories: '技术'
 tags: ['NumPy', 'Python']
 date: 2026-09-05 09:30:00
+cover: cover.svg
 ---
 
 > NumPy —— A library supporting multi-dimensional arrays（支持多维数组的库）。
