@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+    .lbl { font-size: 22px; font-weight: 600; fill: #1e293b; text-anchor: middle; }
+    .shp { font-size: 19px; font-weight: 600; fill: #1e293b; text-anchor: middle; }
+    .cap { font-size: 15px; fill: #64748b; text-anchor: middle; }
+    .ptext { font-size: 15px; fill: #64748b; text-anchor: start; }
+  </style>
+
+  <!-- ══════════ 标题与布局：左 M、右上 v、右结果区（行高对齐） ══════════ -->
+  <text class="lbl" x="400" y="62">v + M：形状 (3,) 与 (2, 3) 广播相加</text>
+
+  <!-- ── v：3 个色块（行向量），放在结果列正上方 ── -->
+  <g fill="#eff6ff" stroke="#3b82f6" stroke-width="2.5">
+    <rect x="470" y="130" width="46" height="46" rx="10"/>
+    <rect x="525" y="130" width="46" height="46" rx="10"/>
+    <rect x="580" y="130" width="46" height="46" rx="10"/>
+  </g>
+  <g font-size="20" font-weight="600" fill="#1d4ed8" text-anchor="middle">
+    <text x="493" y="160">10</text>
+    <text x="548" y="160">20</text>
+    <text x="603" y="160">30</text>
+  </g>
+  <text class="shp" x="538" y="205">v (3,)</text>
+
+  <!-- ── M：2×3 源网格（行与结果行同高，便于平拉） ── -->
+  <g fill="#f8fafc" stroke="#334155" stroke-width="2.5">
+    <rect x="60" y="230" width="46" height="46" rx="10"/>
+    <rect x="115" y="230" width="46" height="46" rx="10"/>
+    <rect x="170" y="230" width="46" height="46" rx="10"/>
+    <rect x="60" y="286" width="46" height="46" rx="10"/>
+    <rect x="115" y="286" width="46" height="46" rx="10"/>
+    <rect x="170" y="286" width="46" height="46" rx="10"/>
+  </g>
+  <g font-size="20" font-weight="600" fill="#1e293b" text-anchor="middle">
+    <text x="83" y="260">0</text>
+    <text x="138" y="260">1</text>
+    <text x="193" y="260">2</text>
+    <text x="83" y="316">3</text>
+    <text x="138" y="316">4</text>
+    <text x="193" y="316">5</text>
+  </g>
+  <text class="shp" x="138" y="378">M (2, 3)</text>
+
+  <!-- ── 结果：2×3（= v 展开成两行 + M 逐位相加） ── -->
+  <g fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5">
+    <rect x="470" y="230" width="46" height="46" rx="10"/>
+    <rect x="525" y="230" width="46" height="46" rx="10"/>
+    <rect x="580" y="230" width="46" height="46" rx="10"/>
+    <rect x="470" y="286" width="46" height="46" rx="10"/>
+    <rect x="525" y="286" width="46" height="46" rx="10"/>
+    <rect x="580" y="286" width="46" height="46" rx="10"/>
+  </g>
+  <g font-size="20" font-weight="600" fill="#1e40af" text-anchor="middle">
+    <text x="493" y="260">10</text>
+    <text x="548" y="260">21</text>
+    <text x="603" y="260">32</text>
+    <text x="493" y="316">13</text>
+    <text x="548" y="316">24</text>
+    <text x="603" y="316">35</text>
+  </g>
+  <text class="shp" x="538" y="378">v + M → (2, 3)</text>
+
+  <!-- ── M → 结果：两行平拉（同高） ── -->
+  <g stroke="#64748b" stroke-width="2.5" fill="none">
+    <line x1="226" y1="253" x2="466" y2="253" marker-end="url(#arr)"/>
+    <line x1="226" y1="309" x2="466" y2="309" marker-end="url(#arr)"/>
+  </g>
+  <g font-size="18" font-weight="600" fill="#94a3b8" text-anchor="middle">
+    <text x="346" y="246">+</text>
+    <text x="346" y="302">+</text>
+  </g>
+
+  <!-- ── v → 结果右侧：复制到每一行 ── -->
+  <g stroke="#64748b" stroke-width="2.5" fill="none">
+    <line x1="626" y1="153" x2="648" y2="153"/>
+    <line x1="648" y1="153" x2="648" y2="253"/>
+    <line x1="648" y1="253" x2="630" y2="253" marker-end="url(#arr)"/>
+    <line x1="648" y1="253" x2="648" y2="309"/>
+    <line x1="648" y1="309" x2="630" y2="309" marker-end="url(#arr)"/>
+  </g>
+  <text class="ptext" x="662" y="160">v 拉伸复制</text>
+  <text class="ptext" x="662" y="178">到两行</text>
+
+  <text class="cap" x="400" y="442">v 的长度 3 与 M 每行的长度 3 相等 → 兼容；v 复制到每一行，再逐位相加</text>
+</svg>

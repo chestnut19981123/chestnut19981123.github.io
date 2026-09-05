@@ -296,6 +296,8 @@ print(v + M)
 print(v + np.array([1, 2]))       # (3,) vs (2,)：尾随 3 ≠ 2 且无 1 -> ValueError
 ```
 
+<center><img src="fig-broadcast.svg" alt="v 形状 (3,) 与 M 形状 (2, 3) 相加：v 的长度 3 与 M 每行长度相等，v 被拉伸复制到两行后逐位相加得到 [[10 21 32] [13 24 35]]" width="85%" height="85%"></center>
+
 两个特例值得记住：
 
 - **标量是 0 维数组**，和谁都比得上（前面 `a + 10` 就是标量广播）；
