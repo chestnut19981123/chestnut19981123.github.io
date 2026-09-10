@@ -1,71 +1,52 @@
 # Repository Guidelines
 
-This repository hosts a personal blog ("一粟") built with Hexo 8 and the Butterfly theme, deployed to GitHub Pages. Content is written in Chinese. The site uses KaTeX for math rendering and Giscus for comments.
+Personal blog ("一粟") built with Hexo 8.1.2 + Butterfly theme, deployed to GitHub Pages. Content is written in Chinese (`language: zh-CN`, timezone `Asia/Shanghai`). No test suite and no linter — verify via `npm run build` and `npm run server` (http://localhost:4000).
 
-## Project Structure & Module Organization
+## Project Structure
 
-- `source/_posts/` — posts, organized by category: `AI/`, `技术/` (technical), `数学/` (mathematics), `算法/` (algorithms)
-- `source/` — other content pages (`about/`, `tags/`, `categories/`) and shared assets under `source/img/`
-- `scaffolds/` — templates for `hexo new` (post, page, draft)
-- `themes/butterfly/` — Butterfly theme, managed as a **git submodule** (do not edit theme internals directly; update the submodule instead)
-- `_config.yml` — Hexo site configuration
-- `_config.butterfly.yml` — Butterfly theme overrides (navigation, comments, math, widgets, etc.)
-- `.github/workflows/pages.yml` — CI/CD pipeline that auto-builds and deploys on push to `main`
-- `.github/dependabot.yml` — daily npm dependency updates
+- `source/_posts/` — posts organized by category: `AI/`, `技术/`, `数学/`, `算法/`. Each post is a `.md` file with a same-named asset folder (`post_asset_folder: true`); reference images by relative filename (`![描述](cover.png)`).
+- `source/` — pages (`about/`, `categories/`, `tags/`, `gallery/`) and shared assets under `source/img/`.
+- `scaffolds/` — templates for `hexo new` (`post.md` has minimal front matter: `title`, `categories`, `tags`, `date`).
+- `scripts/pangu-render.js` — build-time pangu (spaces between CJK and Latin) registered as `after_render:html`. It skips `script/style/pre/code/kbd/samp/.katex/math/svg`. Butterfly's own `pangu` config is dead since theme 5.3.0; the npm `pangu` dependency feeds only this script.
+- `themes/butterfly/` — Butterfly theme as a **git submodule** (jerryc127/hexo-theme-butterfly, branch `main`). Do not edit theme internals; customize via root `_config.butterfly.yml` (root config wins over theme defaults).
+- `_config.yml` — Hexo core (site, permalink `:hash/`, `post_asset_folder: true`, `updated_option: 'mtime'`, markdown-it + KaTeX plugin). `_config.butterfly.yml` — theme features (giscus, math, cover, inject, etc.).
+- `docs/superpowers/{plans,specs,figs}/` — local design docs for past features/posts (gitignored). Consult before large changes.
 
-## Build, Test, and Development Commands
+## Build & Deploy
 
 ```bash
-npm install          # install dependencies (run after adding packages)
-npm run server       # start local dev server with live reload (http://localhost:4000)
-npm run build        # generate the static site into public/
-npm run clean        # remove generated files (public/, db.json)
-npm run deploy       # deploy the generated site to GitHub Pages
+npm run server   # local dev server with live reload (http://localhost:4000)
+npm run build    # hexo generate → static site into public/
+npm run clean    # hexo clean → removes public/, db.json (don't edit db.json by hand)
 ```
 
-**Deployment flow**: On push to `main`, GitHub Actions (`pages.yml`) checks out the repo with submodules, installs Node.js 20, caches `node_modules`, builds the site, and deploys the `public/` directory to GitHub Pages. No manual `npm run deploy` is needed for normal releases.
+- **Deployment is GitHub Actions only.** `_config.yml` has empty `deploy` config, so `npm run deploy`/`hexo deploy` does nothing. Push to `main` triggers `.github/workflows/pages.yml` (checkout with `submodules: recursive` and `fetch-depth: 0`, Node 20, `npm install` → `npm run build`, deploy `public/`).
+- The CI restores each post's mtime from git history (`git log -1 --format=%cI` + `touch`) before building. Without this, `updated_option: 'mtime'` would collapse every post's "更新于" (updated) date to build time.
 
-## Coding Style & Naming Conventions
+## Content Conventions
 
-- Indent with two spaces for YAML and Stylus; follow Hexo defaults for templates.
-- Use lowercase-with-hyphens for files and directories; keep post filenames aligned with their titles.
-- Write post content in Markdown with YAML front matter. Required fields: `title`, `date`, `categories`, `tags`, `cover`.
-- Use `hexo new post "Title"` to create posts from the scaffold template (`scaffolds/post.md`).
-- Enable `post_asset_folder: true` in `_config.yml` — each post gets its own asset directory for images and diagrams.
-- No linter or formatter is configured; keep edits minimal and consistent with surrounding files.
+- Front matter: `title`, `date`, `categories` (single category as string, e.g. `'数学'`), `tags: [...]`, `cover: cover.jpg`/`.png`. **Math posts must add `katex: true`** (`math.per_page: false` — KaTeX loads per-page).
+- Create posts with `hexo new post "Title"`; filenames lowercase-with-hyphens, aligned with titles.
 
-## Testing
+## KaTeX — keep the two versions in sync
 
-There is no automated test suite. Verify changes by:
+Build-side `@renbaoshuo/markdown-it-katex` renders formulas at build time; front-end loads `katex@0.18.1` CSS/JS via CDN under `inject`/`CDN.option` in `_config.butterfly.yml`. Both must stay on katex 0.18.x: 0.18 renamed classes `base`/`strut` to `katex-base`/`katex-strut`, so a stale 0.16.9 CDN breaks formula layout (site was rolled back for exactly this once).
 
-- Running `npm run server` and reviewing new or edited pages in a browser.
-- Running `npm run build` and confirming the site generates without errors.
-- Checking image paths, KaTeX math rendering, and front matter fields in rendered output.
+## Commit Guidelines
 
-## Theme & Configuration
+- Chinese commit subjects with conventional prefixes (`feat:`, `fix:`, `refactor:`) or plain descriptive subjects.
+- Keep content-only changes separate from config/theme changes.
+- `pre-commit` must run before committing (see global instructions); never use `--no-verify`.
 
-- **Theme**: Butterfly (`hexo-theme-butterfly`) via git submodule pinned to `main` branch.
-- **Two config files**: `_config.yml` controls Hexo core (site metadata, URL, permalinks, Markdown plugins). `_config.butterfly.yml` controls theme features (menus, widgets, comments, math, dark mode, etc.).
-- **Comment system**: Giscus, configured with repo `chestnut19981123/chestnut19981123.github.io`. The `category_id` is stored in `_config.butterfly.yml` under `giscus`.
-- **Math rendering**: KaTeX via `@renbaoshuo/markdown-it-katex` plugin (Hexo 8 uses markdown-it renderer). KaTeX is loaded per-page; add `katex: true` to front matter when a post uses math.
-- **Post asset folders**: Set `post_asset_folder: true` in `_config.yml`. Each post gets a directory under `source/_posts/` for its images, SVGs, and other assets.
+## Security & Ignored Files
 
-## Commit & Pull Request Guidelines
-
-- Commit subjects in Chinese. Use conventional prefixes (`feat:`, `fix:`, `refactor:`) followed by a short description, e.g., `feat: 新增矩阵求导速查手册` or `refactor: 分类统一归入技术`. Plain descriptive subjects are also acceptable.
-- Pull requests should describe the change, note related posts or issues, and mention whether assets (images, SVG figures) were added or modified.
-- Keep content-only changes separate from configuration or theme changes.
-
-## Security
-
-- **Secrets in config**: The Giscus `repo_id` and `category_id` are present in `_config.butterfly.yml` (lines 508-509). These are public identifiers tied to the GitHub Discussions integration and are not considered sensitive, but do not add additional API keys or tokens to config files committed to the repo.
-- **Removed credentials**: The Valine `appId` was previously exposed in the config but has been removed (archived LeanCloud app). Do not reintroduce secrets into version-controlled config files.
-- **Dependabot**: Enabled for daily npm updates with a limit of 20 open PRs. Review dependabot PRs promptly for security patches.
-- **Generated files**: `public/`, `db.json`, `.deploy*/`, and `docs/superpowers/` are gitignored. Do not commit build artifacts.
+- Giscus `repo_id`/`category_id` in `_config.butterfly.yml` are public identifiers tied to GitHub Discussions — not sensitive. Do not add real API keys/tokens to committed config (a Valine `appId` was once exposed and later removed).
+- Dependabot runs daily npm updates (20 PR limit); review promptly.
+- Gitignored: `public/`, `db.json`, `.deploy*/`, `docs/superpowers/`, `.superpowers/`. Never commit build artifacts.
 
 ## License
 
-Post content is licensed under CC BY-NC-SA 4.0 (configured in `post_copyright` section of `_config.butterfly.yml`).
+Post content is CC BY-NC-SA 4.0 (`post_copyright` in `_config.butterfly.yml`).
 
 ---
 
