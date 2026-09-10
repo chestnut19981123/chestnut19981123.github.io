@@ -10,9 +10,9 @@ date: 2026-09-09
 
 先破一个泡泡：你天天跟 AI 聊天，以为屏幕对面坐着一个无所不知的智慧体。其实你每敲一句话，背后发生的是一件特别朴素的事——你的机器往某个域名发了一个 POST 请求，请求体是一段 JSON，顺手附上一把 API Key 当入场券。服务器那边不做别的：收下 JSON，算出一个字，回给你，收钱。如此往复，直到它觉得该闭嘴。
 
-这篇文章要做的，就是把这件事拆开给你看。不聊模型架构，不聊神经网络，就聊你花钱买到的那份「服务」：它长什么样、按什么收费、怎么「说话」，以及翻车了该怎么办。读完之后，你再看任何大模型产品，都会自动翻译成一封封 HTTP 请求——这是我写作时的一点私心。
+这篇文章要做的，就是把这件事拆开给你看。不聊模型架构，不聊神经网络，就聊你花钱买到的那份「服务」：它长什么样、按什么收费、怎么「说话」，以及翻车了该怎么办。读完之后，你再看任何大模型产品，都会自动翻译成一封封 HTTP 请求。
 
-主线交代一句：现在这些接口长得都差不多，因为大家默认照着 OpenAI 定的格式抄。所以本文讲的是「OpenAI 那套格式」，具体的例子是我拿 DeepSeek（兼容 OpenAI）**真 key 实测**的。Claude、Gemini 本质是同一套东西，只换了域名和名字。路线就清楚了：**先看请求怎么发出去，再看它按什么收钱、怎么「说话」，最后聊聊翻车了怎么收拾、以及生态里的兼容与选择。**
+主线交代一句：现在这些接口长得都差不多，因为大家默认照着 OpenAI 定的格式抄。所以本文讲的是「OpenAI 那套格式」，具体的例子是我拿 DeepSeek（兼容 OpenAI）真 key 实测的。不过别把话说满：Claude 走的是 Anthropic 自家格式，Gemini 原生也另有一套（后来才补了 OpenAI 兼容入口）——真正照抄 OpenAI 的是 DeepSeek、通义、智谱、Ollama 这一批。路线就清楚了：先看请求怎么发出去，再看它按什么收钱、怎么「说话」，最后聊聊翻车了怎么收拾、以及生态里的兼容与选择。
 
 ## 发送请求：把话打包寄出去
 
@@ -25,7 +25,7 @@ curl https://api.deepseek.com/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $DEEPSEEK_API_KEY" \
   -d '{
-    "model": "deepseek-v4-flash",
+    "model": "deepseek-flash",
     "messages": [{"role": "user", "content": "用一句话解释什么是递归"}]
   }'
 ```
@@ -34,7 +34,7 @@ curl https://api.deepseek.com/chat/completions \
 
 ```json
 {
-  "model": "deepseek-v4-flash",
+  "model": "deepseek-flash",
   "choices": [{
     "message": {
       "role": "assistant",
@@ -60,7 +60,7 @@ from openai import OpenAI
 client = OpenAI(api_key="...", base_url="https://api.deepseek.com")
 
 r = client.chat.completions.create(
-    model="deepseek-v4-flash",
+    model="deepseek-flash",
     messages=[{"role": "user", "content": "用一句话解释什么是递归"}],
 )
 print(r.choices[0].message.content)
@@ -76,7 +76,7 @@ print(r.choices[0].message.content)
 
 ```jsonc
 {
-  "model": "deepseek-v4-flash",                    // 点谁
+  "model": "deepseek-flash",                       // 点谁
   "messages": [                                    // 你说的话，一个数组
     {"role": "system", "content": "你是资深职场助手"},
     {"role": "user",   "content": "帮我写一封请假邮件"}
@@ -136,12 +136,12 @@ messages = [
 
 | 模型 | 输入 | 输入（命中缓存） | 输出 |
 |---|---|---|---|
-| `deepseek-v4-flash` | 1.5 元 | 0.05 元 | 4.5 元 |
+| `deepseek-flash` | 1 元 | 0.02 元 | 4 元 |
 | `deepseek-v4-pro` | 4.5 元 | 0.15 元 | 13.5 元 |
 
-（高峰时段翻倍；上图是北京时间的空闲价。）两个比例值得记住：输出约是输入的 3 倍；命中缓存便宜了一个数量级。为什么输出贵？读输入能整段并行算，输出得一个 token 一个 token 地串着生。于是省钱第一式是：**贵的不是「问得多」，是「答得多」**——让模型写一句话，和写两千字，价差是量级的。还有笔隐藏账：那个 `reasoning_content`（思考过程）也算在输出的 token 里，你问 1+1，它可能先想 200 个 token 再说答案。
+（高峰时段翻倍；上图是北京时间的空闲价。）两个比例值得记住：输出是输入的 3~4 倍；命中缓存便宜了一个数量级。为什么输出贵？读输入能整段并行算，输出得一个 token 一个 token 地串着生。于是省钱第一式是：**贵的不是「问得多」，是「答得多」**——让模型写一句话，和写两千字，价差是量级的。还有笔隐藏账：那个 `reasoning_content`（思考过程）也算在输出的 token 里，你问 1+1，它可能先想 200 个 token 再说答案。
 
-看懂了这张表，「点哪个模型」也就有了答案。以 DeepSeek v4 为例：`pro` 是 `flash` 的三倍价，智力也高一档——上面那个「解释递归」，`flash` 答得标准，`pro` 多补了「直到满足终止条件才逐层返回」这一层。泛化到所有厂商，选型从来不是技术问题，是经济问题：写草稿、贴标签、批量改格式，便宜货绰绰有余；啃长文档、做长链条推理，再掏旗舰的钱。
+看懂了这张表，「点哪个模型」也就有了答案。以 DeepSeek v4 为例：`pro` 比 `flash` 贵三四倍，智力也高一档——上面那个「解释递归」，`flash` 答得标准，`pro` 多补了「直到满足终止条件才逐层返回」这一层。泛化到所有厂商，选型从来不是技术问题，是经济问题：写草稿、贴标签、批量改格式，便宜货绰绰有余；啃长文档、做长链条推理，再掏旗舰的钱。
 
 ### 缓存：命中了就便宜
 
@@ -168,7 +168,20 @@ messages = [
 
 ### 拆帧：流里流着什么
 
-实现上，加了 `"stream": true` 之后，响应不再是单个 JSON，而是一条 SSE（Server-Sent Events）长连接——普通 HTTP，服务端不断吐 `data:` 开头的行。我实测的原始流长这样，这里藏着一个推理模型的细节：**它先流「思考」、再流「正文」**：
+实现上，加了 `"stream": true` 之后，响应不再是单个 JSON，而是一条 SSE（Server-Sent Events）长连接——普通 HTTP，服务端不断吐 `data:` 开头的行。想看这条流，一行 curl 就行，但先认识一下命令里的 `-N`：它是 `--no-buffer` 的简写，即「关闭缓冲」。curl 默认会对输出做缓冲，一旦输出不是直接打在终端上（比如接了管道或重定向到文件），数据就会被攒起来，等整个连接结束才一次性吐出来。普通请求看不出区别，流式响应就致命了——不关缓冲，所有 SSE 帧会憋到 `[DONE]` 才一次性出现，「逐字蹦」的效果直接没了。
+
+```bash
+curl -N https://api.deepseek.com/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $DEEPSEEK_API_KEY" \
+  -d '{
+    "model": "deepseek-flash",
+    "messages": [{"role": "user", "content": "用一句话解释什么是递归"}],
+    "stream": true
+  }'
+```
+
+我实测的原始流长这样，这里藏着一个推理模型的细节：**它先流「思考」、再流「正文」**：
 
 ```text
 data: {"choices":[{"delta":{"content":null,"reasoning_content":"We need"}}]}
@@ -201,15 +214,23 @@ data: [DONE]
 我实测了两条错误体，长得都很直白。一条是把 key 改错：
 
 ```json
-{"error":{"message":"Authentication Fails, Your api key: ****RONG is invalid",
-          "type":"authentication_error"}}
+{
+  "error": {
+    "message": "Authentication Fails, Your api key: ****RONG is invalid",
+    "type": "authentication_error"
+  }
+}
 ```
 
 一条是把模型名拼错：
 
 ```json
-{"error":{"message":"The supported API model names are deepseek-v4-pro, deepseek-v4-flash, ..., but you passed no-such-model.",
-          "type":"invalid_request_error"}}
+{
+  "error": {
+    "message": "The supported API model names are deepseek-flash, deepseek-v4-pro, but you passed no-such-model.",
+    "type": "invalid_request_error"
+  }
+}
 ```
 
 两个坑值得提前踩：一是**模型名拼错的语义各家不一样**——OpenAI 官方返回 404（把模型 ID 当资源），DeepSeek 返回 400。所以「按状态码写死分支」的代码换厂商就失灵。二是 429 的响应头里藏着限流情报（`retry-after` 等几秒），尊重它，别硬刚。
@@ -250,9 +271,9 @@ client = OpenAI(api_key="...", base_url="https://api.deepseek.com")   # 只换�
 
 所以这一篇的功夫没白费——你学会的不是「某一个接口」，是这一整家人的说话方式。
 
-## 收尾：明码标价的诚实
+## 收尾：明码标价
 
-聊到最后，我其实挺喜欢「API 按 token 收费」这件事。它很诚实：能力有多强，明码标价；想让它多想几轮，账单就多几行。没有玄学，没有会员等级，没有「充多少送多少」，只有「你喂进去多少字、它吐出来多少字，乘以单价」。
+最后聊点实际的。按 token 收费，这笔账很好算：喂进去多少字、吐出来多少字，乘以单价，就是这次调用的成本。想让模型多想几轮，账单就多几行；想用更强的模型，单价就更高。价格都写在价目表上，没有会员等级，也没有「充多少送多少」的套路。
 
 下次你在网页里跟 AI 聊到它弹出「继续对话请升级」，就可以在脑子里把它翻译成：这孩子今天吐的 token 有点多，余额见底了。相比把它当成无所不能的智慧体，把它当成一个按字计费的接口来用，你会更清醒，也更省钱。
 
