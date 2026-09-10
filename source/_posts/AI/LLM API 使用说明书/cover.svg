@@ -1,0 +1,118 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7F8FA"/>
+      <stop offset="1" stop-color="#E9EDF2"/>
+    </linearGradient>
+
+    <linearGradient id="core" x1="730" y1="400" x2="880" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+
+    <linearGradient id="accent" x1="740" y1="410" x2="860" y2="530" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+
+    <filter id="shadow" x="360" y="80" width="880" height="740" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="30" stdDeviation="35" flood-color="#0F172A" flood-opacity="0.12"/>
+    </filter>
+
+    <filter id="soft" x="-100" y="-100" width="1800" height="1100" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+
+    <clipPath id="panelClip">
+      <rect x="460" y="130" width="680" height="640" rx="32"/>
+    </clipPath>
+
+    <marker id="arr" markerHeight="10" markerWidth="10" orient="auto" refX="10" refY="5" viewBox="0 0 10 10">
+      <path fill="#60A5FA" d="M 0 0 L 10 5 L 0 10 z"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- Subtle ambient glow -->
+  <circle cx="330" cy="190" r="180" fill="#93C5FD" opacity="0.14" filter="url(#soft)"/>
+  <circle cx="1330" cy="720" r="230" fill="#CBD5E1" opacity="0.32" filter="url(#soft)"/>
+
+  <!-- Minimal grid -->
+  <g opacity="0.26" stroke="#CBD5E1" stroke-width="1">
+    <path d="M0 180H1600"/>
+    <path d="M0 360H1600"/>
+    <path d="M0 540H1600"/>
+    <path d="M0 720H1600"/>
+    <path d="M200 0V900"/>
+    <path d="M400 0V900"/>
+    <path d="M600 0V900"/>
+    <path d="M800 0V900"/>
+    <path d="M1000 0V900"/>
+    <path d="M1200 0V900"/>
+    <path d="M1400 0V900"/>
+  </g>
+
+  <!-- Central terminal card -->
+  <g filter="url(#shadow)">
+    <rect x="460" y="130" width="680" height="640" rx="32" fill="white"/>
+    <rect x="460.5" y="130.5" width="679" height="639" rx="31.5" stroke="#D7DDE5"/>
+  </g>
+
+  <!-- Header bar -->
+  <rect x="460" y="130" width="680" height="74" rx="32" fill="#F8FAFC"/>
+  <path d="M460 172H1140V236H460V172Z" fill="#F8FAFC"/>
+  <line x1="460" y1="204" x2="1140" y2="204" stroke="#E2E8F0"/>
+  <circle cx="498" cy="167" r="7" fill="#CBD5E1"/>
+  <circle cx="522" cy="167" r="7" fill="#CBD5E1"/>
+  <circle cx="546" cy="167" r="7" fill="#CBD5E1"/>
+
+  <g clip-path="url(#panelClip)">
+    <!-- Request code block (top) -->
+    <rect x="500" y="242" width="160" height="12" rx="6" fill="#1E293B"/>
+
+    <rect x="500" y="280" width="44" height="12" rx="6" fill="#CBD5E1"/>
+    <rect x="556" y="278" width="132" height="16" rx="6" fill="#BFDBFE"/>
+
+    <rect x="500" y="312" width="44" height="12" rx="6" fill="#CBD5E1"/>
+    <rect x="556" y="310" width="150" height="14" rx="7" fill="#E2E8F0"/>
+
+    <rect x="500" y="344" width="44" height="12" rx="6" fill="#CBD5E1"/>
+    <rect x="556" y="342" width="120" height="14" rx="7" fill="#E2E8F0"/>
+
+    <!-- Arrow: request -> model (above title band) -->
+    <path d="M620 362 C 690 372, 720 400, 748 424"
+          fill="none" stroke="#60A5FA" stroke-width="3" stroke-linecap="round"
+          marker-end="url(#arr)"/>
+
+    <!-- Model node (dark) -->
+    <circle cx="800" cy="470" r="76" fill="#0F172A" opacity="0.06"/>
+    <circle cx="800" cy="470" r="54" fill="url(#core)"/>
+    <circle cx="800" cy="470" r="54" fill="none" stroke="url(#accent)" stroke-width="3"/>
+    <circle cx="800" cy="470" r="34" fill="#0F172A"/>
+    <circle cx="800" cy="470" r="7" fill="#60A5FA"/>
+
+    <!-- Response token stream (bottom, below title band) -->
+    <g>
+      <rect x="620" y="616" width="110" height="15" rx="7.5" fill="#93C5FD"/>
+      <rect x="770" y="616" width="90" height="15" rx="7.5" fill="#BFDBFE"/>
+      <rect x="900" y="616" width="70" height="15" rx="7.5" fill="#DBEAFE"/>
+    </g>
+    <g>
+      <rect x="580" y="648" width="96" height="15" rx="7.5" fill="#DBEAFE"/>
+      <rect x="710" y="648" width="120" height="15" rx="7.5" fill="#93C5FD"/>
+      <rect x="870" y="648" width="84" height="15" rx="7.5" fill="#BFDBFE"/>
+    </g>
+  </g>
+
+  <!-- Small geometric marks -->
+  <g stroke="#64748B" stroke-width="2" opacity="0.65">
+    <path d="M168 690h54"/>
+    <path d="M195 663v54"/>
+    <path d="M1375 215h54"/>
+    <path d="M1402 188v54"/>
+  </g>
+
+  <!-- No title / no text -->
+</svg>

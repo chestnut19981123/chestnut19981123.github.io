@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="430" viewBox="0 0 800 430"><defs><marker id="arr" markerHeight="9" markerWidth="9" orient="auto" refX="8" refY="5" viewBox="0 0 10 10"><path fill="#64748b" d="M 0 0 L 10 5 L 0 10 z"/></marker></defs>
 <rect width="800" height="430" fill="#fff"/>
-<text x="400" y="32" fill="#1e293b" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="22" text-anchor="middle" style="font-weight:700">被 429 拒绝后:闷头硬撞 vs 指数退避</text>
-<text x="210" y="78" fill="#ef4444" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="18" text-anchor="middle" style="font-weight:700">闷头硬撞</text>
+<text x="400" y="32" fill="#1e293b" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="22" text-anchor="middle" style="font-weight:700">被 429 拒绝后：硬发 vs 指数退避</text>
+<text x="210" y="78" fill="#ef4444" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="18" text-anchor="middle" style="font-weight:700">硬发</text>
 <text x="590" y="78" fill="#22c55e" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="18" text-anchor="middle" style="font-weight:700">指数退避</text>
-<text x="210" y="102" fill="#64748b" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="12.5" text-anchor="middle">每次只隔 0.5 秒,撞了再撞</text>
-<text x="590" y="102" fill="#64748b" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="12.5" text-anchor="middle">间隔翻倍:1s / 2s / 4s</text>
+<text x="210" y="102" fill="#64748b" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="12.5" text-anchor="middle">每次只隔 0.5 秒，发了再发</text>
+<text x="590" y="102" fill="#64748b" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="12.5" text-anchor="middle">间隔翻倍：1s / 2s / 4s</text>
 <line x1="130" x2="290" y1="152" y2="152" stroke="#cbd5e1" stroke-width="2.5"/>
 <line x1="495" x2="670" y1="152" y2="152" stroke="#cbd5e1" stroke-width="2.5"/>
 <text x="511" y="134" fill="#64748b" dominant-baseline="middle" font-family="monospace" font-size="11" text-anchor="middle">1s</text>
@@ -23,7 +23,7 @@
 <line x1="654" x2="654" y1="165" y2="230" stroke="#22c55e" stroke-width="2.5" marker-end="url(#arr)"/>
 <rect width="170" height="46" x="125" y="234" fill="#fef2f2" stroke="#ef4444" stroke-width="2.5" rx="23"/><text x="210" y="258" fill="#ef4444" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="17" text-anchor="middle" style="font-weight:700">还在 429</text>
 <rect width="170" height="46" x="505" y="234" fill="#f0fdf4" stroke="#22c55e" stroke-width="2.5" rx="23"/><text x="590" y="258" fill="#1e293b" dominant-baseline="middle" font-family="monospace" font-size="17" text-anchor="middle" style="font-weight:700">200 OK</text>
-<text x="210" y="312" fill="#64748b" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="12.5" text-anchor="middle">5 连撞:间隔不变,次次被拒</text>
-<text x="590" y="312" fill="#64748b" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="12.5" text-anchor="middle">等到第 4 发,放行</text>
-<text x="400" y="392" fill="#64748b" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="13" text-anchor="middle">可重试:429 / 5xx / 断网 —— SDK 已内置退避(默认 2 次);400 / 401 / 403:先改请求,重试无用</text>
+<text x="210" y="312" fill="#64748b" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="12.5" text-anchor="middle">5 连发：间隔不变，次次被拒</text>
+<text x="590" y="312" fill="#64748b" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="12.5" text-anchor="middle">等到第 4 发，放行</text>
+<text x="400" y="392" fill="#64748b" dominant-baseline="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="13" text-anchor="middle">可重试：429 / 5xx / 断网 —— SDK 已内置退避（默认 2 次）；400 / 401 / 403：先改请求，重试无用</text>
 </svg>
