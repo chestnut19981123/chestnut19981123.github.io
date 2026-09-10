@@ -257,7 +257,9 @@ client = OpenAI(api_key="...", base_url="https://api.deepseek.com")   # 只换�
 
 ### 旁支：除了聊天，还有这些接口
 
-`chat/completions` 是最大的一块，但「按 token 计价的接口」其实是一大家子。它们都长一个样——同一个 base_url、同一把 key，只是路径和进出字段不同。前面学的「POST + JSON + Bearer key」那套姿势，换到哪个接口都能复用。
+`POST /v1/chat/completions` 是最大的一块，但「按 token 计价的接口」其实是一大家子。它们都长一个样——同一个 base_url、同一把 key，只是路径和进出字段不同。前面学的「POST + JSON + Bearer key」那套姿势，换到哪个接口都能复用。
+
+**模型**：`GET /v1/models`，一个 GET，回一张你家有哪些模型的清单。写代码前先摸一眼，模型名拼没拼错就心里有数了——我开头能顺利跑通「解释递归」，第一步就是先查了模型清单。
 
 **嵌入**：`POST /v1/embeddings`，文本进、一长串浮点数出，干的是「比较两段文字像不像」的活——RAG、语义搜索、聚类全靠它。OpenAI 定了格式，各家照抄（顺带说一句，DeepSeek 目前没有这个接口，别在它家白找）。
 
