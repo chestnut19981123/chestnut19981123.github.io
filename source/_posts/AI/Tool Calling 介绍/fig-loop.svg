@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="470" viewBox="0 0 800 470">
+  <defs>
+    <marker id="arr-indigo" markerHeight="6" markerWidth="6" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10">
+      <path fill="#3b82f6" d="M 0 0 L 10 5 L 0 10 z"/>
+    </marker>
+  </defs>
+
+  <text x="400" y="40" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="22" text-anchor="middle" style="font-weight:600">从一次调用到 Agent：单次 vs 循环</text>
+
+  <rect x="40" y="70" width="340" height="360" rx="18" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2.5"/>
+  <text x="210" y="104" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" text-anchor="middle" style="font-weight:600">单次 Tool Calling</text>
+
+  <rect x="60" y="140" width="135" height="100" rx="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="127" y="180" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="17" text-anchor="middle" style="font-weight:600">模型</text>
+  <text x="127" y="212" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" text-anchor="middle">输出调用请求</text>
+
+  <rect x="225" y="140" width="135" height="100" rx="14" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="292" y="180" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="17" text-anchor="middle" style="font-weight:600">工具</text>
+  <text x="292" y="212" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" text-anchor="middle">返回执行结果</text>
+
+  <line x1="195" y1="175" x2="221" y2="175" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arr-indigo)"/>
+  <text x="208" y="165" fill="#2563eb" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" text-anchor="middle">调用</text>
+  <line x1="225" y1="205" x2="199" y2="205" stroke="#f97316" stroke-width="2.5" marker-end="url(#arr-indigo)"/>
+  <text x="212" y="228" fill="#ea580c" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" text-anchor="middle">结果</text>
+
+  <text x="210" y="320" fill="#64748b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">拿到结果就回答，一次收工</text>
+
+  <rect x="420" y="70" width="340" height="360" rx="18" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2.5"/>
+  <text x="590" y="104" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" text-anchor="middle" style="font-weight:600">Agent 循环</text>
+
+  <rect x="455" y="130" width="250" height="64" rx="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="580" y="157" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" text-anchor="middle" style="font-weight:600">推理</text>
+  <text x="580" y="181" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" text-anchor="middle">模型决定下一步做什么</text>
+
+  <line x1="580" y1="194" x2="580" y2="216" stroke="#64748b" stroke-width="2.5" marker-end="url(#arr-indigo)"/>
+
+  <rect x="455" y="222" width="250" height="64" rx="14" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="580" y="249" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" text-anchor="middle" style="font-weight:600">执行</text>
+  <text x="580" y="273" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" text-anchor="middle">宿主调工具拿结果</text>
+
+  <line x1="580" y1="286" x2="580" y2="308" stroke="#64748b" stroke-width="2.5" marker-end="url(#arr-indigo)"/>
+
+  <rect x="455" y="314" width="250" height="64" rx="14" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <text x="580" y="341" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" text-anchor="middle" style="font-weight:600">观察</text>
+  <text x="580" y="365" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" text-anchor="middle">结果喂回，继续想</text>
+
+  <line x1="735" y1="350" x2="735" y2="168" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arr-indigo)"/>
+  <text x="590" y="412" fill="#3b82f6" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" text-anchor="middle">↑ 结果回填，再来一轮，直到模型不再调工具</text>
+</svg>

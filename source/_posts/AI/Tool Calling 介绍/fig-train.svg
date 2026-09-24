@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <defs>
+    <marker id="arr" markerHeight="6" markerWidth="6" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10">
+      <path fill="#64748b" d="M 0 0 L 10 5 L 0 10 z"/>
+    </marker>
+  </defs>
+
+  <text x="450" y="42" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="22" text-anchor="middle" style="font-weight:600">模型是怎么学会 Tool Calling 的：训练与推理双轨</text>
+
+  <rect x="40" y="78" width="390" height="330" rx="18" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2.5"/>
+  <text x="235" y="108" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="17" text-anchor="middle" style="font-weight:600">训练阶段：学会「按格式下单」</text>
+
+  <rect x="70" y="134" width="330" height="66" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+  <text x="235" y="160" fill="#334155" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">样本：用户问题 + 工具清单</text>
+  <text x="235" y="184" fill="#334155" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">＋ 人类标注的正确调用</text>
+
+  <line x1="235" y1="200" x2="235" y2="222" stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <rect x="70" y="228" width="330" height="66" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+  <text x="235" y="254" fill="#334155" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">指令微调（SFT）</text>
+  <text x="235" y="278" fill="#334155" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">学会输出 tool_use 格式</text>
+
+  <line x1="235" y1="294" x2="235" y2="316" stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <rect x="70" y="322" width="330" height="66" rx="14" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="235" y="348" fill="#1e3a8a" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">成果：该下单时会下单</text>
+  <text x="235" y="372" fill="#1e3a8a" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">而不是硬编一个答案</text>
+
+  <rect x="470" y="78" width="390" height="330" rx="18" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2.5"/>
+  <text x="665" y="108" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="17" text-anchor="middle" style="font-weight:600">推理阶段：照单点菜</text>
+
+  <rect x="500" y="134" width="330" height="66" rx="14" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="665" y="160" fill="#334155" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">输入：用户问题 + 工具清单</text>
+  <text x="665" y="184" fill="#334155" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">（菜单就在上下文里）</text>
+
+  <line x1="665" y1="200" x2="665" y2="222" stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <rect x="500" y="228" width="330" height="66" rx="14" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="665" y="254" fill="#334155" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">输出：结构化调用请求</text>
+  <text x="665" y="278" fill="#334155" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">语法约束保证是合法 JSON</text>
+
+  <line x1="665" y1="294" x2="665" y2="316" stroke="#64748b" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <rect x="500" y="322" width="330" height="66" rx="14" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/>
+  <text x="665" y="348" fill="#15803d" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">宿主校验执行 + 结果回填</text>
+  <text x="665" y="372" fill="#15803d" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">模型看完再决定下一步</text>
+
+  <rect x="40" y="430" width="820" height="72" rx="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="450" y="458" fill="#334155" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" text-anchor="middle">训练时模型只见过「文本示范」，没见过真实执行结果——所以会编参数、会翻车</text>
+  <text x="450" y="484" fill="#334155" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" text-anchor="middle">带工具反馈的强化学习补上这一课：真调、真看、真学，调用能力才更稳</text>
+</svg>

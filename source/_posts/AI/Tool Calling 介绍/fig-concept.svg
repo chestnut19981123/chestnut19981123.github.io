@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="460" viewBox="0 0 800 460">
+  <defs>
+    <marker id="arr-blue" markerHeight="6" markerWidth="6" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10">
+      <path fill="#3b82f6" d="M 0 0 L 10 5 L 0 10 z"/>
+    </marker>
+    <marker id="arr-orange" markerHeight="6" markerWidth="6" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10">
+      <path fill="#f97316" d="M 0 0 L 10 5 L 0 10 z"/>
+    </marker>
+    <marker id="arr-indigo" markerHeight="6" markerWidth="6" orient="auto-start-reverse" refX="8" refY="5" viewBox="0 0 10 10">
+      <path fill="#3b82f6" d="M 0 0 L 10 5 L 0 10 z"/>
+    </marker>
+  </defs>
+
+  <text x="400" y="46" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="22" text-anchor="middle" style="font-weight:600">说与做的分工：一场精心设计的外包</text>
+  <text x="400" y="78" fill="#64748b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" text-anchor="middle">模型负责说，宿主负责做，工具负责出活</text>
+
+  <rect x="40" y="150" width="210" height="180" rx="20" fill="#eff6ff" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="145" y="185" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" text-anchor="middle" style="font-weight:600">模型（负责想）</text>
+  <text x="145" y="222" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">只会动嘴：输出请求</text>
+  <text x="145" y="250" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">不碰任何真实世界</text>
+  <text x="145" y="296" fill="#2563eb" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle" style="font-weight:600">只有建议权</text>
+
+  <rect x="295" y="150" width="210" height="180" rx="20" fill="#fff7ed" stroke="#f97316" stroke-width="2.5"/>
+  <text x="400" y="185" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" text-anchor="middle" style="font-weight:600">宿主（负责做）</text>
+  <text x="400" y="222" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">校验参数、执行工具</text>
+  <text x="400" y="250" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">权限和安全握在这里</text>
+  <text x="400" y="296" fill="#ea580c" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle" style="font-weight:600">有执行权</text>
+
+  <rect x="550" y="150" width="210" height="180" rx="20" fill="#eff6ff" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="655" y="185" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" text-anchor="middle" style="font-weight:600">工具（真出活）</text>
+  <text x="655" y="222" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">天气 API / 计算器</text>
+  <text x="655" y="250" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle">数据库 / 文件系统</text>
+  <text x="655" y="296" fill="#2563eb" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="middle" style="font-weight:600">真实世界的接口</text>
+
+  <line x1="250" y1="195" x2="288" y2="195" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arr-blue)"/>
+  <text x="269" y="178" fill="#2563eb" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" text-anchor="middle">tool_use 请求单</text>
+  <line x1="505" y1="195" x2="543" y2="195" stroke="#f97316" stroke-width="2.5" marker-end="url(#arr-orange)"/>
+  <text x="524" y="178" fill="#ea580c" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" text-anchor="middle">校验后执行</text>
+  <line x1="295" y1="285" x2="257" y2="285" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arr-blue)"/>
+  <text x="276" y="310" fill="#2563eb" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" text-anchor="middle">tool_result 回填</text>
+  <line x1="550" y1="285" x2="512" y2="285" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arr-indigo)"/>
+  <text x="531" y="310" fill="#2563eb" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" text-anchor="middle">原始结果返回</text>
+
+  <rect x="140" y="370" width="520" height="58" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="400" y="399" fill="#334155" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" text-anchor="middle">模型只有建议权，宿主有执行权——权限与安全的地基</text>
+</svg>

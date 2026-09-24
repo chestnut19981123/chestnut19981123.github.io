@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="610" viewBox="0 0 900 610" xml:space="preserve">
+  <text x="450" y="38" fill="#1e293b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="22" text-anchor="middle" style="font-weight:600">一张名片的解剖：JSON Schema 逐字段拆解</text>
+
+  <rect x="40" y="64" width="560" height="512" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+  <rect x="40" y="64" width="560" height="42" rx="16" fill="#f1f5f9"/>
+  <rect x="40" y="84" width="560" height="22" fill="#f1f5f9"/>
+  <line x1="40" y1="106" x2="600" y2="106" stroke="#e2e8f0" stroke-width="2"/>
+  <circle cx="66" cy="85" r="7" fill="#fca5a5"/>
+  <circle cx="86" cy="85" r="7" fill="#fcd34d"/>
+  <circle cx="106" cy="85" r="7" fill="#4ade80"/>
+  <text x="128" y="85" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="15">get_weather.json</text>
+
+  <text x="70" y="142" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#64748b">{</tspan></text>
+  <text x="88" y="167" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#2563eb">"name"</tspan><tspan fill="#64748b">: </tspan><tspan fill="#22c55e">"get_weather"</tspan><tspan fill="#64748b">,</tspan></text>
+  <text x="88" y="192" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#2563eb">"description"</tspan><tspan fill="#64748b">: </tspan><tspan fill="#22c55e">"查询指定城市当天天气"</tspan><tspan fill="#64748b">,</tspan></text>
+  <text x="88" y="217" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#2563eb">"parameters"</tspan><tspan fill="#64748b">: </tspan><tspan fill="#64748b">{</tspan></text>
+  <text x="106" y="242" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#2563eb">"type"</tspan><tspan fill="#64748b">: </tspan><tspan fill="#22c55e">"object"</tspan><tspan fill="#64748b">,</tspan></text>
+  <text x="106" y="267" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#2563eb">"properties"</tspan><tspan fill="#64748b">: </tspan><tspan fill="#64748b">{</tspan></text>
+  <text x="124" y="292" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#2563eb">"city"</tspan><tspan fill="#64748b">: </tspan><tspan fill="#64748b">{</tspan></text>
+  <text x="142" y="317" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#2563eb">"type"</tspan><tspan fill="#64748b">: </tspan><tspan fill="#22c55e">"string"</tspan><tspan fill="#64748b">,</tspan></text>
+  <text x="142" y="342" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#2563eb">"description"</tspan><tspan fill="#64748b">: </tspan><tspan fill="#22c55e">"城市名，例如「上海」"</tspan><tspan fill="#64748b">,</tspan></text>
+  <text x="124" y="367" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#64748b">},</tspan></text>
+  <text x="124" y="392" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#2563eb">"date"</tspan><tspan fill="#64748b">: </tspan><tspan fill="#64748b">{</tspan></text>
+  <text x="142" y="417" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#2563eb">"type"</tspan><tspan fill="#64748b">: </tspan><tspan fill="#22c55e">"string"</tspan><tspan fill="#64748b">,</tspan></text>
+  <text x="142" y="442" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#2563eb">"enum"</tspan><tspan fill="#64748b">: </tspan><tspan fill="#64748b">[</tspan><tspan fill="#22c55e">"today"</tspan><tspan fill="#64748b">, </tspan><tspan fill="#22c55e">"tomorrow"</tspan><tspan fill="#64748b">]</tspan></text>
+  <text x="124" y="467" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#64748b">}</tspan></text>
+  <text x="106" y="492" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#64748b">},</tspan></text>
+  <text x="106" y="517" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#2563eb">"required"</tspan><tspan fill="#64748b">: </tspan><tspan fill="#64748b">[</tspan><tspan fill="#22c55e">"city"</tspan><tspan fill="#64748b">]</tspan></text>
+  <text x="88" y="542" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#64748b">}</tspan></text>
+  <text x="70" y="567" fill="#64748b" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace" font-size="14"><tspan fill="#64748b">}</tspan></text>
+
+  <line x1="600" y1="167" x2="644" y2="167" stroke="#cbd5e1" stroke-width="1.5"/>
+  <circle cx="648" cy="167" r="4" fill="#3b82f6"/>
+  <text x="662" y="167" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">name：点名用的招牌</text>
+
+  <line x1="600" y1="192" x2="644" y2="197" stroke="#cbd5e1" stroke-width="1.5"/>
+  <circle cx="648" cy="197" r="4" fill="#3b82f6"/>
+  <text x="662" y="197" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">description：最重要，决定何时调用</text>
+
+  <line x1="600" y1="217" x2="644" y2="227" stroke="#cbd5e1" stroke-width="1.5"/>
+  <circle cx="648" cy="227" r="4" fill="#3b82f6"/>
+  <text x="662" y="227" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">parameters：参数总规矩</text>
+
+  <line x1="600" y1="242" x2="644" y2="257" stroke="#cbd5e1" stroke-width="1.5"/>
+  <circle cx="648" cy="257" r="4" fill="#3b82f6"/>
+  <text x="662" y="257" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">type：顶层必须是对象</text>
+
+  <line x1="600" y1="267" x2="644" y2="287" stroke="#cbd5e1" stroke-width="1.5"/>
+  <circle cx="648" cy="287" r="4" fill="#3b82f6"/>
+  <text x="662" y="287" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">properties：逐字段列约束</text>
+
+  <line x1="600" y1="442" x2="644" y2="442" stroke="#cbd5e1" stroke-width="1.5"/>
+  <circle cx="648" cy="442" r="4" fill="#3b82f6"/>
+  <text x="662" y="442" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">enum：可选值焊死，越界打回</text>
+
+  <line x1="600" y1="517" x2="644" y2="517" stroke="#cbd5e1" stroke-width="1.5"/>
+  <circle cx="648" cy="517" r="4" fill="#3b82f6"/>
+  <text x="662" y="517" fill="#475569" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">required：必填项，缺了报错</text>
+
+  <text x="450" y="598" fill="#64748b" dominant-baseline="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" text-anchor="middle">同一张名片，两个读者：模型看它点菜，宿主看它验货</text>
+</svg>
