@@ -32,12 +32,6 @@
         stroke-width: 1.5;
       }
 
-      .codebox {
-        fill: #f8fafc;
-        stroke: #cbd5e1;
-        stroke-width: 1.2;
-      }
-
       .accentbox {
         fill: #eff6ff;
         stroke: #bfdbfe;
@@ -65,25 +59,11 @@
             refY="5"
             orient="auto"
             viewBox="0 0 10 10">
-      <path d="M0,0 L10,5 L0,10 Z"
-            fill="#94a3b8"/>
+      <path d="M0,0 L10,5 L0,10 Z" fill="#94a3b8"/>
     </marker>
   </defs>
 
-
-  <!-- =========================
-       Background
-       ========================= -->
-
-  <rect width="900"
-        height="540"
-        fill="#f8fafc"/>
-
-
-  <!-- =========================
-       Header
-       ========================= -->
-
+  <!-- Header -->
   <text x="450"
         y="40"
         font-size="26"
@@ -97,25 +77,18 @@
         font-size="13"
         text-anchor="middle"
         class="muted">
-    请求目标相似，但 JSON 的组织方式不同
+    OpenAI · Anthropic · Responses API
   </text>
 
 
-  <!-- =========================
-       Card 1
-       OpenAI Chat Completions
-       ========================= -->
-
+  <!-- OpenAI Chat Completions -->
   <g filter="url(#shadow)">
-
     <rect x="40"
           y="100"
           width="260"
           height="205"
           rx="18"
           class="card"/>
-
-    <!-- Header -->
 
     <text x="60"
           y="130"
@@ -130,8 +103,6 @@
           class="muted">
       /v1/chat/completions
     </text>
-
-    <!-- Main field -->
 
     <rect x="60"
           y="169"
@@ -149,8 +120,6 @@
           fill="#2563eb">
       messages[]
     </text>
-
-    <!-- Structure -->
 
     <text x="60"
           y="235"
@@ -182,25 +151,17 @@
           fill="#64748b">
       role: assistant
     </text>
-
   </g>
 
 
-  <!-- =========================
-       Card 2
-       Anthropic Messages
-       ========================= -->
-
+  <!-- Anthropic Messages -->
   <g filter="url(#shadow)">
-
     <rect x="320"
           y="100"
           width="260"
           height="205"
           rx="18"
           class="card"/>
-
-    <!-- Header -->
 
     <text x="340"
           y="130"
@@ -215,8 +176,6 @@
           class="muted">
       /v1/messages
     </text>
-
-    <!-- Main fields -->
 
     <rect x="340"
           y="169"
@@ -234,8 +193,6 @@
           fill="#2563eb">
       system + messages[]
     </text>
-
-    <!-- Structure -->
 
     <text x="340"
           y="235"
@@ -267,25 +224,17 @@
           fill="#64748b">
       model / max_tokens / ...
     </text>
-
   </g>
 
 
-  <!-- =========================
-       Card 3
-       OpenAI Responses
-       ========================= -->
-
+  <!-- OpenAI Responses -->
   <g filter="url(#shadow)">
-
     <rect x="600"
           y="100"
           width="260"
           height="205"
           rx="18"
           class="card"/>
-
-    <!-- Header -->
 
     <text x="620"
           y="130"
@@ -300,8 +249,6 @@
           class="muted">
       /v1/responses
     </text>
-
-    <!-- Main fields -->
 
     <rect x="620"
           y="169"
@@ -319,8 +266,6 @@
           fill="#2563eb">
       instructions + input
     </text>
-
-    <!-- Structure -->
 
     <text x="620"
           y="235"
@@ -352,42 +297,31 @@
           fill="#64748b">
       model / tools / ...
     </text>
-
   </g>
 
 
-  <!-- =========================
-       Connectors
-       ========================= -->
-
-  <path d="M170 305
-           C170 330 270 342 320 365"
+  <!-- Connectors -->
+  <path d="M170 305 C170 330 270 342 320 365"
         fill="none"
         stroke="#94a3b8"
         stroke-width="2.2"
         marker-end="url(#arrow)"/>
 
-  <path d="M450 305
-           L450 365"
+  <path d="M450 305 L450 365"
         fill="none"
         stroke="#94a3b8"
         stroke-width="2.2"
         marker-end="url(#arrow)"/>
 
-  <path d="M730 305
-           C730 330 630 342 580 365"
+  <path d="M730 305 C730 330 630 342 580 365"
         fill="none"
         stroke="#94a3b8"
         stroke-width="2.2"
         marker-end="url(#arrow)"/>
 
 
-  <!-- =========================
-       Common API layer
-       ========================= -->
-
+  <!-- Common API layer -->
   <g filter="url(#shadow)">
-
     <rect x="170"
           y="365"
           width="560"
@@ -396,8 +330,6 @@
           fill="#f0fdf4"
           stroke="#22c55e"
           stroke-width="2"/>
-
-    <!-- API icon -->
 
     <rect x="205"
           y="395"
@@ -432,8 +364,6 @@
             r="2"
             fill="#16a34a"/>
 
-    <!-- Text -->
-
     <text x="480"
           y="394"
           font-size="19"
@@ -457,14 +387,10 @@
           class="muted">
       接收结构化请求 → 调用模型 → 返回响应
     </text>
-
   </g>
 
 
-  <!-- =========================
-       Comparison strip
-       ========================= -->
-
+  <!-- Comparison strip -->
   <rect x="70"
         y="487"
         width="760"
@@ -479,10 +405,8 @@
         text-anchor="middle"
         dominant-baseline="middle"
         class="body">
-
     <tspan font-weight="700">核心差异：</tspan>
     请求端点不同，字段结构不同，消息 / 指令 / 输入的组织方式不同
-
   </text>
 
 </svg>
