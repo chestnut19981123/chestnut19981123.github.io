@@ -1,0 +1,488 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="900"
+     height="540"
+     viewBox="0 0 900 540">
+
+  <defs>
+    <style>
+      .title {
+        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        font-weight: 700;
+        fill: #0f172a;
+      }
+
+      .body {
+        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        fill: #334155;
+      }
+
+      .muted {
+        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        fill: #64748b;
+      }
+
+      .mono {
+        font-family: "SFMono-Regular", "Consolas",
+                     "Liberation Mono", monospace;
+      }
+
+      .card {
+        fill: #ffffff;
+        stroke: #e2e8f0;
+        stroke-width: 1.5;
+      }
+
+      .codebox {
+        fill: #f8fafc;
+        stroke: #cbd5e1;
+        stroke-width: 1.2;
+      }
+
+      .accentbox {
+        fill: #eff6ff;
+        stroke: #bfdbfe;
+        stroke-width: 1.2;
+      }
+    </style>
+
+    <filter id="shadow"
+            x="-20%"
+            y="-20%"
+            width="140%"
+            height="150%">
+      <feDropShadow
+        dx="0"
+        dy="4"
+        stdDeviation="7"
+        flood-color="#0f172a"
+        flood-opacity="0.08"/>
+    </filter>
+
+    <marker id="arrow"
+            markerWidth="10"
+            markerHeight="10"
+            refX="8"
+            refY="5"
+            orient="auto"
+            viewBox="0 0 10 10">
+      <path d="M0,0 L10,5 L0,10 Z"
+            fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+
+  <!-- =========================
+       Background
+       ========================= -->
+
+  <rect width="900"
+        height="540"
+        fill="#f8fafc"/>
+
+
+  <!-- =========================
+       Header
+       ========================= -->
+
+  <text x="450"
+        y="40"
+        font-size="26"
+        text-anchor="middle"
+        class="title">
+    三种 API 格式，如何表达同一次模型调用？
+  </text>
+
+  <text x="450"
+        y="67"
+        font-size="13"
+        text-anchor="middle"
+        class="muted">
+    请求目标相似，但 JSON 的组织方式不同
+  </text>
+
+
+  <!-- =========================
+       Card 1
+       OpenAI Chat Completions
+       ========================= -->
+
+  <g filter="url(#shadow)">
+
+    <rect x="40"
+          y="100"
+          width="260"
+          height="205"
+          rx="18"
+          class="card"/>
+
+    <!-- Header -->
+
+    <text x="60"
+          y="130"
+          font-size="17"
+          class="title">
+      OpenAI Chat Completions
+    </text>
+
+    <text x="60"
+          y="151"
+          font-size="12"
+          class="muted">
+      /v1/chat/completions
+    </text>
+
+    <!-- Main field -->
+
+    <rect x="60"
+          y="169"
+          width="220"
+          height="42"
+          rx="9"
+          class="accentbox"/>
+
+    <text x="170"
+          y="190"
+          font-size="13"
+          text-anchor="middle"
+          dominant-baseline="middle"
+          class="mono"
+          fill="#2563eb">
+      messages[]
+    </text>
+
+    <!-- Structure -->
+
+    <text x="60"
+          y="235"
+          font-size="12.5"
+          class="body">
+      消息作为数组传入
+    </text>
+
+    <text x="60"
+          y="258"
+          font-size="11.5"
+          class="mono"
+          fill="#64748b">
+      role: system
+    </text>
+
+    <text x="60"
+          y="278"
+          font-size="11.5"
+          class="mono"
+          fill="#64748b">
+      role: user
+    </text>
+
+    <text x="60"
+          y="298"
+          font-size="11.5"
+          class="mono"
+          fill="#64748b">
+      role: assistant
+    </text>
+
+  </g>
+
+
+  <!-- =========================
+       Card 2
+       Anthropic Messages
+       ========================= -->
+
+  <g filter="url(#shadow)">
+
+    <rect x="320"
+          y="100"
+          width="260"
+          height="205"
+          rx="18"
+          class="card"/>
+
+    <!-- Header -->
+
+    <text x="340"
+          y="130"
+          font-size="17"
+          class="title">
+      Anthropic Messages
+    </text>
+
+    <text x="340"
+          y="151"
+          font-size="12"
+          class="muted">
+      /v1/messages
+    </text>
+
+    <!-- Main fields -->
+
+    <rect x="340"
+          y="169"
+          width="220"
+          height="42"
+          rx="9"
+          class="accentbox"/>
+
+    <text x="450"
+          y="190"
+          font-size="13"
+          text-anchor="middle"
+          dominant-baseline="middle"
+          class="mono"
+          fill="#2563eb">
+      system + messages[]
+    </text>
+
+    <!-- Structure -->
+
+    <text x="340"
+          y="235"
+          font-size="12.5"
+          class="body">
+      system 与消息数组分开
+    </text>
+
+    <text x="340"
+          y="258"
+          font-size="11.5"
+          class="mono"
+          fill="#64748b">
+      system: "..."
+    </text>
+
+    <text x="340"
+          y="278"
+          font-size="11.5"
+          class="mono"
+          fill="#64748b">
+      messages: [...]
+    </text>
+
+    <text x="340"
+          y="298"
+          font-size="11.5"
+          class="mono"
+          fill="#64748b">
+      model / max_tokens / ...
+    </text>
+
+  </g>
+
+
+  <!-- =========================
+       Card 3
+       OpenAI Responses
+       ========================= -->
+
+  <g filter="url(#shadow)">
+
+    <rect x="600"
+          y="100"
+          width="260"
+          height="205"
+          rx="18"
+          class="card"/>
+
+    <!-- Header -->
+
+    <text x="620"
+          y="130"
+          font-size="17"
+          class="title">
+      OpenAI Responses
+    </text>
+
+    <text x="620"
+          y="151"
+          font-size="12"
+          class="muted">
+      /v1/responses
+    </text>
+
+    <!-- Main fields -->
+
+    <rect x="620"
+          y="169"
+          width="220"
+          height="42"
+          rx="9"
+          class="accentbox"/>
+
+    <text x="730"
+          y="190"
+          font-size="13"
+          text-anchor="middle"
+          dominant-baseline="middle"
+          class="mono"
+          fill="#2563eb">
+      instructions + input
+    </text>
+
+    <!-- Structure -->
+
+    <text x="620"
+          y="235"
+          font-size="12.5"
+          class="body">
+      指令与输入分别表达
+    </text>
+
+    <text x="620"
+          y="258"
+          font-size="11.5"
+          class="mono"
+          fill="#64748b">
+      instructions: "..."
+    </text>
+
+    <text x="620"
+          y="278"
+          font-size="11.5"
+          class="mono"
+          fill="#64748b">
+      input: [...]
+    </text>
+
+    <text x="620"
+          y="298"
+          font-size="11.5"
+          class="mono"
+          fill="#64748b">
+      model / tools / ...
+    </text>
+
+  </g>
+
+
+  <!-- =========================
+       Connectors
+       ========================= -->
+
+  <path d="M170 305
+           C170 330 270 342 320 365"
+        fill="none"
+        stroke="#94a3b8"
+        stroke-width="2.2"
+        marker-end="url(#arrow)"/>
+
+  <path d="M450 305
+           L450 365"
+        fill="none"
+        stroke="#94a3b8"
+        stroke-width="2.2"
+        marker-end="url(#arrow)"/>
+
+  <path d="M730 305
+           C730 330 630 342 580 365"
+        fill="none"
+        stroke="#94a3b8"
+        stroke-width="2.2"
+        marker-end="url(#arrow)"/>
+
+
+  <!-- =========================
+       Common API layer
+       ========================= -->
+
+  <g filter="url(#shadow)">
+
+    <rect x="170"
+          y="365"
+          width="560"
+          height="100"
+          rx="22"
+          fill="#f0fdf4"
+          stroke="#22c55e"
+          stroke-width="2"/>
+
+    <!-- API icon -->
+
+    <rect x="205"
+          y="395"
+          width="44"
+          height="34"
+          rx="7"
+          fill="#dcfce7"
+          stroke="#16a34a"
+          stroke-width="1.5"/>
+
+    <line x1="214"
+          y1="405"
+          x2="240"
+          y2="405"
+          stroke="#16a34a"
+          stroke-width="1.5"/>
+
+    <line x1="214"
+          y1="413"
+          x2="240"
+          y2="413"
+          stroke="#16a34a"
+          stroke-width="1.5"/>
+
+    <circle cx="215"
+            cy="422"
+            r="2"
+            fill="#16a34a"/>
+
+    <circle cx="222"
+            cy="422"
+            r="2"
+            fill="#16a34a"/>
+
+    <!-- Text -->
+
+    <text x="480"
+          y="394"
+          font-size="19"
+          text-anchor="middle"
+          class="title">
+      模型 API 服务
+    </text>
+
+    <text x="480"
+          y="420"
+          font-size="13"
+          text-anchor="middle"
+          class="body">
+      HTTPS + JSON + API Key
+    </text>
+
+    <text x="480"
+          y="443"
+          font-size="12"
+          text-anchor="middle"
+          class="muted">
+      接收结构化请求 → 调用模型 → 返回响应
+    </text>
+
+  </g>
+
+
+  <!-- =========================
+       Comparison strip
+       ========================= -->
+
+  <rect x="70"
+        y="487"
+        width="760"
+        height="38"
+        rx="19"
+        fill="#ffffff"
+        stroke="#e2e8f0"/>
+
+  <text x="450"
+        y="506"
+        font-size="12.5"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        class="body">
+
+    <tspan font-weight="700">核心差异：</tspan>
+    请求端点不同，字段结构不同，消息 / 指令 / 输入的组织方式不同
+
+  </text>
+
+</svg>
