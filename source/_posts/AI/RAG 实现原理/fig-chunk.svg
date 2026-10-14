@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="510" viewBox="0 0 800 510" role="img" aria-labelledby="title desc">
+  <title id="title">切块时保留重叠文本与来源信息</title>
+  <desc id="desc">一段住宿制度被切成两个相邻文本块，共享“其他城市每晚”作为重叠内容。每个文本块还保留文档名、章节路径、块序号和版本等元数据。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .label { fill:#0f172a; font-size:16px; font-weight:700; }
+      .body { fill:#334155; font-size:15px; }
+      .meta { fill:#475569; font-size:12px; }
+      .muted { fill:#64748b; font-size:13px; }
+    </style>
+  </defs>
+  <rect width="800" height="510" fill="#fff"/>
+  <text class="head" x="400" y="42">切块会复制一小段上下文，也会带上出处</text>
+  <rect x="45" y="68" width="710" height="90" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text class="label" x="68" y="96">原文 · 差旅制度 / 住宿标准</text>
+  <text class="body" x="68" y="124">一线城市每晚 800 元；其他城市每晚 500 元。超出标准的差价不予报销。</text>
+  <path d="M285 166V187M515 166V187" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="45" y="194" width="342" height="128" rx="16" fill="#fff" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="413" y="194" width="342" height="128" rx="16" fill="#fff" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="61" y="263" width="146" height="23" rx="6" fill="#fef3c7"/>
+  <rect x="429" y="237" width="146" height="23" rx="6" fill="#fef3c7"/>
+  <text x="69" y="222" fill="#b45309" font-size="14" font-weight="700">文本块 A</text>
+  <text class="body" x="69" y="254">一线城市每晚 800 元；</text>
+  <text x="69" y="280" fill="#92400e" font-size="15" font-weight="700">其他城市每晚</text>
+  <text class="body" x="69" y="306">…</text>
+  <text x="437" y="222" fill="#b45309" font-size="14" font-weight="700">文本块 B</text>
+  <text x="437" y="254" fill="#92400e" font-size="15" font-weight="700">其他城市每晚</text>
+  <text class="body" x="437" y="280">500 元；超出标准的</text>
+  <text class="body" x="437" y="306">差价不予报销。</text>
+  <path d="M400 326V348" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text class="muted" x="400" y="371" text-anchor="middle">每块分别保存原文、向量与可追溯的元数据</text>
+  <g>
+    <rect x="45" y="389" width="164" height="46" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+    <rect x="221" y="389" width="164" height="46" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+    <rect x="397" y="389" width="164" height="46" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+    <rect x="573" y="389" width="182" height="46" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="127" y="408" text-anchor="middle" fill="#334155" font-size="12" font-weight="700">原文 + 向量</text><text class="meta" x="127" y="426" text-anchor="middle">可用于检索与作答</text>
+    <text x="303" y="408" text-anchor="middle" fill="#334155" font-size="12" font-weight="700">文档名</text><text class="meta" x="303" y="426" text-anchor="middle">reimbursement.md</text>
+    <text x="479" y="408" text-anchor="middle" fill="#334155" font-size="12" font-weight="700">章节 / 块序号</text><text class="meta" x="479" y="426" text-anchor="middle">住宿标准 · 03</text>
+    <text x="664" y="408" text-anchor="middle" fill="#334155" font-size="12" font-weight="700">版本</text><text class="meta" x="664" y="426" text-anchor="middle">2026</text>
+  </g>
+  <text class="muted" x="400" y="478" text-anchor="middle">重叠有助于补回边界上下文；标题、版本与位置让命中结果能被核对</text>
+</svg>

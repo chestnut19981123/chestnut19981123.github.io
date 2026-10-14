@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">检索证据进入提示词，答案逐条核对引用</title>
+  <desc id="desc">系统把检索到的两条住宿规定与用户问题放入提示词交给生成模型。模型给出带引用的答案后，应用按引用标识检查每个结论是否得到对应原文支持；没有依据的说法应删除或拒答。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+    <marker id="green-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#10b981"/></marker>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .section { fill:#0f172a; font-size:16px; font-weight:700; }
+      .body { fill:#334155; font-size:14px; }
+      .small { fill:#64748b; font-size:12px; }
+      .tag { font-size:12px; font-weight:700; }
+    </style>
+  </defs>
+  <rect width="800" height="520" fill="#fff"/>
+  <text class="head" x="400" y="42">模型根据资料作答，应用负责核对每条结论</text>
+
+  <!-- Retrieved source passages -->
+  <rect x="28" y="76" width="236" height="288" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text class="section" x="48" y="108">检索到的原文</text>
+  <text class="small" x="48" y="130">保留稳定的块标识，便于回查</text>
+  <rect x="44" y="148" width="204" height="91" rx="12" fill="#fff" stroke="#10b981" stroke-width="1.5"/>
+  <rect x="57" y="160" width="40" height="22" rx="7" fill="#d1fae5"/>
+  <text class="tag" x="77" y="175" text-anchor="middle" fill="#047857">014</text>
+  <text class="body" x="57" y="202">一线城市每晚 800 元；</text>
+  <text class="body" x="57" y="224">其他城市每晚 500 元。</text>
+  <rect x="44" y="250" width="204" height="91" rx="12" fill="#fff" stroke="#10b981" stroke-width="1.5"/>
+  <rect x="57" y="262" width="40" height="22" rx="7" fill="#d1fae5"/>
+  <text class="tag" x="77" y="277" text-anchor="middle" fill="#047857">015</text>
+  <text class="body" x="57" y="304">超出住宿标准的差价</text>
+  <text class="body" x="57" y="326">不予报销。</text>
+
+  <!-- Prompt construction and model -->
+  <rect x="282" y="76" width="236" height="288" rx="18" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text class="section" x="302" y="108">拼入提示词</text>
+  <rect x="298" y="124" width="204" height="50" rx="11" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="312" y="145" fill="#1d4ed8" font-size="12" font-weight="700">系统要求</text>
+  <text x="312" y="163" fill="#334155" font-size="13">只依据资料回答；不足就说明。</text>
+  <rect x="298" y="184" width="204" height="40" rx="10" fill="#f8fafc"/>
+  <text x="312" y="209" fill="#334155" font-size="13">问题：出差住宿标准是多少？</text>
+  <rect x="298" y="234" width="204" height="66" rx="10" fill="#f1f5f9"/>
+  <text x="312" y="255" fill="#64748b" font-size="12" font-weight="700">引用资料 [014] [015]</text>
+  <text x="312" y="276" fill="#475569" font-size="12">原文作为证据传入，仍需校验</text>
+  <rect x="344" y="312" width="112" height="36" rx="12" fill="#3b82f6"/>
+  <text x="400" y="335" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">生成模型</text>
+
+  <!-- Answer with citations -->
+  <rect x="536" y="76" width="236" height="288" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text class="section" x="556" y="108">生成答案</text>
+  <rect x="552" y="124" width="204" height="194" rx="12" fill="#fff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="568" y="153" fill="#334155" font-size="13">一线城市每晚 800 元，</text>
+  <text x="568" y="176" fill="#334155" font-size="13">其他城市每晚 500 元。</text>
+  <rect x="683" y="184" width="48" height="21" rx="7" fill="#dbeafe"/>
+  <text x="707" y="199" text-anchor="middle" fill="#1d4ed8" font-size="11" font-weight="700">[014]</text>
+  <line x1="568" y1="216" x2="740" y2="216" stroke="#e2e8f0"/>
+  <text x="568" y="241" fill="#334155" font-size="13">超出标准的差价不予报销。</text>
+  <rect x="683" y="250" width="48" height="21" rx="7" fill="#d1fae5"/>
+  <text x="707" y="265" text-anchor="middle" fill="#047857" font-size="11" font-weight="700">[015]</text>
+  <rect x="552" y="328" width="204" height="24" rx="8" fill="#ecfdf5"/>
+  <text x="654" y="345" text-anchor="middle" fill="#047857" font-size="12" font-weight="700">结论都带有来源标识</text>
+
+  <!-- Flow between stages -->
+  <path d="M264 220H278M518 220H532" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Verification and unsupported claim -->
+  <path d="M654 365V390" fill="none" stroke="#10b981" stroke-width="2.5" marker-end="url(#green-arrow)"/>
+  <rect x="92" y="399" width="616" height="48" rx="14" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+  <circle cx="120" cy="423" r="11" fill="#10b981"/>
+  <path d="M114 423l4 4 8-9" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="146" y="419" fill="#065f46" font-size="14" font-weight="700">逐条核验：引用存在吗？原文真的支持这句话吗？</text>
+  <text x="146" y="438" fill="#047857" font-size="12">014 支持金额 · 015 支持超标规则 · 保留可回查出处</text>
+  <rect x="194" y="463" width="412" height="34" rx="11" fill="#fef2f2" stroke="#fecaca"/>
+  <circle cx="215" cy="480" r="9" fill="#ef4444"/>
+  <path d="M211 476l8 8m0-8l-8 8" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="236" y="485" fill="#b91c1c" font-size="13">“超标费用可以报销”没有原文支持，应删除或拒答</text>
+</svg>

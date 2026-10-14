@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="540" viewBox="0 0 800 540" role="img" aria-labelledby="title desc">
+  <title id="title">知识库版本更新与权限过滤</title>
+  <desc id="desc">新版制度先建立并验证新索引，随后原子切换并清理旧版本。在线查询先依据用户身份过滤可访问范围，再进行检索和生成。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .label { fill:#0f172a; font-size:15px; font-weight:700; text-anchor:middle; }
+      .note { fill:#64748b; font-size:13px; text-anchor:middle; }
+    </style>
+  </defs>
+  <rect width="800" height="540" fill="#fff"/>
+  <text class="head" x="400" y="42">版本切换要可回退，权限判断要在检索之前</text>
+  <rect x="30" y="68" width="740" height="210" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="54" y="98" fill="#0f172a" font-size="17" font-weight="700">制度更新 · 先建新版本，再切换线上索引</text>
+  <g transform="translate(34 0)">
+  <g fill="none" stroke="#64748b" stroke-width="2.2" marker-end="url(#arrow)">
+    <path d="M174 174H218"/><path d="M342 174H386"/><path d="M510 174H554"/>
+  </g>
+  <g>
+    <rect x="54" y="135" width="120" height="78" rx="14" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+    <text class="label" x="114" y="165">新版原文</text><text class="note" x="114" y="190">版本 2026</text>
+    <rect x="218" y="135" width="124" height="78" rx="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text class="label" x="280" y="165">新索引</text><text class="note" x="280" y="190">切块 · 嵌入</text>
+    <rect x="386" y="135" width="124" height="78" rx="14" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+    <text class="label" x="448" y="165">抽样验证</text><text class="note" x="448" y="190">金额 · 引用 · 权限</text>
+    <rect x="554" y="135" width="124" height="78" rx="14" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+    <text class="label" x="616" y="165">原子切换</text><text class="note" x="616" y="190">线上指向新版</text>
+  </g>
+  </g>
+  <text class="note" x="400" y="264">验证未通过时，线上继续使用旧索引；确认后再切换</text>
+
+  <rect x="30" y="300" width="740" height="210" rx="18" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="54" y="330" fill="#0f172a" font-size="17" font-weight="700">员工提问 · 先圈定可见范围，再搜索证据</text>
+  <g fill="none" stroke="#64748b" stroke-width="2.2" marker-end="url(#arrow)">
+    <path d="M166 411H222"/><path d="M362 411H418"/><path d="M558 411H614"/>
+  </g>
+  <rect x="54" y="372" width="112" height="78" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text class="label" x="110" y="401">用户问题</text><text class="note" x="110" y="426">员工身份</text>
+  <rect x="222" y="372" width="140" height="78" rx="14" fill="#fff7ed" stroke="#f59e0b" stroke-width="2.5"/>
+  <text class="label" x="292" y="401">权限过滤</text><text class="note" x="292" y="426">按身份筛选资料</text>
+  <rect x="418" y="372" width="140" height="78" rx="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text class="label" x="488" y="401">检索候选</text><text class="note" x="488" y="426">仅在授权范围内</text>
+  <rect x="614" y="372" width="130" height="78" rx="14" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text class="label" x="679" y="401">证据与回答</text><text class="note" x="679" y="426">保留版本出处</text>
+  <text class="note" x="400" y="482">不可先取回越权资料，再寄希望于模型把它藏好</text>
+</svg>

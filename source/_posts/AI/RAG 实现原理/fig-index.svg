@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="760" viewBox="0 0 800 760" role="img" aria-labelledby="title desc">
+  <title id="title">四种向量索引的搜索方式</title>
+  <desc id="desc">Flat 精确比较所有向量；IVF 只扫描选中的分区；HNSW 沿多层邻居图逐步靠近；PQ 将向量分组量化为更短的编码。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+    <marker id="blue-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#3b82f6"/></marker>
+    <style>
+      text { font-family: 'PingFang SC','Microsoft YaHei',sans-serif; }
+      .title { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .name { fill:#0f172a; font-size:18px; font-weight:700; }
+      .note { fill:#475569; font-size:14px; }
+      .tiny { fill:#64748b; font-size:12px; }
+      .card { fill:#fff; stroke:#cbd5e1; stroke-width:1.5; }
+      .node { fill:#3b82f6; stroke:#fff; stroke-width:2; }
+      .muted { fill:#cbd5e1; stroke:#fff; stroke-width:2; }
+    </style>
+  </defs>
+  <rect width="800" height="760" fill="#fff"/>
+  <text class="title" x="400" y="40">向量规模变大后，索引怎样减少代价</text>
+
+  <!-- Flat -->
+  <rect class="card" x="28" y="68" width="362" height="312" rx="18"/>
+  <text class="name" x="50" y="101">Flat · 全部比较</text>
+  <text class="tiny" x="50" y="123">查询向量与每个向量计算距离</text>
+  <g fill="none" stroke="#94a3b8" stroke-width="1.4" opacity=".48">
+    <path d="M85 194L145 157M85 194L200 157M85 194L255 157M85 194L310 157M85 194L145 201M85 194L200 201M85 194L255 201M85 194L310 201M85 194L145 245M85 194L200 245M85 194L255 245M85 194L310 245"/>
+  </g>
+  <circle cx="85" cy="194" r="14" fill="#f59e0b" stroke="#fff" stroke-width="3"/>
+  <g><circle class="node" cx="145" cy="157" r="9"/><circle class="node" cx="200" cy="157" r="9"/><circle class="muted" cx="255" cy="157" r="9"/><circle class="node" cx="310" cy="157" r="9"/>
+    <circle class="node" cx="145" cy="201" r="9"/><circle class="node" cx="200" cy="201" r="9"/><circle cx="255" cy="201" r="11" fill="#10b981" stroke="#fff" stroke-width="2"/><circle class="node" cx="310" cy="201" r="9"/>
+    <circle class="muted" cx="145" cy="245" r="9"/><circle class="node" cx="200" cy="245" r="9"/><circle class="node" cx="255" cy="245" r="9"/><circle cx="310" cy="245" r="11" fill="#10b981" stroke="#fff" stroke-width="2"/></g>
+  <g fill="#64748b" font-size="12"><text x="56" y="222">问题</text><text x="228" y="278">绿色：最近邻</text></g>
+  <rect x="49" y="304" width="320" height="49" rx="12" fill="#f8fafc"/>
+  <text class="note" x="66" y="325">精确、简单，可作效果基准</text><text class="tiny" x="66" y="344">每次都扫描全库，成本随数据量增长</text>
+
+  <!-- IVF -->
+  <rect class="card" x="410" y="68" width="362" height="312" rx="18"/>
+  <text class="name" x="432" y="101">IVF · 先选分区</text>
+  <text class="tiny" x="432" y="123">先找近的聚类中心，再扫描附近分区</text>
+  <circle cx="454" cy="196" r="12" fill="#f59e0b" stroke="#fff" stroke-width="3"/>
+  <g fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5">
+    <rect x="489" y="142" width="75" height="112" rx="24"/><rect x="579" y="142" width="75" height="112" rx="24" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5"/><rect x="669" y="142" width="75" height="112" rx="24"/>
+  </g>
+  <g fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4 4"><path d="M454 196L527 197"/><path d="M454 196L617 197" opacity=".25"/><path d="M454 196L707 197" opacity=".18"/></g>
+  <g fill="#94a3b8"><path d="M527 181l8 8-8 8-8-8z"/><path d="M707 181l8 8-8 8-8-8z"/></g>
+  <path d="M617 178l10 10-10 10-10-10z" fill="#10b981"/>
+  <g><circle class="muted" cx="506" cy="161" r="6"/><circle class="muted" cx="544" cy="218" r="6"/><circle class="muted" cx="510" cy="236" r="6"/><circle class="node" cx="594" cy="159" r="7"/><circle class="node" cx="635" cy="166" r="7"/><circle class="node" cx="594" cy="220" r="7"/><circle class="node" cx="638" cy="226" r="7"/><circle class="muted" cx="686" cy="160" r="6"/><circle class="muted" cx="727" cy="217" r="6"/><circle class="muted" cx="689" cy="236" r="6"/></g>
+  <text class="tiny" x="520" y="273">分区 1</text><text x="617" y="273" fill="#059669" font-size="12" text-anchor="middle">本次扫描</text><text class="tiny" x="706" y="273">分区 3</text>
+  <rect x="431" y="304" width="320" height="49" rx="12" fill="#f8fafc"/>
+  <text class="note" x="448" y="325">只查选中的区域，速度更快</text><text class="tiny" x="448" y="344">漏查的分区也可能藏着真正近邻</text>
+
+  <!-- HNSW -->
+  <rect class="card" x="28" y="400" width="362" height="312" rx="18"/>
+  <text class="name" x="50" y="433">HNSW · 沿图逐层导航</text>
+  <text class="tiny" x="50" y="455">从稀疏高层入口，逐步下沉到细密底层</text>
+  <g fill="none" stroke="#cbd5e1" stroke-width="1.5">
+    <path d="M92 502L160 502L230 502L308 502M92 502L130 550L202 550L270 550L328 550M74 606L125 606L178 606L232 606L285 606L340 606M74 606L130 550M125 606L160 502M178 606L202 550M232 606L230 502M285 606L270 550M340 606L328 550M130 550L160 502M202 550L230 502M270 550L308 502"/>
+  </g>
+  <g fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#blue-arrow)"><path d="M92 502L160 502L230 502L270 550L285 606"/></g>
+  <g><circle class="node" cx="92" cy="502" r="8"/><circle class="node" cx="160" cy="502" r="8"/><circle class="node" cx="230" cy="502" r="8"/><circle class="node" cx="308" cy="502" r="8"/>
+    <circle class="node" cx="130" cy="550" r="8"/><circle class="node" cx="202" cy="550" r="8"/><circle class="node" cx="270" cy="550" r="8"/><circle class="node" cx="328" cy="550" r="8"/>
+    <circle class="muted" cx="74" cy="606" r="7"/><circle class="muted" cx="125" cy="606" r="7"/><circle class="muted" cx="178" cy="606" r="7"/><circle class="muted" cx="232" cy="606" r="7"/><circle cx="285" cy="606" r="10" fill="#10b981" stroke="#fff" stroke-width="2"/><circle class="muted" cx="340" cy="606" r="7"/></g>
+  <text x="61" y="510" fill="#64748b" font-size="12">入口</text><text class="tiny" x="51" y="535">高层</text><text class="tiny" x="51" y="574">中层</text><text class="tiny" x="51" y="630">底层</text>
+  <rect x="49" y="650" width="320" height="43" rx="12" fill="#f8fafc"/>
+  <text class="note" x="66" y="670">沿邻居关系逐步逼近目标</text><text class="tiny" x="66" y="687">建图占内存；速度与召回需要调参</text>
+
+  <!-- PQ -->
+  <rect class="card" x="410" y="400" width="362" height="312" rx="18"/>
+  <text class="name" x="432" y="433">PQ · 用短编码压缩</text>
+  <text class="tiny" x="432" y="455">分组量化子向量，以近似距离换内存</text>
+  <text class="tiny" x="436" y="487">原始向量</text>
+  <g stroke="#3b82f6" stroke-width="1.5">
+    <rect x="516" y="470" width="42" height="30" rx="6" fill="#eff6ff"/><rect x="558" y="470" width="42" height="30" rx="6" fill="#dbeafe"/><rect x="600" y="470" width="42" height="30" rx="6" fill="#eff6ff"/><rect x="642" y="470" width="42" height="30" rx="6" fill="#dbeafe"/>
+  </g>
+  <g fill="#1d4ed8" font-size="12" text-anchor="middle"><text x="537" y="490">0.12</text><text x="579" y="490">−0.7</text><text x="621" y="490">0.31</text><text x="663" y="490">0.8</text></g>
+  <path d="M600 506V523" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text class="tiny" x="435" y="548">分组查码本</text>
+  <g fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.3">
+    <rect x="516" y="529" width="38" height="48" rx="8"/><rect x="558" y="529" width="38" height="48" rx="8"/><rect x="600" y="529" width="38" height="48" rx="8"/><rect x="642" y="529" width="38" height="48" rx="8"/>
+  </g>
+  <g fill="#94a3b8"><circle cx="535" cy="541" r="4"/><circle cx="535" cy="553" r="4"/><circle cx="535" cy="565" r="4"/><circle cx="577" cy="541" r="4"/><circle cx="577" cy="553" r="4"/><circle cx="577" cy="565" r="4"/><circle cx="619" cy="541" r="4"/><circle cx="619" cy="553" r="4"/><circle cx="619" cy="565" r="4"/><circle cx="661" cy="541" r="4"/><circle cx="661" cy="553" r="4"/><circle cx="661" cy="565" r="4"/></g>
+  <g fill="#10b981" stroke="#fff" stroke-width="1.5"><circle cx="535" cy="553" r="6"/><circle cx="577" cy="565" r="6"/><circle cx="619" cy="541" r="6"/><circle cx="661" cy="553" r="6"/></g>
+  <path d="M600 581V596" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text class="tiny" x="435" y="628">短编码</text>
+  <g><rect x="516" y="606" width="38" height="31" rx="7" fill="#ecfdf5" stroke="#10b981"/><rect x="558" y="606" width="38" height="31" rx="7" fill="#ecfdf5" stroke="#10b981"/><rect x="600" y="606" width="38" height="31" rx="7" fill="#ecfdf5" stroke="#10b981"/><rect x="642" y="606" width="38" height="31" rx="7" fill="#ecfdf5" stroke="#10b981"/></g>
+  <g fill="#047857" font-size="14" font-weight="700" text-anchor="middle"><text x="535" y="627">1</text><text x="577" y="627">2</text><text x="619" y="627">0</text><text x="661" y="627">2</text></g>
+  <text class="tiny" x="598" y="661" text-anchor="middle">每组存一个码本编号，而非完整浮点数</text>
+  <text class="tiny" x="598" y="681" text-anchor="middle">省内存；距离计算会有量化误差</text>
+</svg>

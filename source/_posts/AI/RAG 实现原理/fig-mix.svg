@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">混合检索与重排</title><desc id="desc">对称的关键词与向量检索两路经 RRF 融合，随后重排并送入生成模型。</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker></defs>
+  <rect width="800" height="450" fill="#ffffff"/>
+  <g font-family="'PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">
+    <text x="400" y="48" font-size="23" fill="#0f172a">两路召回，融合后再细排</text>
+    <g fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)">
+      <path d="M230 150H260Q280 150 280 180V195Q280 215 300 215H340"/>
+      <path d="M230 300H260Q280 300 280 270V255Q280 235 300 235H340"/>
+      <path d="M460 225H520"/><path d="M620 225H680"/>
+    </g>
+    <g fill="#ffffff" font-size="15">
+      <rect x="70" y="122" width="160" height="56" rx="18" fill="#64748b"/><text x="150" y="156">BM25 关键词检索</text>
+      <rect x="70" y="272" width="160" height="56" rx="18" fill="#3b82f6"/><text x="150" y="306">向量检索</text>
+      <rect x="340" y="197" width="120" height="56" rx="18" fill="#64748b"/><text x="400" y="231">RRF 融合</text>
+      <rect x="520" y="197" width="100" height="56" rx="18" fill="#64748b"/><text x="570" y="231">重排</text>
+      <rect x="680" y="197" width="80" height="56" rx="18" fill="#3b82f6"/><text x="720" y="231">生成</text>
+    </g>
+    <g fill="#64748b" font-size="14"><text x="150" y="104">精确术语与编号</text><text x="150" y="356">同义表达与语义</text><text x="400" y="285">按名次合并候选</text><text x="570" y="316">比较问题与候选</text><text x="720" y="285">读取原文</text></g>
+    <text x="400" y="412" font-size="16" fill="#0f172a">扩大候选覆盖 → 选择有用证据 → 依据证据回答</text>
+  </g>
+</svg>

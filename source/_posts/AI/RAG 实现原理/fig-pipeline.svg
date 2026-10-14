@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">RAG：离线建库与在线问答</title>
+  <desc id="desc">文档切块后嵌入并保存；用户问题通过嵌入检索取回原文，再交给大模型生成。</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker></defs>
+  <rect width="800" height="450" fill="#ffffff"/>
+  <g font-family="'PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">
+    <text x="400" y="42" font-size="23" fill="#0f172a">先建立索引，再按需取回证据</text>
+    <text x="400" y="88" font-size="15" fill="#64748b">离线建库 · 资料更新时执行</text>
+    <g stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)" fill="none">
+      <path d="M180 135H240"/><path d="M360 135H420"/><path d="M540 135H600"/>
+      <path d="M180 290H240"/><path d="M360 290H420"/><path d="M540 290H600"/>
+      <path d="M660 165V195Q660 215 640 215H500Q480 215 480 235V260"/>
+    </g>
+    <g fill="#ffffff" font-size="16">
+      <rect x="60" y="105" width="120" height="60" rx="18" fill="#64748b"/><text x="120" y="141">原始文档</text>
+      <rect x="240" y="105" width="120" height="60" rx="18" fill="#f59e0b"/><text x="300" y="141" fill="#0f172a">切块</text>
+      <rect x="420" y="105" width="120" height="60" rx="18" fill="#3b82f6"/><text x="480" y="141">文档嵌入</text>
+      <rect x="600" y="105" width="120" height="60" rx="18" fill="#10b981"/><text x="660" y="141" fill="#0f172a">索引与原文</text>
+      <rect x="60" y="260" width="120" height="60" rx="18" fill="#64748b"/><text x="120" y="296">用户问题</text>
+      <rect x="240" y="260" width="120" height="60" rx="18" fill="#3b82f6"/><text x="300" y="296">问题嵌入</text>
+      <rect x="420" y="260" width="120" height="60" rx="18" fill="#10b981"/><text x="480" y="296" fill="#0f172a">检索原文</text>
+      <rect x="600" y="260" width="120" height="60" rx="18" fill="#3b82f6"/><text x="660" y="296">LLM 生成</text>
+    </g>
+    <text x="400" y="364" font-size="15" fill="#64748b">在线问答 · 每次提问时执行</text>
+    <text x="400" y="410" font-size="16" fill="#0f172a">向量负责找资料，原文负责提供证据</text>
+  </g>
+</svg>

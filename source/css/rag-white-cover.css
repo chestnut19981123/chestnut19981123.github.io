@@ -1,0 +1,14 @@
+/* White cover for the RAG article: keep the title readable on the pale header. */
+#page-header.post-bg[style*="/b62938bf9f11/cover.svg"]::before {
+  background-color: transparent;
+}
+
+#page-header.post-bg[style*="/b62938bf9f11/cover.svg"] #post-info .post-title,
+#page-header.post-bg[style*="/b62938bf9f11/cover.svg"] #post-meta,
+#page-header.post-bg[style*="/b62938bf9f11/cover.svg"] #post-meta a,
+#page-header.post-bg[style*="/b62938bf9f11/cover.svg"] #nav a,
+#page-header.post-bg[style*="/b62938bf9f11/cover.svg"] #nav span.site-page,
+#page-header.post-bg[style*="/b62938bf9f11/cover.svg"] #nav #toggle-menu {
+  color: #0f172a;
+  text-shadow: none;
+}
