@@ -1,8 +1,8 @@
-# <img src="source/img/favicon-transparent.png" alt="一粟图标" width="32" height="32"> 一粟
+# <img src="source/img/favicon.png" alt="一粟图标" width="32" height="32"> 一粟
 
 > 沧海一粟，记录所学。
 
-📖 [访问博客](https://chestnut19981123.github.io/)
+[访问博客](https://chestnut19981123.github.io/)
 
 **内容**：数学（向量微积分）· 技术（Spring、Linux）· 算法
 
