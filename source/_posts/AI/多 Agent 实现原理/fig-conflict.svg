@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620" role="img" aria-labelledby="title desc">
+  <title id="title">读操作可以并行，写操作会打架</title>
+  <desc id="desc">并行写操作时，每个子 Agent 都会在没人指定的细节上自行做决定，合起来就互相冲突。读操作不改变状态，不携带需要对齐的决定，因此可以安全并行。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .sub { fill:#64748b; font-size:15px; text-anchor:middle; }
+      .sect { fill:#0f172a; font-size:16px; font-weight:700; }
+      .box { fill:#0f172a; font-size:14px; font-weight:700; text-anchor:middle; }
+      .small { fill:#64748b; font-size:12px; text-anchor:middle; }
+      .note { fill:#64748b; font-size:13px; text-anchor:middle; }
+      .verdict { font-size:14px; font-weight:700; text-anchor:middle; }
+    </style>
+  </defs>
+  <rect width="800" height="620" fill="#fff"/>
+
+  <text class="head" x="400" y="42">读操作可以并行，写操作会打架</text>
+  <text class="sub" x="400" y="76">区别在于：这个动作有没有替别人做决定</text>
+
+  <!-- 上半：并行写操作 -->
+  <rect x="30" y="94" width="740" height="356" rx="18" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5"/>
+  <text class="sect" x="54" y="126">并行的写操作 · 每个 Agent 都在替对方做决定</text>
+
+  <rect x="310" y="142" width="180" height="46" rx="12" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text class="box" x="400" y="170">主管：把任务切成两半</text>
+
+  <g stroke="#64748b" stroke-width="2.2" fill="none" marker-end="url(#arrow)">
+    <path d="M400 188L238 222"/><path d="M400 188L562 222"/>
+  </g>
+
+  <rect x="98" y="226" width="280" height="112" rx="14" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+  <text class="box" x="238" y="254">子 Agent A · 写小鸟</text>
+  <text class="small" x="238" y="282">没人指定配色，它自己挑了</text>
+  <text class="small" x="238" y="304">没人指定像素风格，它自己挑了</text>
+  <text class="small" x="238" y="326">这些决定没有跟任何人商量</text>
+
+  <rect x="422" y="226" width="280" height="112" rx="14" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+  <text class="box" x="562" y="254">子 Agent B · 写背景</text>
+  <text class="small" x="562" y="282">没人指定配色，它自己挑了</text>
+  <text class="small" x="562" y="304">没人指定像素风格，它自己挑了</text>
+  <text class="small" x="562" y="326">这些决定也没有跟任何人商量</text>
+
+  <g stroke="#64748b" stroke-width="2.2" fill="none" marker-end="url(#arrow)">
+    <path d="M238 338L360 362"/><path d="M562 338L440 362"/>
+  </g>
+
+  <rect x="240" y="366" width="320" height="68" rx="12" fill="#fff" stroke="#ef4444" stroke-width="2.5"/>
+  <rect x="330" y="378" width="70" height="22" rx="6" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5"/>
+  <rect x="400" y="378" width="70" height="22" rx="6" fill="#fde68a" stroke="#fcd34d" stroke-width="1.5"/>
+  <text class="verdict" x="400" y="424" fill="#b91c1c">拼起来：风格不搭</text>
+
+  <!-- 下半：两种操作的性质 -->
+  <rect x="30" y="466" width="360" height="122" rx="18" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+  <text class="box" x="210" y="498">读操作</text>
+  <text class="small" x="210" y="524">查资料、读代码、搜网页</text>
+  <text class="small" x="210" y="546">不改变任何状态</text>
+  <text class="verdict" x="210" y="572" fill="#047857">✓ 想并行多少就并行多少</text>
+
+  <rect x="410" y="466" width="360" height="122" rx="18" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+  <text class="box" x="590" y="498">写操作</text>
+  <text class="small" x="590" y="524">改代码、写文件、动状态</text>
+  <text class="small" x="590" y="546">每一步都留下没被指定的选择</text>
+  <text class="verdict" x="590" y="572" fill="#b91c1c">✗ 必须排成一队</text>
+  <text class="note" x="400" y="614">同一个任务，切法不同，结局就不同</text>
+</svg>

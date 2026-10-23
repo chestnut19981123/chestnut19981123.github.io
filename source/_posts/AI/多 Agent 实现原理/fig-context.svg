@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="560" viewBox="0 0 800 560" role="img" aria-labelledby="title desc">
+  <title id="title">单 Agent 与多 Agent 的上下文占用对比</title>
+  <desc id="desc">单 Agent 模式下主管上下文累积 3176 字，九份资料全文都进入窗口。多 Agent 模式下三个研究员合计仍读入 3176 字，但主管只累积 1458 字，其余留在子 Agent 各自的窗口里。</desc>
+  <defs>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .sub { fill:#64748b; font-size:15px; text-anchor:middle; }
+      .label { fill:#0f172a; font-size:16px; font-weight:700; }
+      .cap { fill:#64748b; font-size:13px; }
+      .total { fill:#0f172a; font-size:18px; font-weight:700; }
+      .note { fill:#64748b; font-size:13px; text-anchor:middle; }
+      .boxlabel { fill:#0f172a; font-size:14px; font-weight:700; text-anchor:middle; }
+      .boxnum { fill:#3b82f6; font-size:15px; font-weight:700; text-anchor:middle; }
+    </style>
+  </defs>
+  <rect width="800" height="560" fill="#fff"/>
+
+  <text class="head" x="400" y="42">子 Agent 一个字没少读，主管的窗口小了一半</text>
+  <text class="sub" x="400" y="76">同一个任务、同一批资料，两种跑法下主管上下文里累积的内容</text>
+
+  <!-- 单 Agent -->
+  <text class="label" x="60" y="118">单 Agent · 主管自己读完九份资料</text>
+  <g>
+    <rect x="60" y="132" width="44" height="48" fill="#cbd5e1"/>
+    <rect x="104" y="132" width="64" height="48" fill="#3b82f6"/>
+    <rect x="168" y="132" width="77" height="48" fill="#3b82f6"/>
+    <rect x="245" y="132" width="66" height="48" fill="#3b82f6"/>
+    <rect x="311" y="132" width="68" height="48" fill="#f59e0b"/>
+    <rect x="379" y="132" width="77" height="48" fill="#f59e0b"/>
+    <rect x="456" y="132" width="62" height="48" fill="#f59e0b"/>
+    <rect x="518" y="132" width="55" height="48" fill="#10b981"/>
+    <rect x="573" y="132" width="66" height="48" fill="#10b981"/>
+    <rect x="639" y="132" width="62" height="48" rx="0" fill="#10b981"/>
+    <rect x="60" y="132" width="641" height="48" rx="8" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+    <g fill="#fff">
+      <rect x="103" y="132" width="2" height="48"/><rect x="167" y="132" width="2" height="48"/>
+      <rect x="244" y="132" width="2" height="48"/><rect x="310" y="132" width="2" height="48"/>
+      <rect x="378" y="132" width="2" height="48"/><rect x="455" y="132" width="2" height="48"/>
+      <rect x="517" y="132" width="2" height="48"/><rect x="572" y="132" width="2" height="48"/>
+      <rect x="638" y="132" width="2" height="48"/>
+    </g>
+  </g>
+  <text class="total" x="715" y="164">3176 字</text>
+  <text class="cap" x="60" y="204">十段内容，全是原始资料：目录清单 + 九份资料全文</text>
+
+  <!-- 多 Agent -->
+  <text class="label" x="60" y="256">多 Agent · 主管只收到子 Agent 的结论</text>
+  <g>
+    <rect x="60" y="270" width="44" height="48" fill="#cbd5e1"/>
+    <rect x="104" y="270" width="90" height="48" fill="#3b82f6"/>
+    <rect x="194" y="270" width="52" height="48" fill="#3b82f6"/>
+    <rect x="246" y="270" width="68" height="48" fill="#3b82f6"/>
+    <rect x="314" y="270" width="40" height="48" fill="#3b82f6"/>
+    <rect x="60" y="270" width="294" height="48" rx="8" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+    <g fill="#fff">
+      <rect x="103" y="270" width="2" height="48"/><rect x="193" y="270" width="2" height="48"/>
+      <rect x="245" y="270" width="2" height="48"/><rect x="313" y="270" width="2" height="48"/>
+    </g>
+  </g>
+  <text class="total" x="368" y="302">1458 字</text>
+  <text class="cap" x="60" y="342">五段内容：目录清单 + 三名研究员的结论 + 一份评审意见</text>
+
+  <!-- 子 Agent 各自的窗口 -->
+  <line x1="60" y1="374" x2="740" y2="374" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text class="label" x="60" y="404">三个研究员各自的窗口</text>
+  <text class="cap" x="740" y="404" text-anchor="end">它们读进去的字数，一个字都没进主管的窗口</text>
+
+  <rect x="60" y="420" width="200" height="86" rx="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text class="boxlabel" x="160" y="448">研究员 A</text>
+  <text class="boxnum" x="160" y="472">读进去 1023 字</text>
+  <rect x="92" y="484" width="132" height="8" rx="4" fill="#bfdbfe"/>
+
+  <rect x="300" y="420" width="200" height="86" rx="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text class="boxlabel" x="400" y="448">研究员 B</text>
+  <text class="boxnum" x="400" y="472">读进去 1243 字</text>
+  <rect x="332" y="484" width="160" height="8" rx="4" fill="#bfdbfe"/>
+
+  <rect x="540" y="420" width="200" height="86" rx="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text class="boxlabel" x="640" y="448">研究员 C</text>
+  <text class="boxnum" x="640" y="472">读进去 910 字</text>
+  <rect x="572" y="484" width="117" height="8" rx="4" fill="#bfdbfe"/>
+
+  <text class="note" x="400" y="540">合计 3176 字，和上面那条一样长——只是它们没进主管的窗口</text>
+</svg>

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">普通工具与子 Agent 工具的执行路径对比</title>
+  <desc id="desc">两者在工具声明和宿主调度上完全相同，区别只在执行体内部：普通工具直接返回文件内容，子 Agent 工具新开一份消息列表并运行一个完整循环，只把最终结论交回主上下文。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .sub { fill:#64748b; font-size:15px; text-anchor:middle; }
+      .col { fill:#0f172a; font-size:16px; font-weight:700; text-anchor:middle; }
+      .code { font-family:'SF Mono',Menlo,Consolas,monospace; font-size:13px; text-anchor:middle; }
+      .step { fill:#64748b; font-size:12px; text-anchor:middle; }
+      .big { fill:#0f172a; font-size:15px; font-weight:700; text-anchor:middle; }
+      .small { fill:#64748b; font-size:12px; text-anchor:middle; }
+      .note { fill:#64748b; font-size:13px; text-anchor:middle; }
+    </style>
+  </defs>
+  <rect width="800" height="600" fill="#fff"/>
+
+  <text class="head" x="400" y="42">子 Agent 就是一个会递归的工具</text>
+  <text class="sub" x="400" y="76">两条执行路径：一个直接返回值，一个又开了一个循环</text>
+
+  <text class="col" x="210" y="114">普通工具 read_doc</text>
+  <text class="col" x="590" y="114">子 Agent 工具 spawn_agent</text>
+
+  <!-- ① 模型请求 -->
+  <rect x="40" y="130" width="340" height="60" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text class="code" x="210" y="156" fill="#0f172a">tool_call</text>
+  <text class="code" x="210" y="176" fill="#64748b">name: &quot;read_doc&quot;</text>
+
+  <rect x="420" y="130" width="340" height="60" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text class="code" x="590" y="156" fill="#0f172a">tool_call</text>
+  <text class="code" x="590" y="176" fill="#64748b">name: &quot;spawn_agent&quot;</text>
+
+  <g stroke="#64748b" stroke-width="2.2" fill="none" marker-end="url(#arrow)">
+    <path d="M210 190V210"/><path d="M590 190V210"/>
+  </g>
+
+  <!-- ② 宿主执行体：两者完全相同 -->
+  <rect x="40" y="214" width="340" height="60" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text class="code" x="210" y="240" fill="#0f172a">宿主执行体</text>
+  <text class="code" x="210" y="260" fill="#64748b">TOOLBOX[name](**args)</text>
+
+  <rect x="420" y="214" width="340" height="60" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text class="code" x="590" y="240" fill="#0f172a">宿主执行体</text>
+  <text class="code" x="590" y="260" fill="#64748b">TOOLBOX[name](**args)</text>
+
+  <text class="step" x="400" y="291">到这里还一模一样</text>
+
+  <g stroke="#64748b" stroke-width="2.2" fill="none" marker-end="url(#arrow)">
+    <path d="M210 274V294"/><path d="M590 274V294"/>
+  </g>
+
+  <!-- ③ 执行体内部：这里分道扬镳 -->
+  <rect x="40" y="298" width="340" height="150" rx="16" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text class="big" x="210" y="332">读文件，返回内容</text>
+  <text class="small" x="210" y="360">一个函数调用，到此为止</text>
+  <rect x="80" y="382" width="260" height="44" rx="10" fill="#fff" stroke="#a7f3d0" stroke-width="1.5"/>
+  <text class="code" x="210" y="409" fill="#047857">return 文件全文 · 318 字</text>
+
+  <rect x="420" y="298" width="340" height="150" rx="16" fill="#eff6ff" stroke="#3b82f6" stroke-width="2.5"/>
+  <rect x="440" y="314" width="300" height="118" rx="12" fill="#fff" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <path d="M470 344a15 15 0 1 1-4 10" fill="none" stroke="#3b82f6" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M462 350l4 4 6-5" fill="none" stroke="#3b82f6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="small" x="600" y="342" fill="#1d4ed8">新开一份 messages</text>
+  <text class="small" x="600" y="366" fill="#1d4ed8">跑一个完整循环</text>
+  <text class="small" x="600" y="390" fill="#1d4ed8">读 3 个文件、试错、重来</text>
+  <text class="small" x="590" y="418" fill="#64748b">这些全留在这里，不回填</text>
+
+  <g stroke="#64748b" stroke-width="2.2" fill="none" marker-end="url(#arrow)">
+    <path d="M210 448V468"/><path d="M590 448V468"/>
+  </g>
+
+  <!-- ④ 回填 -->
+  <rect x="40" y="472" width="340" height="60" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text class="big" x="210" y="500">回填进主管的 messages</text>
+  <text class="small" x="210" y="521">318 字</text>
+
+  <rect x="420" y="472" width="340" height="60" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text class="big" x="590" y="500">回填进主管的 messages</text>
+  <text class="small" x="590" y="521">只有一句结论 · 256 字</text>
+
+  <text class="note" x="400" y="572">同一个循环、同一张调度表——区别只在执行体里装的是返回值，还是另一个 Agent</text>
+</svg>
