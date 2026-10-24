@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="一粟：透明背景上的金色圆点与深绿色横线">
-  <circle cx="32" cy="25" r="7.5" fill="#b7833e"/>
-  <path d="M18 42h28" fill="none" stroke="#263b38" stroke-width="6" stroke-linecap="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="一粟：透明背景上的金色圆点与深绿色横线" role="img" viewBox="0 0 64 64"><circle cx="32" cy="25" r="7.5" fill="#b7833e"/><path fill="none" stroke="#263b38" stroke-linecap="round" stroke-width="6" d="M18 42h28"/></svg>
