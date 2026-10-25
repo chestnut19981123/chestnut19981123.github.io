@@ -27,17 +27,21 @@ description: 从隔一天发布的两篇打架的工程博客说起，拆解多 
 
 ### 先回忆一个 Agent 长什么样
 
-一个 Agent，说到底就是**一个循环，加一份消息列表**：
+一个 Agent，说到底就是**一个循环，加一份消息列表**。《[Agent 实现原理](/c8c2406b1e62/)》里那段伪代码原样搬过来：
 
 ```python
 messages = [system_prompt, user_request]
 
 while True:
-    msg = llm(messages, tools)          # 模型看一眼上下文，决定下一步
-    if not msg.tool_calls:              # 不请求工具了 → 任务结束
+    response = llm(messages)            # 1. 推理：模型决定下一步
+
+    if not response.tool_use:           # 2. 没有工具请求 → 任务完成
         break
-    for tc in msg.tool_calls:           # 请求了工具 → 宿主去执行
-        messages.append(run_tool(tc))   # 结果回填，进入下一轮
+
+    for tool in response.tool_use:      # 3. 执行：宿主调用工具
+        result = host.execute(tool)     #    （此处可能触发权限确认）
+
+    messages.append(result)             # 4. 观察：结果喂回，下一轮
 ```
 
 模型自己碰不到文件系统，它只会输出一段 JSON 说"我要读 `kafka.md`"。真正动手的是宿主：解析 JSON、调用对应函数、把结果回填成一条消息。所以一个"工具"，本质是**声明 + 执行**的绑定体——声明（JSON Schema）发给模型看，执行（一个回调函数）攥在宿主手里。
@@ -73,7 +77,7 @@ TOOLBOX = {"list_docs": list_docs, "read_doc": read_doc,
            "spawn_agent": spawn_agent}
 ```
 
-主循环那个 `for tc in msg.tool_calls` 分支根本不知道自己在调起一个子 Agent。它只知道自己调了个函数、拿回一个字符串、回填进消息列表。
+主循环那个 `for tool in response.tool_use` 分支根本不知道自己在调起一个子 Agent。它只知道自己调了个函数、拿回一个字符串、回填进消息列表。
 
 **第二，子 Agent 天然有独立上下文。** 因为 `run_agent` 里第一行就是新建一份 `messages`。子 Agent 看不到主 Agent 说过什么、读过什么——这不是谁特意设计的隔离，是递归的自然结果。要让它看见，反而得额外写代码把上下文传进去。
 
@@ -107,13 +111,19 @@ specific, actionable feedback on quality, security, and best practices.
 
 ### 并行是白送的
 
-既然子 Agent 只是个工具，那"同时派三个"这件事就变得很平常：一轮里模型请求了多个 `spawn_agent`，宿主用线程池一起跑就行。
+既然子 Agent 只是个工具，那"同时派三个"这件事就变得很平常：一轮里模型请求了多个 `spawn_agent`，宿主用线程池一起跑就行——把上面伪代码里的第 3 步换成并行版本，其余一字不动：
 
 ```python
-if len(msg.tool_calls) > 1 and all(tc.function.name == "spawn_agent"
-                                   for tc in msg.tool_calls):
-    with ThreadPoolExecutor(max_workers=len(msg.tool_calls)) as pool:
-        results = list(pool.map(run_one, msg.tool_calls))
+pending = response.tool_use             # 这一轮模型要的东西，可能不止一件
+
+if len(pending) > 1 and all(t.name == "spawn_agent" for t in pending):
+    with ThreadPoolExecutor(max_workers=len(pending)) as pool:
+        results = pool.map(host.execute, pending)   # 几个子 Agent 一起跑
+else:
+    results = [host.execute(t) for t in pending]    # 其余情况照旧一个个来
+
+for result in results:                  # 4. 观察：结果喂回，下一轮
+    messages.append(result)
 ```
 
 Anthropic 说这一步把复杂查询的调研时间砍掉了**最多 90%**。他们的做法是主管一次拉起 3-5 个子 Agent，每个子 Agent 再并行调 3 个以上的工具。
@@ -299,9 +309,11 @@ Cognition 在 Windsurf 上试过——让 SWE-1.5（950 tok/s 的次前沿模型
 
 ## 六、实现：把上面这些接起来
 
-前面讲的机制，在配套脚本 `multi_agent_mini.py` 里刚好能连起来。它一共就五部分：环境、普通工具、核心循环、`spawn_agent`、两种跑法。核心循环和《Agent 实现原理》里那个是同一个，多出来的只有 `spawn_agent` 那十几行。
+前面讲的机制，在配套脚本 `multi_agent_mini.py` 里刚好能连起来。它一共就六部分：环境、普通工具、核心循环、`spawn_agent`、工具声明、两种跑法。核心循环和《Agent 实现原理》里那个是同一个，多出来的只有 `spawn_agent` 那十几行。
 
 它没有做上下文压缩、没有做失败重试、没有做流式输出，子 Agent 的轮数上限也是写死的——适合动手理解原理，不适合直接拿去当生产框架。
+
+有一处名字上的出入先说清楚：《[Agent 实现原理](/c8c2406b1e62/)》那套伪代码用的是 Claude API 的叫法（`response.tool_use`、`tool_use_id`），而这个脚本走 OpenAI 兼容接口，同一批东西叫 `msg.tool_calls`、`tc.id`。**是同一件事的两种拼写**，下面代码一律用脚本里的拼写。
 
 ### 环境
 
