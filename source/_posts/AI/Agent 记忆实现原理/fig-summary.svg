@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">七段摘要：指针，不是副本</title>
+  <desc id="desc">摘要模板包含目标、要求、决定、工作状态、下一步、相关文件和重要上下文七段。相关文件只写路径和理由，由箭头指向文件卡片；重要上下文只写查不到又必须知道的事。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+    <clipPath id="cardClip"><rect x="50" y="96" width="380" height="356" rx="14"/></clipPath>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .sub { fill:#64748b; font-size:14px; text-anchor:middle; }
+      .row { fill:#0f172a; font-size:12.5px; font-weight:700; }
+      .desc { fill:#64748b; font-size:11px; }
+      .box { fill:#334155; font-size:12.5px; font-weight:700; }
+      .line { fill:#475569; font-size:11px; }
+      .mono { font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace; }
+      .note { fill:#64748b; font-size:11.5px; text-anchor:middle; }
+    </style>
+  </defs>
+  <rect width="800" height="520" fill="#fff"/>
+
+  <text class="head" x="400" y="40">七段摘要：指针，不是副本</text>
+  <text class="sub" x="400" y="68">前五段保任务，后两段保「能查到的线索」和「查不到的事实」</text>
+
+  <!-- 摘要卡片 -->
+  <rect x="50" y="96" width="380" height="356" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <g clip-path="url(#cardClip)">
+    <rect x="50" y="96" width="380" height="46" fill="#eff6ff"/>
+    <rect x="50" y="362" width="380" height="44" fill="#eff6ff"/>
+    <rect x="50" y="406" width="380" height="46" fill="#ecfdf5"/>
+  </g>
+  <text class="box" x="68" y="124" fill="#1e3a8a">七段摘要</text>
+  <text x="412" y="124" text-anchor="end" fill="#64748b" font-size="10.5">一次模型调用生成</text>
+
+  <g stroke="#e2e8f0" stroke-width="1">
+    <path d="M50 186H430"/><path d="M50 230H430"/><path d="M50 274H430"/>
+    <path d="M50 318H430"/><path d="M50 362H430"/><path d="M50 406H430"/>
+  </g>
+
+  <text class="row" x="68" y="160">Objective</text>
+  <text class="desc" x="68" y="176">用户想完成什么</text>
+
+  <text class="row" x="68" y="204">Requirements</text>
+  <text class="desc" x="68" y="220">约束、偏好、范围</text>
+
+  <text class="row" x="68" y="248">Decisions</text>
+  <text class="desc" x="68" y="264">做过的决定和理由</text>
+
+  <text class="row" x="68" y="292">Work State</text>
+  <text class="desc" x="68" y="308">Completed · Active · Blocked</text>
+
+  <text class="row" x="68" y="336">Next Move</text>
+  <text class="desc" x="68" y="352">下一步，按顺序</text>
+
+  <text class="row" x="68" y="380" fill="#1e3a8a">Relevant Files</text>
+  <text class="desc" x="68" y="396">≤15 条，路径 + 为什么重要</text>
+
+  <text class="row" x="68" y="424" fill="#047857">Important Context</text>
+  <text class="desc" x="68" y="440">查不到、又必须知道的事</text>
+
+  <!-- 右上：指针说明 -->
+  <rect x="460" y="96" width="290" height="110" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text class="box" x="478" y="122">指针，不是副本</text>
+  <text class="line" x="478" y="146">路径比内容稳定：</text>
+  <text class="line" x="478" y="168">内容会变，路径不会天天变。</text>
+  <text class="line" x="478" y="190">下一个 Agent 需要细节，自己打开。</text>
+
+  <!-- 文件卡片 -->
+  <rect x="470" y="236" width="280" height="40" rx="10" fill="#fff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <path d="M488 244h11l5 5v17h-16z" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+  <text class="mono" x="512" y="254" fill="#1e3a8a" font-size="11.5">hello.txt</text>
+  <text x="512" y="270" fill="#64748b" font-size="10">读过的文件</text>
+
+  <rect x="470" y="288" width="280" height="40" rx="10" fill="#fff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <path d="M488 296h11l5 5v17h-16z" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+  <text class="mono" x="512" y="306" fill="#1e3a8a" font-size="11">LoginController.java:42</text>
+  <text x="512" y="322" fill="#64748b" font-size="10">改过的位置</text>
+
+  <!-- Relevant Files → 文件卡片 -->
+  <path d="M430 384C450 384 450 256 466 256" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M430 384C450 384 450 308 466 308" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Important Context -->
+  <rect x="460" y="362" width="290" height="70" rx="12" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5"/>
+  <text class="box" x="478" y="386" fill="#047857">Important Context</text>
+  <text class="line" x="478" y="406" fill="#047857">只写「查不到、又必须知道」的事</text>
+  <text class="line" x="478" y="422" fill="#047857">实测里它是 (none)：没有就是没有</text>
+  <path d="M430 428C442 428 442 410 456 410" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <text class="note" x="400" y="486">摘要只记「用户和助手说过、做过的事」；项目约定由另一条通路注入</text>
+</svg>

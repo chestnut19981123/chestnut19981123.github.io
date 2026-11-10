@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" role="img" aria-labelledby="title desc">
+  <title id="title">窗口预算：先减法，再压缩</title>
+  <desc id="desc">窗口由系统提示词、工具定义、指令、历史、工具结果和输出预留组成；压缩阈值是窗口减去百分之十五或至少一万六千 token 的预留。压缩后，历史变成摘要加最近一万五千 token 的原文，而不是清空。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .sub { fill:#64748b; font-size:14px; text-anchor:middle; }
+      .seg { fill:#fff; font-size:12px; font-weight:700; text-anchor:middle; }
+      .segs { fill:#1e3a8a; font-size:12px; font-weight:700; text-anchor:middle; }
+      .lab { fill:#334155; font-size:12.5px; }
+      .val { fill:#64748b; font-size:12.5px; }
+      .note { fill:#64748b; font-size:12px; text-anchor:middle; }
+      .formula { fill:#0f172a; font-size:15px; text-anchor:middle; font-family:'SFMono-Regular',Consolas,monospace; }
+    </style>
+  </defs>
+  <rect width="800" height="480" fill="#fff"/>
+
+  <text class="head" x="400" y="40">窗口预算：先减法，再压缩</text>
+  <text class="sub" x="400" y="69">阈值不是「塞满 80%」，而是给回复和摘要留出座位</text>
+
+  <text class="formula" x="400" y="103">ceiling = window − max(15% × window, window ≥ 32k ? 16k : 0)</text>
+
+  <!-- 压缩前的窗口 -->
+  <text class="lab" x="50" y="135">压缩前：一整条窗口</text>
+  <g>
+    <rect x="50" y="145" width="84" height="58" rx="8" fill="#1d4ed8"/>
+    <rect x="134" y="145" width="84" height="58" fill="#2563eb"/>
+    <rect x="218" y="145" width="70" height="58" fill="#3b82f6"/>
+    <rect x="288" y="145" width="224" height="58" fill="#60a5fa"/>
+    <rect x="512" y="145" width="140" height="58" fill="#93c5fd"/>
+    <rect x="652" y="145" width="98" height="58" rx="8" fill="#f59e0b"/>
+    <text class="seg" x="92" y="180">系统</text>
+    <text class="seg" x="176" y="180">工具</text>
+    <text class="seg" x="253" y="180">指令</text>
+    <text class="seg" x="400" y="180">历史</text>
+    <text class="seg" x="582" y="180" fill="#1e3a8a">工具结果</text>
+    <text class="seg" x="701" y="180" fill="#fff">输出预留</text>
+  </g>
+  <path d="M50 214V222H652V214" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+  <text class="val" x="351" y="240" text-anchor="middle">可用输入预算（ceiling）</text>
+  <text class="val" x="701" y="240" text-anchor="middle" fill="#b45309">给回复 / 摘要留的空间</text>
+
+  <!-- 箭头 -->
+  <path d="M400 258V292" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text class="val" x="414" y="281">压缩</text>
+
+  <!-- 压缩后的窗口 -->
+  <text class="lab" x="50" y="322">压缩后：视图变小，原文没删</text>
+  <g>
+    <rect x="50" y="332" width="250" height="58" rx="8" fill="#3b82f6"/>
+    <rect x="300" y="332" width="250" height="58" fill="#10b981"/>
+    <rect x="550" y="332" width="200" height="58" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="7 6"/>
+    <text class="seg" x="175" y="366">七段摘要</text>
+    <text class="seg" x="425" y="366">最近 15k 原文</text>
+    <text class="segs" x="650" y="366" fill="#94a3b8">空闲</text>
+  </g>
+  <path d="M50 400V408H750V400" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <!-- 图例 -->
+  <g transform="translate(50 432)">
+    <rect x="0" y="0" width="12" height="12" rx="3" fill="#3b82f6"/>
+    <text class="val" x="20" y="10">输入预算</text>
+    <rect x="120" y="0" width="12" height="12" rx="3" fill="#f59e0b"/>
+    <text class="val" x="140" y="10">输出预留</text>
+    <rect x="240" y="0" width="12" height="12" rx="3" fill="#10b981"/>
+    <text class="val" x="260" y="10">保留的原文</text>
+    <rect x="370" y="0" width="12" height="12" rx="3" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text class="val" x="390" y="10">压缩后的空闲</text>
+  </g>
+
+  <text class="note" x="400" y="466">压缩不是清空，是把「历史」换成了「摘要 + 最近原文」</text>
+</svg>

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">三种记忆：三种寿命，三个写入者</title>
+  <desc id="desc">工作记忆在上下文窗口里，寿命以秒和分钟计，由模型与宿主写入，靠压缩和溢出管理；会话记忆在 SQLite 里，寿命以小时和天计，由宿主写入，靠 checkpoint 和 claim 管理；项目记忆在 AGENTS.md 里，寿命以周和月计，由人写入，靠重新注入管理。</desc>
+  <defs>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#10b981"/></marker>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .sub { fill:#64748b; font-size:14px; text-anchor:middle; }
+      .ct { fill:#0f172a; font-size:17px; font-weight:700; }
+      .cn { fill:#64748b; font-size:12.5px; }
+      .lab { fill:#334155; font-size:12.5px; }
+      .val { fill:#64748b; font-size:12.5px; }
+      .tick { fill:#94a3b8; font-size:11px; text-anchor:end; }
+      .note { fill:#64748b; font-size:12px; text-anchor:middle; }
+    </style>
+  </defs>
+  <rect width="800" height="520" fill="#fff"/>
+
+  <text class="head" x="400" y="42">三种记忆：三种寿命，三个写入者</text>
+  <text class="sub" x="400" y="72">窗口管现在，会话管接续，仓库管下次</text>
+
+  <!-- 时间轴 -->
+  <path d="M70 128V432" stroke="#cbd5e1" stroke-width="2"/>
+  <circle cx="70" cy="150" r="5" fill="#3b82f6"/>
+  <circle cx="70" cy="280" r="5" fill="#94a3b8"/>
+  <circle cx="70" cy="410" r="5" fill="#10b981"/>
+  <text class="tick" x="58" y="154">秒 / 分钟</text>
+  <text class="tick" x="58" y="284">小时 / 天</text>
+  <text class="tick" x="58" y="414">周 / 月</text>
+
+  <!-- 工作记忆 -->
+  <rect x="120" y="100" width="600" height="100" rx="16" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <g transform="translate(145 125)">
+    <rect width="52" height="40" rx="7" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+    <path d="M0 11H52" stroke="#3b82f6" stroke-width="2"/>
+    <circle cx="8" cy="5.5" r="2" fill="#93c5fd"/><circle cx="15" cy="5.5" r="2" fill="#93c5fd"/>
+    <rect x="9" y="19" width="28" height="4" rx="2" fill="#93c5fd"/>
+    <rect x="9" y="27" width="34" height="4" rx="2" fill="#bfdbfe"/>
+  </g>
+  <text class="ct" x="210" y="130">工作记忆 · 窗口</text>
+  <text class="cn" x="210" y="151">模型每轮直接看到的上下文</text>
+  <text class="lab" x="210" y="176">写入者：模型 + 宿主</text>
+  <text class="val" x="390" y="176">失效：压缩 / 溢出</text>
+  <text class="tick" x="705" y="154" fill="#3b82f6">秒 / 分钟</text>
+
+  <!-- 会话记忆 -->
+  <rect x="120" y="230" width="600" height="100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <g transform="translate(145 252)">
+    <path d="M0 10C0 4 12 0 26 0C40 0 52 4 52 10V48C52 54 40 58 26 58C12 58 0 54 0 48Z" fill="#fff" stroke="#64748b" stroke-width="2"/>
+    <ellipse cx="26" cy="10" rx="26" ry="10" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+    <path d="M0 24C0 30 12 34 26 34C40 34 52 30 52 24" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+    <path d="M0 40C0 46 12 50 26 50C40 50 52 46 52 40" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+  </g>
+  <text class="ct" x="210" y="260">会话记忆 · SQLite</text>
+  <text class="cn" x="210" y="281">消息、checkpoint、执行 claim</text>
+  <text class="lab" x="210" y="306">写入者：宿主</text>
+  <text class="val" x="390" y="306">失效：删除 / 库损坏</text>
+  <text class="tick" x="705" y="284" fill="#64748b">小时 / 天</text>
+
+  <!-- 项目记忆 -->
+  <rect x="120" y="360" width="600" height="100" rx="16" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5"/>
+  <g transform="translate(145 382)">
+    <path d="M0 6C0 3 3 0 6 0H36L52 16V58C52 61 49 64 46 64H6C3 64 0 61 0 58Z" fill="#fff" stroke="#10b981" stroke-width="2"/>
+    <path d="M36 0V13C36 15 38 16 40 16H52" fill="none" stroke="#10b981" stroke-width="2"/>
+    <rect x="10" y="26" width="30" height="4" rx="2" fill="#a7f3d0"/>
+    <rect x="10" y="35" width="24" height="4" rx="2" fill="#d1fae5"/>
+    <rect x="10" y="44" width="30" height="4" rx="2" fill="#d1fae5"/>
+  </g>
+  <text class="ct" x="210" y="390">项目记忆 · AGENTS.md</text>
+  <text class="cn" x="210" y="411">仓库约定、命令、代码风格</text>
+  <text class="lab" x="210" y="436">写入者：人</text>
+  <text class="val" x="390" y="436">失效：文件改动 / 删除</text>
+  <text class="tick" x="705" y="414" fill="#10b981">周 / 月</text>
+
+  <!-- 窗口 → 会话：写 -->
+  <path d="M690 194V228" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowGreen)"/>
+  <text class="cn" x="700" y="218" fill="#047857">写</text>
+
+  <!-- 仓库 → 窗口：重读（绕过会话层） -->
+  <path d="M720 410C790 410 790 150 726 150" fill="none" stroke="#64748b" stroke-width="2.5" stroke-dasharray="8 7" stroke-linecap="round" marker-end="url(#arrowGray)"/>
+  <text class="cn" x="744" y="286" fill="#64748b" text-anchor="middle" transform="rotate(90 744 286)">重读</text>
+
+  <text class="note" x="400" y="492">三种记忆不是同一套东西换三个名字：写的人不同，坏的方式也不同</text>
+</svg>

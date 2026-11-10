@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" role="img" aria-labelledby="title desc">
+  <title id="title">AGENTS.md：发现、注入、压缩后重注入</title>
+  <desc id="desc">指令加载器从全局文件、祖先目录和配置三处发现 AGENTS.md，读成一条 synthetic 消息注入窗口。压缩后旧的 synthetic 掉出可见历史，加载器扫描不到路径，于是从磁盘重读最新版，再注入一条新的 synthetic。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#10b981"/></marker>
+    <clipPath id="synClip"><rect x="300" y="142" width="220" height="130" rx="10"/></clipPath>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .sub { fill:#64748b; font-size:14px; text-anchor:middle; }
+      .title { fill:#0f172a; font-size:11px; font-weight:700; }
+      .path { fill:#475569; font-size:9.5px; font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace; }
+      .card { fill:#334155; font-size:11px; font-weight:700; }
+      .line { fill:#475569; font-size:10px; }
+      .mono { font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace; }
+      .cap { fill:#64748b; font-size:10.5px; text-anchor:middle; }
+      .note { fill:#64748b; font-size:11.5px; text-anchor:middle; }
+    </style>
+  </defs>
+  <rect width="800" height="480" fill="#fff"/>
+
+  <text class="head" x="400" y="40">AGENTS.md：发现、注入、压缩后重注入</text>
+  <text class="sub" x="400" y="68">注入记录只活在模型可见历史里；它掉出去，加载器就会重读磁盘</text>
+
+  <!-- 列头 -->
+  <rect x="30" y="92" width="240" height="34" rx="17" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="150" y="114" text-anchor="middle" fill="#1e3a8a" font-size="13.5" font-weight="700">① 发现</text>
+  <rect x="290" y="92" width="240" height="34" rx="17" fill="#eef2ff" stroke="#c7d2fe" stroke-width="1.5"/>
+  <text x="410" y="114" text-anchor="middle" fill="#3730a3" font-size="13.5" font-weight="700">② 注入</text>
+  <rect x="550" y="92" width="240" height="34" rx="17" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5"/>
+  <text x="670" y="114" text-anchor="middle" fill="#047857" font-size="13.5" font-weight="700">③ 压缩后重注入</text>
+
+  <!-- ① 发现 -->
+  <rect x="40" y="142" width="220" height="38" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.2"/>
+  <path d="M52 150h8l4 4v11h-12z" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2" stroke-linejoin="round"/>
+  <text class="title" x="76" y="157">全局</text>
+  <text class="path" x="76" y="173">~/.config/opencode/AGENTS.md</text>
+
+  <rect x="40" y="188" width="220" height="38" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.2"/>
+  <path d="M52 196h8l4 4v11h-12z" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2" stroke-linejoin="round"/>
+  <text class="title" x="76" y="203">祖先目录</text>
+  <text class="path" x="76" y="219">../AGENTS.md  ./AGENTS.md</text>
+
+  <rect x="40" y="234" width="220" height="38" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.2"/>
+  <path d="M52 242h8l4 4v11h-12z" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2" stroke-linejoin="round"/>
+  <text class="title" x="76" y="249">配置</text>
+  <text class="path" x="76" y="265">instructions: ["docs/*.md"]</text>
+
+  <rect x="40" y="292" width="220" height="70" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text class="title" x="52" y="312">去重 + 监听</text>
+  <text class="line" x="52" y="332">new Set 去重</text>
+  <text class="line" x="52" y="348">每个路径挂 watcher</text>
+
+  <!-- ①②③ 之间的箭头 -->
+  <path d="M270 160H286" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M530 160H546" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ② 注入 -->
+  <rect x="300" y="142" width="220" height="130" rx="10" fill="#fff" stroke="#c7d2fe" stroke-width="1.5"/>
+  <g clip-path="url(#synClip)">
+    <rect x="300" y="142" width="220" height="26" fill="#eef2ff"/>
+  </g>
+  <text class="card" x="314" y="160" fill="#3730a3">synthetic message</text>
+  <circle cx="508" cy="156" r="4" fill="#10b981"/>
+  <text class="mono" x="314" y="186" fill="#475569" font-size="10">Instructions from:</text>
+  <text class="mono" x="314" y="202" fill="#1e3a8a" font-size="10">/tmp/project/AGENTS.md</text>
+  <rect x="314" y="214" width="192" height="5" rx="2.5" fill="#e2e8f0"/>
+  <rect x="314" y="226" width="168" height="5" rx="2.5" fill="#e2e8f0"/>
+  <rect x="314" y="238" width="180" height="5" rx="2.5" fill="#e2e8f0"/>
+  <rect x="314" y="250" width="192" height="16" rx="4" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text class="mono" x="320" y="261" fill="#64748b" font-size="9">paths: ["…/AGENTS.md"]</text>
+
+  <path d="M410 272V296" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="300" y="300" width="220" height="50" rx="8" fill="#fff" stroke="#cbd5e1" stroke-width="1.2"/>
+  <rect x="306" y="306" width="34" height="38" rx="4" fill="#e2e8f0"/>
+  <rect x="340" y="306" width="80" height="38" rx="4" fill="#d1fae5" stroke="#10b981" stroke-width="1.2"/>
+  <text x="380" y="329" text-anchor="middle" fill="#047857" font-size="8.5" font-weight="700">synthetic</text>
+  <rect x="420" y="306" width="36" height="38" rx="4" fill="#dbeafe"/>
+  <rect x="456" y="306" width="58" height="38" rx="4" fill="#e2e8f0"/>
+
+  <text class="cap" x="410" y="368">窗口：system · synthetic · 历史</text>
+  <text class="cap" x="410" y="388">路径记在 metadata 里，用来去重</text>
+
+  <!-- ③ 压缩后重注入 -->
+  <rect x="560" y="142" width="220" height="44" rx="8" fill="#fff" stroke="#cbd5e1" stroke-width="1.2"/>
+  <rect x="566" y="148" width="30" height="32" rx="4" fill="#e2e8f0"/>
+  <rect x="596" y="148" width="70" height="32" rx="4" fill="#fef2f2" stroke="#f87171" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <path d="M626 159L636 169M636 159L626 169" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+  <rect x="666" y="148" width="34" height="32" rx="4" fill="#dbeafe"/>
+  <rect x="700" y="148" width="74" height="32" rx="4" fill="#e2e8f0"/>
+  <text x="670" y="202" text-anchor="middle" fill="#b91c1c" font-size="10">synthetic 掉出可见历史</text>
+
+  <rect x="560" y="226" width="220" height="70" rx="10" fill="#fff" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text class="card" x="576" y="248">重读</text>
+  <text class="line" x="576" y="268">previouslyInjected 扫描不到路径</text>
+  <text class="line" x="576" y="284">→ 从磁盘读最新版</text>
+
+  <path d="M670 296V322" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="560" y="328" width="220" height="72" rx="10" fill="#f0fdf4" stroke="#10b981" stroke-width="1.5"/>
+  <text class="card" x="576" y="352" fill="#047857">synthetic（新）</text>
+  <circle cx="756" cy="348" r="8" fill="#10b981"/>
+  <path d="M752 348L755 351L760 345" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="line" x="576" y="372">最新版 AGENTS.md 的内容</text>
+  <text class="line" x="576" y="388" fill="#047857">模型下一轮就能看到</text>
+
+  <text class="cap" x="670" y="420">文件是磁盘上的最新版，摘要不抄它</text>
+
+  <text class="note" x="400" y="452">摘要只记对话，注入只记路径；压缩后路径还在，内容重读</text>
+</svg>
