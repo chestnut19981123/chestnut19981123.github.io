@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" role="img" aria-labelledby="title desc">
+  <title id="title">最小 RSI 目标：一个文件，一个谓词</title>
+  <desc id="desc">基线提示词缺少 Check the answer，确定性提案器把它整份改写为这句话，Target 校验通过后得到候选，评测分数从 0 变成 1。</desc>
+  <defs>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#3b82f6"/></marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#f97316"/></marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#10b981"/></marker>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .sub { fill:#64748b; font-size:14px; text-anchor:middle; }
+      .ct { fill:#0f172a; font-size:13px; font-weight:700; }
+      .cn { fill:#64748b; font-size:10.5px; }
+      .mono { font-family:'SFMono-Regular','Consolas',monospace; font-size:10px; }
+      .note { fill:#64748b; font-size:12px; text-anchor:middle; }
+      .score0 { fill:#94a3b8; font-size:11px; font-weight:700; text-anchor:middle; }
+      .score1 { fill:#047857; font-size:11px; font-weight:700; text-anchor:middle; }
+    </style>
+  </defs>
+  <rect width="800" height="480" fill="#fff"/>
+
+  <text class="head" x="400" y="42">最小 RSI 目标：一个文件，一个谓词</text>
+  <text class="sub" x="400" y="72">目标可以很小，循环是同一个</text>
+
+  <!-- left doc -->
+  <g>
+    <path d="M50 122C50 115 55 110 62 110H168L200 142V288C200 295 195 300 188 300H62C55 300 50 295 50 288Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <path d="M168 110V134C168 138 171 142 176 142H200" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text class="ct" x="66" y="138">prompt.md</text>
+    <text class="cn" x="66" y="156">基线 · H0</text>
+    <rect x="66" y="176" width="104" height="7" rx="3.5" fill="#e2e8f0"/>
+    <rect x="66" y="194" width="86" height="7" rx="3.5" fill="#e2e8f0"/>
+    <rect x="66" y="212" width="104" height="7" rx="3.5" fill="#e2e8f0"/>
+    <rect x="66" y="230" width="70" height="7" rx="3.5" fill="#e2e8f0"/>
+    <rect x="66" y="252" width="122" height="22" rx="6" fill="#fff" stroke="#fca5a5" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <text class="mono" x="72" y="267" fill="#ef4444" style="font-size:8.5px">缺少 Check the answer</text>
+  </g>
+
+  <!-- proposer -->
+  <g>
+    <rect x="230" y="150" width="130" height="92" rx="12" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+    <text class="ct" x="242" y="174" fill="#1d4ed8">确定性 Proposer</text>
+    <text class="cn" x="242" y="192">整份改写为</text>
+    <rect x="242" y="202" width="106" height="22" rx="6" fill="#dbeafe"/>
+    <text class="mono" x="248" y="217" fill="#1d4ed8" style="font-size:9.5px">Check the answer</text>
+    <text class="cn" x="242" y="234">不调用模型</text>
+  </g>
+
+  <!-- gate -->
+  <g>
+    <rect x="390" y="150" width="130" height="92" rx="12" fill="#fff7ed" stroke="#fb923c" stroke-width="1.5"/>
+    <text class="ct" x="402" y="174" fill="#c2410c">Target 校验</text>
+    <text class="cn" x="402" y="192">只允许改</text>
+    <text class="ct" x="402" y="210" fill="#c2410c" style="font-size:12px">prompt.md</text>
+    <circle cx="505" cy="222" r="10" fill="#10b981" opacity=".15"/>
+    <path d="M500 222l4 4 7-8" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text class="cn" x="402" y="230">其他文件受保护</text>
+  </g>
+
+  <!-- right doc -->
+  <g>
+    <path d="M550 122C550 115 555 110 562 110H668L700 142V288C700 295 695 300 688 300H562C555 300 550 295 550 288Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <path d="M668 110V134C668 138 671 142 676 142H700" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text class="ct" x="566" y="138">prompt.md</text>
+    <text class="cn" x="566" y="156">候选 · H1</text>
+    <rect x="566" y="176" width="104" height="7" rx="3.5" fill="#e2e8f0"/>
+    <rect x="566" y="194" width="86" height="7" rx="3.5" fill="#e2e8f0"/>
+    <rect x="566" y="212" width="104" height="7" rx="3.5" fill="#e2e8f0"/>
+    <rect x="566" y="234" width="112" height="22" rx="6" fill="#d1fae5" stroke="#6ee7b7" stroke-width="1.2"/>
+    <text class="mono" x="572" y="249" fill="#047857">Check the answer</text>
+    <rect x="566" y="266" width="70" height="7" rx="3.5" fill="#e2e8f0"/>
+  </g>
+
+  <!-- arrows -->
+  <path d="M200 196H226" fill="none" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <path d="M360 196H386" fill="none" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <path d="M520 196H546" fill="none" stroke="#f97316" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+  <!-- scores -->
+  <rect x="70" y="318" width="110" height="30" rx="9" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text class="score0" x="125" y="337">checkPhrase = 0</text>
+  <rect x="570" y="318" width="110" height="30" rx="9" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.2"/>
+  <text class="score1" x="625" y="337">checkPhrase = 1</text>
+
+  <!-- result strip -->
+  <rect x="100" y="372" width="600" height="50" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text class="cn" x="112" y="392">.rsi/  facts/ · artifacts/ · experiments/</text>
+  <text class="mono" x="112" y="411" fill="#475569">2 candidates · 2 measurements · 2 released instances · 0 model calls</text>
+  <path d="M100 372H700" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text class="note" x="400" y="455">它不证明 Agent 变聪明，只证明循环接得住小目标。</text>
+</svg>

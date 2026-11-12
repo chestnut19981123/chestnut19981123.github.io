@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620" role="img" aria-labelledby="title desc">
+  <title id="title">同一个闭环，换目标不换流程</title>
+  <desc id="desc">从基线出发，提案、提交、评测、选择、沉淀依次循环；Runtime 在中心记录候选、测量与实例事实。换目标、换策略、换评测，改的都是这条闭环上的零件。</desc>
+  <defs>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#ef4444"/></marker>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .sub { fill:#64748b; font-size:14px; text-anchor:middle; }
+      .ct { fill:#0f172a; font-size:14px; font-weight:700; }
+      .cn { fill:#64748b; font-size:10.5px; }
+      .tag { fill:#64748b; font-size:9.5px; }
+      .note { fill:#64748b; font-size:12px; text-anchor:middle; }
+      .badge { fill:#fff; font-size:10px; font-weight:700; text-anchor:middle; }
+      .chev { fill:none; stroke:#94a3b8; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+    </style>
+  </defs>
+  <rect width="800" height="620" fill="#fff"/>
+
+  <text class="head" x="400" y="42">同一个闭环，换目标不换流程</text>
+  <text class="sub" x="400" y="72">目标、策略、评测、选择，都是可替换的零件</text>
+
+  <!-- loop guide -->
+  <ellipse cx="400" cy="330" rx="245" ry="185" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="7 7"/>
+
+  <!-- chevrons -->
+  <path class="chev" d="M-7 -5L4 0L-7 5" transform="translate(544 180) rotate(29)"/>
+  <path class="chev" d="M-7 -5L4 0L-7 5" transform="translate(633 387) rotate(113)"/>
+  <path class="chev" d="M-7 -5L4 0L-7 5" transform="translate(400 515) rotate(180)"/>
+  <path class="chev" d="M-7 -5L4 0L-7 5" transform="translate(167 387) rotate(247)"/>
+  <path class="chev" d="M-7 -5L4 0L-7 5" transform="translate(256 180) rotate(-29)"/>
+
+  <!-- center runtime -->
+  <rect x="285" y="278" width="230" height="104" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text class="ct" x="400" y="306" text-anchor="middle" fill="#334155">Runtime 事实层</text>
+  <text class="cn" x="400" y="328" text-anchor="middle">候选血缘 · 测量记录</text>
+  <text class="cn" x="400" y="348" text-anchor="middle">实例租约 · 检查点</text>
+  <text class="tag" x="400" y="368" text-anchor="middle" fill="#94a3b8">每一步都留得下证据</text>
+
+  <!-- 1 propose -->
+  <g>
+    <rect x="325" y="113" width="150" height="64" rx="12" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+    <circle cx="337" cy="125" r="9" fill="#3b82f6"/>
+    <text class="badge" x="337" y="128.5">1</text>
+    <text class="ct" x="352" y="130" fill="#1d4ed8">提案</text>
+    <text class="cn" x="352" y="147">Proposer 生成修改</text>
+    <text class="tag" x="352" y="163" fill="#60a5fa">换策略就换它</text>
+  </g>
+
+  <!-- 2 commit -->
+  <g>
+    <rect x="558" y="241" width="150" height="64" rx="12" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+    <circle cx="570" cy="253" r="9" fill="#f97316"/>
+    <text class="badge" x="570" y="256.5">2</text>
+    <text class="ct" x="585" y="258" fill="#c2410c">提交</text>
+    <text class="cn" x="585" y="275">Application 校验 diff</text>
+    <text class="tag" x="585" y="291" fill="#fb923c">换目标就换它</text>
+  </g>
+
+  <!-- 3 evaluate -->
+  <g>
+    <rect x="469" y="448" width="150" height="64" rx="12" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5"/>
+    <circle cx="481" cy="460" r="9" fill="#10b981"/>
+    <text class="badge" x="481" y="463.5">3</text>
+    <text class="ct" x="496" y="465" fill="#047857">评测</text>
+    <text class="cn" x="496" y="482">Evaluator 跑任务</text>
+    <text class="tag" x="496" y="498" fill="#34d399">换 benchmark 就换它</text>
+  </g>
+
+  <!-- 4 select -->
+  <g>
+    <rect x="181" y="448" width="150" height="64" rx="12" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5"/>
+    <circle cx="193" cy="460" r="9" fill="#10b981"/>
+    <text class="badge" x="193" y="463.5">4</text>
+    <text class="ct" x="208" y="465" fill="#047857">选择</text>
+    <text class="cn" x="208" y="482">Selector 比较候选</text>
+    <text class="tag" x="208" y="498" fill="#34d399">按指标或交付物</text>
+  </g>
+
+  <!-- 5 distill -->
+  <g>
+    <rect x="92" y="241" width="150" height="64" rx="12" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.5"/>
+    <circle cx="104" cy="253" r="9" fill="#8b5cf6"/>
+    <text class="badge" x="104" y="256.5">5</text>
+    <text class="ct" x="119" y="258" fill="#6d28d9">沉淀</text>
+    <text class="cn" x="119" y="275">Memory / Reflection</text>
+    <text class="tag" x="119" y="291" fill="#a78bfa">经验进入下一轮</text>
+  </g>
+
+  <!-- rejection -->
+  <path d="M633 241Q580 180 482 148" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-dasharray="6 5" stroke-linecap="round" marker-end="url(#arrowRed)"/>
+  <text class="tag" x="600" y="158" text-anchor="middle" fill="#ef4444" style="font-size:10.5px;font-weight:700">拒绝</text>
+  <text class="tag" x="600" y="173" text-anchor="middle" fill="#ef4444">越权 / 空改动</text>
+
+  <text class="note" x="400" y="588">Harness²、参数网格、算子搜索，走的是同一张图。</text>
+</svg>

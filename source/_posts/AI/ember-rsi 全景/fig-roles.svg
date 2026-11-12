@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">一个核心，五个角色</title>
+  <desc id="desc">Recipe 是一张装配单：application 字段选择 Application 适配器，policy 字段引用 Policy 文档，bindings 字段把契约绑定到 Plugin 实现；每个插件只实现一个契约，同一契约可以有多份实现；Policy 通过 invoke 调用 bindings；Runtime 执行整张 Recipe。</desc>
+  <defs>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+    <marker id="arrowViolet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#8b5cf6"/></marker>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .sub { fill:#64748b; font-size:14px; text-anchor:middle; }
+      .ct { fill:#0f172a; font-size:15px; font-weight:700; }
+      .cn { fill:#64748b; font-size:9.5px; }
+      .mono { font-family:'SFMono-Regular','Consolas',monospace; font-size:10px; }
+      .field { font-size:12px; font-weight:700; }
+      .cardtitle { font-size:13px; font-weight:700; }
+      .chiptitle { font-size:10.5px; font-weight:700; }
+      .chipsub { fill:#64748b; font-size:8px; }
+      .pluginchip { fill:#047857; font-size:9px; font-weight:700; text-anchor:middle; }
+      .arrowlabel { fill:#64748b; font-size:8.5px; text-anchor:middle; }
+      .note { fill:#64748b; font-size:11px; text-anchor:middle; }
+      .runtime { fill:#334155; font-size:12px; font-weight:700; text-anchor:middle; }
+    </style>
+  </defs>
+  <rect width="800" height="600" fill="#fff"/>
+
+  <text class="head" x="400" y="42">一个核心，五个角色</text>
+  <text class="sub" x="400" y="72">目标可换，策略可换，RSI 循环不变</text>
+
+  <!-- Recipe: the assembly document -->
+  <rect x="40" y="100" width="280" height="380" rx="18" fill="#fff7ed" stroke="#fb923c" stroke-width="1.6"/>
+  <path d="M286 112h14l8 8v18h-22z" fill="#ffedd5" stroke="#fb923c" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M300 112v8h8" fill="none" stroke="#fb923c" stroke-width="1.2" stroke-linejoin="round"/>
+  <text class="ct" x="60" y="126" fill="#c2410c">Recipe</text>
+  <text class="cn" x="60" y="144">装配单 · 这一次跑什么</text>
+
+  <!-- Recipe field: application -->
+  <rect x="56" y="154" width="248" height="72" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
+  <text class="mono" x="68" y="174" fill="#1d4ed8">application:</text>
+  <text class="field" x="68" y="192" fill="#1d4ed8">Application 适配器</text>
+  <text class="cn" x="68" y="208">决定改进什么</text>
+
+  <!-- Recipe field: policy -->
+  <rect x="56" y="270" width="248" height="72" rx="10" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.2"/>
+  <text class="mono" x="68" y="290" fill="#6d28d9">policy:</text>
+  <text class="field" x="68" y="308" fill="#6d28d9">Policy 文档</text>
+  <text class="cn" x="68" y="324">决定怎么改进</text>
+
+  <!-- Recipe field: bindings -->
+  <rect x="56" y="388" width="248" height="72" rx="10" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.2"/>
+  <text class="mono" x="68" y="408" fill="#047857">bindings:</text>
+  <text class="field" x="68" y="426" fill="#047857">Plugin 绑定</text>
+  <text class="cn" x="68" y="442">决定谁来干活</text>
+
+  <!-- Application adapter -->
+  <rect x="380" y="140" width="380" height="100" rx="14" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.4"/>
+  <text class="cardtitle" x="398" y="158" fill="#1d4ed8">Application 适配器 · 改进什么</text>
+  <text class="cn" x="398" y="174">目标适配器：基线、可改范围、提交、实例</text>
+
+  <rect x="398" y="184" width="112" height="44" rx="8" fill="#fff" stroke="#bfdbfe" stroke-width="1"/>
+  <text class="chiptitle" x="408" y="201" fill="#1d4ed8">Agent Bundle</text>
+  <text class="chipsub" x="408" y="216">提示词 / Skill / 代码</text>
+
+  <rect x="518" y="184" width="112" height="44" rx="8" fill="#fff" stroke="#bfdbfe" stroke-width="1"/>
+  <text class="chiptitle" x="528" y="201" fill="#1d4ed8">Inference</text>
+  <text class="chipsub" x="528" y="216">参数 / 服务配置</text>
+
+  <rect x="638" y="184" width="112" height="44" rx="8" fill="#fff" stroke="#bfdbfe" stroke-width="1"/>
+  <text class="chiptitle" x="648" y="201" fill="#1d4ed8">Kernel</text>
+  <text class="chipsub" x="648" y="216">Triton 算子源码</text>
+
+  <!-- Policy document -->
+  <rect x="380" y="256" width="380" height="100" rx="14" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.4"/>
+  <text class="cardtitle" x="398" y="274" fill="#6d28d9">Policy 文档 · 怎么改进</text>
+  <text class="cn" x="398" y="290">YAML 数据流：调用、分支、循环、停止</text>
+
+  <rect x="398" y="300" width="112" height="44" rx="8" fill="#fff" stroke="#ddd6fe" stroke-width="1"/>
+  <text class="chiptitle" x="408" y="317" fill="#6d28d9">Harness²</text>
+  <text class="chipsub" x="408" y="332">多提案者 + 匿名选择</text>
+
+  <rect x="518" y="300" width="112" height="44" rx="8" fill="#fff" stroke="#ddd6fe" stroke-width="1"/>
+  <text class="chiptitle" x="528" y="317" fill="#6d28d9">WikiSkill</text>
+  <text class="chipsub" x="528" y="332">训练 / 验证 / 测试</text>
+
+  <rect x="638" y="300" width="112" height="44" rx="8" fill="#fff" stroke="#ddd6fe" stroke-width="1"/>
+  <text class="chiptitle" x="648" y="317" fill="#6d28d9">GEPA</text>
+  <text class="chipsub" x="648" y="332">Pareto 前沿</text>
+
+  <!-- Plugin implementations -->
+  <rect x="380" y="376" width="380" height="96" rx="14" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.4"/>
+  <text class="cardtitle" x="398" y="400" fill="#047857">Plugin 实现 · 一个插件一个契约</text>
+  <text class="cn" x="398" y="416">同一契约可以有多份实现</text>
+
+  <rect x="398" y="426" width="64" height="30" rx="7" fill="#fff" stroke="#a7f3d0" stroke-width="1"/>
+  <text class="pluginchip" x="430" y="445">Proposer</text>
+  <rect x="468" y="426" width="64" height="30" rx="7" fill="#fff" stroke="#a7f3d0" stroke-width="1"/>
+  <text class="pluginchip" x="500" y="445">Evaluator</text>
+  <rect x="538" y="426" width="64" height="30" rx="7" fill="#fff" stroke="#a7f3d0" stroke-width="1"/>
+  <text class="pluginchip" x="570" y="445">Selector</text>
+  <rect x="608" y="426" width="64" height="30" rx="7" fill="#fff" stroke="#a7f3d0" stroke-width="1"/>
+  <text class="pluginchip" x="640" y="445">Agent</text>
+  <rect x="678" y="426" width="64" height="30" rx="7" fill="#fff" stroke="#a7f3d0" stroke-width="1"/>
+  <text class="pluginchip" x="710" y="445">Memory</text>
+
+  <!-- Runtime -->
+  <rect x="40" y="500" width="720" height="52" rx="14" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.4"/>
+  <text class="runtime" x="400" y="531">Runtime / Manager · 候选血缘 · 测量事实 · 实例租约 · 检查点与恢复</text>
+
+  <!-- field -> role arrows: horizontal -->
+  <path d="M304 190H376" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <text class="arrowlabel" x="340" y="184">选择</text>
+
+  <path d="M304 306H376" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <text class="arrowlabel" x="340" y="300">引用</text>
+
+  <path d="M304 424H376" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <text class="arrowlabel" x="340" y="418">绑定</text>
+
+  <!-- Policy invokes bindings -->
+  <path d="M570 356V372" fill="none" stroke="#8b5cf6" stroke-width="1.8" marker-end="url(#arrowViolet)"/>
+  <text class="arrowlabel" x="580" y="370" fill="#6d28d9" text-anchor="start">invoke</text>
+
+  <!-- Runtime executes the recipe -->
+  <path d="M180 480V496" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <text class="arrowlabel" x="192" y="492" text-anchor="start" style="font-size:9px">执行</text>
+
+  <text class="note" x="400" y="580">换目标 = 换 application 字段；换策略 = 换 policy 引用；换实现 = 换 bindings 绑定。</text>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="360" viewBox="0 0 800 360" role="img" aria-labelledby="title desc">
+  <title id="title">候选血缘：改进是分叉，不是覆盖</title>
+  <desc id="desc">基线之后得到 Round 1 候选；Round 2 同时提出 Round 2 · 1 和 Round 2 · 2 两个候选。每个候选下挂着对应的 Measurement 分数，Selector 选中分数最高的 Round 2 · 2。父候选关系让每一版都能追溯来源。</desc>
+  <defs>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .sub { fill:#64748b; font-size:14px; text-anchor:middle; }
+      .cid { fill:#0f172a; font-size:16px; font-weight:700; }
+      .cdesc { fill:#64748b; font-size:12px; }
+      .meas { fill:#475569; font-size:12px; font-family:'SFMono-Regular','Consolas',monospace; text-anchor:middle; }
+      .arrowlabel { fill:#94a3b8; font-size:9.5px; font-family:'SFMono-Regular','Consolas',monospace; text-anchor:middle; }
+      .selected { fill:#6d28d9; font-size:11px; font-weight:700; text-anchor:middle; }
+      .note { fill:#64748b; font-size:12px; text-anchor:middle; }
+    </style>
+  </defs>
+  <rect width="800" height="360" fill="#fff"/>
+
+  <text class="head" x="400" y="40">候选血缘：改进是分叉，不是覆盖</text>
+  <text class="sub" x="400" y="68">每一版都有父候选，每条分支都带着自己的体检报告</text>
+
+  <!-- baseline -->
+  <rect x="50" y="146" width="160" height="60" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.4"/>
+  <text class="cid" x="66" y="170">Baseline</text>
+  <text class="cdesc" x="66" y="188">基线 bundle</text>
+  <text class="meas" x="130" y="224">M0 · 0.48</text>
+
+  <!-- round 1 -->
+  <rect x="300" y="146" width="160" height="60" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="1.4"/>
+  <text class="cid" x="316" y="170">Round 1</text>
+  <text class="cdesc" x="316" y="188">改了 2 个 Skill 文件</text>
+  <text class="meas" x="380" y="224">M1 · 0.62</text>
+
+  <!-- round 2 candidate 1 -->
+  <rect x="560" y="88" width="160" height="60" rx="12" fill="#fff" stroke="#cbd5e1" stroke-width="1.4"/>
+  <text class="cid" x="576" y="112">Round 2 · 1</text>
+  <text class="cdesc" x="576" y="130">在上一版上继续改</text>
+  <text class="meas" x="640" y="166">M2 · 0.66</text>
+
+  <!-- round 2 candidate 2, selected -->
+  <rect x="560" y="204" width="160" height="60" rx="12" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="1.8"/>
+  <text class="cid" x="576" y="228">Round 2 · 2</text>
+  <text class="cdesc" x="576" y="246">换一种改法</text>
+  <text class="meas" x="640" y="282">M3 · 0.71</text>
+  <text class="selected" x="640" y="300">Selector 选中</text>
+
+  <!-- lineage arrows -->
+  <path d="M210 176H294" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <text class="arrowlabel" x="252" y="170">parentRef</text>
+
+  <path d="M460 166C510 166 510 118 554 118" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <path d="M460 186C510 186 510 234 554 234" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+  <text class="note" x="400" y="338">同一轮可以提出多个候选；分叉关系由 parentRef 表达。</text>
+</svg>

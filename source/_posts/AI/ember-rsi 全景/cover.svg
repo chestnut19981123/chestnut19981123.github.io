@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1280" height="720" viewBox="0 0 1280 720"
+     role="img" aria-label="多种优化目标接入同一个实验闭环，生成候选、重复测量并保存改进轨迹">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop stop-color="#FAFBFE"/>
+      <stop offset=".5" stop-color="#F0F5FC"/>
+      <stop offset="1" stop-color="#F7F9FC"/>
+    </linearGradient>
+
+    <radialGradient id="halo">
+      <stop stop-color="#C5D8FA" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#C5D8FA" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="white" x2="0" y2="1">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F8FAFE"/>
+    </linearGradient>
+
+    <linearGradient id="blue" x2="0" y2="1">
+      <stop stop-color="#78ADF5"/>
+      <stop offset="1" stop-color="#477DD9"/>
+    </linearGradient>
+
+    <linearGradient id="green" x2="1" y2="1">
+      <stop stop-color="#54C6AA"/>
+      <stop offset="1" stop-color="#239B7B"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-35%" y="-35%" width="170%" height="190%">
+      <feDropShadow dx="0" dy="12" stdDeviation="17"
+                    flood-color="#3C5A89" flood-opacity=".10"/>
+    </filter>
+
+    <filter id="smallShadow" x="-40%" y="-40%" width="180%" height="190%">
+      <feDropShadow dx="0" dy="6" stdDeviation="9"
+                    flood-color="#3C5A89" flood-opacity=".09"/>
+    </filter>
+
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none"
+            stroke="#6487BB" stroke-opacity=".045"/>
+    </pattern>
+
+    <g id="code" fill="none" stroke="#5684CD" stroke-width="3.5"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-18-9-28 0-18 9M18-9 28 0 18 9M4-12-4 12"/>
+    </g>
+
+    <g id="record" fill="none" stroke="#91A5C2"
+       stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="-16" y="-20" width="32" height="40" rx="7"/>
+      <path d="M-7-8H7M-7 0H7M-7 8H2"/>
+    </g>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect width="1280" height="720" fill="url(#grid)"/>
+  <ellipse cx="640" cy="320" rx="570" ry="330" fill="url(#halo)"/>
+
+  <!-- 三种可替换的优化目标，共同接入实验核心 -->
+  <g fill="none" stroke="#C0CFE4" stroke-width="2.5"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M520 205V218Q520 238 540 238H620Q640 238 640 258"/>
+    <path d="M760 205V218Q760 238 740 238H660Q640 238 640 258"/>
+    <path d="M640 205V264"/>
+  </g>
+
+  <g fill="url(#white)" stroke="#DCE5F2" stroke-width="1.5"
+     filter="url(#smallShadow)">
+    <rect x="478" y="127" width="84" height="78" rx="23"/>
+    <rect x="598" y="127" width="84" height="78" rx="23"/>
+    <rect x="718" y="127" width="84" height="78" rx="23"/>
+  </g>
+
+  <!-- 提示词文档 -->
+  <g transform="translate(520 166)" fill="none"
+     stroke="#7892B7" stroke-width="2.8"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-13-21H6L17-10V17Q17 22 12 22H-13Q-18 22-18 17V-16Q-18-21-13-21Z"/>
+    <path d="M5-21V-10H17M-9-1H8M-9 7H8M-9 15H1"/>
+  </g>
+
+  <!-- 推理服务 -->
+  <g transform="translate(640 166)" stroke="#7892B7"
+     stroke-width="2.8" stroke-linecap="round">
+    <rect x="-22" y="-20" width="44" height="16" rx="5" fill="none"/>
+    <rect x="-22" y="4" width="44" height="16" rx="5" fill="none"/>
+    <path d="M-3-12H12M-3 12H12"/>
+    <circle cx="-12" cy="-12" r="2" fill="#7892B7" stroke="none"/>
+    <circle cx="-12" cy="12" r="2" fill="#7892B7" stroke="none"/>
+  </g>
+
+  <!-- 算子芯片 -->
+  <g transform="translate(760 166)" fill="none"
+     stroke="#7892B7" stroke-width="2.8" stroke-linecap="round">
+    <rect x="-17" y="-17" width="34" height="34" rx="7"/>
+    <rect x="-8" y="-8" width="16" height="16" rx="3"/>
+    <path d="M-9-24V-17M9-24V-17M-9 17V24M9 17V24
+             M-24-9H-17M-24 9H-17M17-9H24M17 9H24"/>
+  </g>
+
+  <!-- 候选卡片的层叠结构表示版本，而非覆盖原件 -->
+  <g fill="#E9EFF9" stroke="#D9E3F2" stroke-width="1.5">
+    <rect x="254" y="243" width="220" height="146" rx="25"
+          transform="rotate(-5 364 316)"/>
+    <rect x="806" y="243" width="220" height="146" rx="25"
+          transform="rotate(5 916 316)"/>
+  </g>
+
+  <g fill="url(#white)" stroke="#D8E3F2" stroke-width="1.5"
+     filter="url(#shadow)">
+    <rect x="260" y="235" width="220" height="154" rx="25"/>
+    <rect x="800" y="235" width="220" height="154" rx="25"/>
+  </g>
+
+  <!-- 两份候选采用一致的图标、层级与测量结构 -->
+  <g>
+    <rect x="326" y="252" width="88" height="43" rx="14" fill="#EDF3FC"/>
+    <rect x="866" y="252" width="88" height="43" rx="14" fill="#EDF3FC"/>
+    <use href="#code" transform="translate(370 273.5)"/>
+    <use href="#code" transform="translate(910 273.5)"/>
+  </g>
+
+  <!-- 三次重复测量，右侧得到一致且更高的结果 -->
+  <g stroke="#E7EDF6" stroke-width="1.5">
+    <path d="M304 322H436M304 344H436M304 366H436"/>
+    <path d="M844 322H976M844 344H976M844 366H976"/>
+  </g>
+
+  <g fill="url(#blue)">
+    <rect x="316" y="341" width="24" height="25" rx="6"/>
+    <rect x="358" y="341" width="24" height="25" rx="6"/>
+    <rect x="400" y="341" width="24" height="25" rx="6"/>
+
+    <rect x="856" y="311" width="24" height="55" rx="6"/>
+    <rect x="898" y="311" width="24" height="55" rx="6"/>
+    <rect x="940" y="311" width="24" height="55" rx="6"/>
+  </g>
+
+  <g fill="#FFFFFF" opacity=".65">
+    <rect x="322" y="346" width="12" height="3" rx="1.5"/>
+    <rect x="364" y="346" width="12" height="3" rx="1.5"/>
+    <rect x="406" y="346" width="12" height="3" rx="1.5"/>
+    <rect x="862" y="316" width="12" height="3" rx="1.5"/>
+    <rect x="904" y="316" width="12" height="3" rx="1.5"/>
+    <rect x="946" y="316" width="12" height="3" rx="1.5"/>
+  </g>
+
+  <!-- 独立验证连接基线与候选 -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M480 312H583M697 312H800"
+          stroke="#B4C7E2" stroke-width="4"/>
+    <path d="M560 304 568 312 560 320M777 304 785 312 777 320"
+          stroke="#64748B" stroke-width="2.5"/>
+  </g>
+
+  <circle cx="640" cy="312" r="59" fill="#E1F1EC" opacity=".75"/>
+  <circle cx="640" cy="312" r="47" fill="url(#white)"
+          stroke="#D5E9E1" stroke-width="1.5"
+          filter="url(#smallShadow)"/>
+  <circle cx="640" cy="312" r="33" fill="url(#green)"/>
+  <path d="M625 312 636 323 656 301"
+        fill="none" stroke="#FFFFFF" stroke-width="5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 被选中的版本回到下一轮 -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1040 302H1056Q1080 302 1080 326V373
+             Q1080 408 1045 408H235
+             Q200 408 200 373V326Q200 302 224 302H240"
+          stroke="#C3D2E6" stroke-width="3"/>
+    <path d="M235 294 243 302 235 310"
+          stroke="#64748B" stroke-width="2.5"/>
+    <path d="M659 408H621" stroke="#88A6D0" stroke-width="4"/>
+    <path d="M629 400 621 408 629 416"
+          stroke="#64748B" stroke-width="2.5"/>
+  </g>
+
+  <!-- 下方留出横幅标题带，实验记录独立排列 -->
+  <g fill="none" stroke="#D2DDEC" stroke-width="2.5"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M430 542H850"/>
+    <path d="M640 542V518Q640 496 662 496H721"/>
+  </g>
+
+  <g fill="url(#white)" stroke="#DCE5F2" stroke-width="1.5"
+     filter="url(#smallShadow)">
+    <rect x="398" y="510" width="64" height="64" rx="18"/>
+    <rect x="608" y="510" width="64" height="64" rx="18"/>
+    <rect x="818" y="510" width="64" height="64" rx="18"/>
+  </g>
+
+  <use href="#record" transform="translate(430 542) scale(.75)"/>
+  <use href="#record" transform="translate(640 542) scale(.75)"/>
+  <use href="#record" transform="translate(850 542) scale(.75)"/>
+
+  <!-- 分叉保留；选择发生在有记录的版本之间 -->
+  <circle cx="732" cy="496" r="11" fill="#F3F6FB"
+          stroke="#BCCBDD" stroke-width="2"/>
+  <circle cx="430" cy="582" r="3" fill="#A9BDD8"/>
+  <circle cx="640" cy="582" r="3" fill="#A9BDD8"/>
+  <circle cx="850" cy="582" r="3" fill="#A9BDD8"/>
+</svg>
