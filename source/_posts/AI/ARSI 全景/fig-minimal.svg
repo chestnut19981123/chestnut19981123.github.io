@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" role="img" aria-labelledby="title desc">
   <title id="title">最小 RSI 目标：一个文件，一个谓词</title>
-  <desc id="desc">基线提示词缺少 Check the answer，确定性提案器把它整份改写为这句话，Target 校验通过后得到候选，评测分数从 0 变成 1。</desc>
+  <desc id="desc">基线提示词缺少 Check the answer，固定提案器每次都把它整份改写为这句话，Target 校验通过后得到候选，评测分数从 0 变成 1。</desc>
   <defs>
     <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#3b82f6"/></marker>
     <marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#f97316"/></marker>
@@ -39,7 +39,7 @@
   <!-- proposer -->
   <g>
     <rect x="230" y="150" width="130" height="92" rx="12" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
-    <text class="ct" x="242" y="174" fill="#1d4ed8">确定性 Proposer</text>
+    <text class="ct" x="242" y="174" fill="#1d4ed8">固定 Proposer</text>
     <text class="cn" x="242" y="192">整份改写为</text>
     <rect x="242" y="202" width="106" height="22" rx="6" fill="#dbeafe"/>
     <text class="mono" x="248" y="217" fill="#1d4ed8" style="font-size:9.5px">Check the answer</text>

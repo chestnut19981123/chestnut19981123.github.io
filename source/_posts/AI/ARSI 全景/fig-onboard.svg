@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">接入五步：从目标到可复查的实验</title>
+  <desc id="desc">第一步写 target.yaml 圈定可改范围；第二步准备 baseline 作为对照组；第三步用 recipe.yaml 和 policy.yaml 装配流程；第四步发现、注册并绑定插件；第五步用 doctor 体检、run 开跑、show 复查，最后得到候选、测量、实例和调用记录。</desc>
+  <defs>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#94a3b8"/></marker>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .sub { fill:#64748b; font-size:14px; text-anchor:middle; }
+      .ct { fill:#0f172a; font-size:15px; font-weight:700; }
+      .cn { fill:#64748b; font-size:11px; }
+      .mono { font-family:'SFMono-Regular','Consolas',monospace; font-size:10.5px; }
+      .stepnum { fill:#fff; font-size:13px; font-weight:700; text-anchor:middle; }
+      .note { fill:#64748b; font-size:12px; text-anchor:middle; }
+      .result { fill:#334155; font-size:12px; font-weight:700; }
+    </style>
+  </defs>
+  <rect width="800" height="600" fill="#fff"/>
+
+  <text class="head" x="400" y="42">接入五步：从目标到可复查的实验</text>
+  <text class="sub" x="400" y="72">先圈地，再搭基线，最后才谈优化</text>
+
+  <!-- timeline segments -->
+  <path d="M80 152V200" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <path d="M80 232V280" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <path d="M80 312V360" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <path d="M80 392V440" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <path d="M80 472V516" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+  <!-- step 1 -->
+  <circle cx="80" cy="136" r="16" fill="#fb923c"/>
+  <text class="stepnum" x="80" y="141">1</text>
+  <rect x="116" y="104" width="620" height="64" rx="14" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.4"/>
+  <text class="ct" x="140" y="131" fill="#c2410c">圈地 <tspan class="mono" fill="#c2410c">target.yaml</tspan></text>
+  <text class="cn" x="140" y="151">entries 写可改文件，protected 写禁区，constraints 限改动量</text>
+
+  <!-- step 2 -->
+  <circle cx="80" cy="216" r="16" fill="#3b82f6"/>
+  <text class="stepnum" x="80" y="221">2</text>
+  <rect x="116" y="184" width="620" height="64" rx="14" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.4"/>
+  <text class="ct" x="140" y="211" fill="#1d4ed8">搭基线 <tspan class="mono" fill="#1d4ed8">baseline/</tspan></text>
+  <text class="cn" x="140" y="231">给候选一个父版本；没有基线，「更好」只是形容词</text>
+
+  <!-- step 3 -->
+  <circle cx="80" cy="296" r="16" fill="#8b5cf6"/>
+  <text class="stepnum" x="80" y="301">3</text>
+  <rect x="116" y="264" width="620" height="64" rx="14" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.4"/>
+  <text class="ct" x="140" y="291" fill="#6d28d9">装流程 <tspan class="mono" fill="#6d28d9">recipe.yaml + policy.yaml</tspan></text>
+  <text class="cn" x="140" y="311">Recipe 装配实验并给预算，Policy 声明需要哪些契约</text>
+
+  <!-- step 4 -->
+  <circle cx="80" cy="376" r="16" fill="#10b981"/>
+  <text class="stepnum" x="80" y="381">4</text>
+  <rect x="116" y="344" width="620" height="64" rx="14" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.4"/>
+  <text class="ct" x="140" y="371" fill="#047857">接插件 <tspan class="mono" fill="#047857">extension/</tspan> 或 <tspan class="mono" fill="#047857">~/.arsi/plugins/</tspan></text>
+  <text class="cn" x="140" y="391">按「发现 → 注册 → 绑定」接入</text>
+
+  <!-- step 5 -->
+  <circle cx="80" cy="456" r="16" fill="#334155"/>
+  <text class="stepnum" x="80" y="461">5</text>
+  <rect x="116" y="424" width="620" height="64" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.4"/>
+  <text class="ct" x="140" y="451" fill="#334155">体检开跑 <tspan class="mono" fill="#334155">doctor → run → show</tspan></text>
+  <text class="cn" x="140" y="471">先检查 Schema 和插件，再跑循环，最后看记录</text>
+
+  <!-- result strip -->
+  <rect x="64" y="520" width="672" height="44" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text class="result" x="84" y="547">产物</text>
+  <text class="mono" x="136" y="547" fill="#475569">Candidate · Measurement · Instance · Call history</text>
+
+  <text class="note" x="400" y="586">五步都过了，才轮到「优化」这个词出场。</text>
+</svg>

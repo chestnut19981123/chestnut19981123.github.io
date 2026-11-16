@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="560" viewBox="0 0 800 560" role="img" aria-labelledby="title desc">
+  <title id="title">现场 Demo：一条命令，四个面板</title>
+  <desc id="desc">一条 arsi run 命令跑完最小实验，得到 succeeded、分数 0 和 1、两个候选、两条测量、两个已释放实例、零次模型调用；dashboard 的 Overview、Candidates、Measurements、Call history 四个面板分别显示这次实验的记录。</desc>
+  <defs>
+    <style>
+      text { font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+      .head { fill:#0f172a; font-size:23px; font-weight:700; text-anchor:middle; }
+      .sub { fill:#64748b; font-size:14px; text-anchor:middle; }
+      .term { font-family:'SFMono-Regular','Consolas',monospace; font-size:11px; }
+      .term2 { font-family:'SFMono-Regular','Consolas',monospace; font-size:10px; }
+      .ledger { fill:#334155; font-size:11.5px; font-weight:700; }
+      .ledgermono { font-family:'SFMono-Regular','Consolas',monospace; font-size:9.5px; fill:#475569; }
+      .ptitle { font-size:14px; font-weight:700; }
+      .plabel { fill:#64748b; font-size:10.5px; }
+      .pvalue { font-size:11px; font-weight:700; text-anchor:end; }
+      .mono { font-family:'SFMono-Regular','Consolas',monospace; }
+      .note { fill:#94a3b8; font-size:11px; text-anchor:middle; }
+    </style>
+  </defs>
+  <rect width="800" height="560" fill="#fff"/>
+
+  <text class="head" x="400" y="42">现场 Demo：一条命令，四个面板</text>
+  <text class="sub" x="400" y="72">不调模型，不拉 Docker，不需要网络</text>
+
+  <!-- terminal -->
+  <rect x="64" y="96" width="672" height="92" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="1.2"/>
+  <circle cx="84" cy="116" r="4" fill="#f87171"/>
+  <circle cx="102" cy="116" r="4" fill="#fbbf24"/>
+  <circle cx="120" cy="116" r="4" fill="#34d399"/>
+  <text class="term" x="84" y="146" fill="#e2e8f0">$ pnpm arsi run .rsi/skill-demo/recipe.yaml \</text>
+  <text class="term2" x="104" y="166" fill="#cbd5e1">--plugin-dir .rsi/skill-demo/extension --id skill-demo-01</text>
+
+  <!-- ledger strip -->
+  <rect x="64" y="204" width="672" height="40" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text class="ledger" x="84" y="229">本次实验摘要</text>
+  <text class="ledgermono" x="180" y="229">status succeeded · scores [0,1] · candidates 2 · measurements 2 · instances 2 · modelCalls 0</text>
+
+  <!-- overview -->
+  <rect x="64" y="260" width="320" height="108" rx="14" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.4"/>
+  <circle cx="84" cy="282" r="5" fill="#3b82f6"/>
+  <text class="ptitle" x="98" y="287" fill="#1d4ed8">Overview</text>
+  <path d="M84 300H364" stroke="#dbeafe" stroke-width="1"/>
+  <text class="plabel" x="84" y="322">Model calls</text>
+  <text class="pvalue" x="364" y="322" fill="#1d4ed8">未记录</text>
+  <text class="plabel" x="84" y="346">状态</text>
+  <text class="pvalue" x="364" y="346" fill="#047857">succeeded</text>
+
+  <!-- candidates -->
+  <rect x="416" y="260" width="320" height="108" rx="14" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.4"/>
+  <circle cx="436" cy="282" r="5" fill="#8b5cf6"/>
+  <text class="ptitle" x="450" y="287" fill="#6d28d9">Candidates</text>
+  <path d="M436 300H716" stroke="#ede9fe" stroke-width="1"/>
+  <text class="plabel" x="436" y="322">候选数</text>
+  <text class="pvalue" x="716" y="322" fill="#6d28d9">2</text>
+  <text class="plabel" x="436" y="346">From 列</text>
+  <text class="pvalue" x="716" y="346" fill="#6d28d9">父候选可见</text>
+
+  <!-- measurements -->
+  <rect x="64" y="384" width="320" height="108" rx="14" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.4"/>
+  <circle cx="84" cy="406" r="5" fill="#10b981"/>
+  <text class="ptitle" x="98" y="411" fill="#047857">Measurements</text>
+  <path d="M84 424H364" stroke="#d1fae5" stroke-width="1"/>
+  <text class="plabel" x="84" y="446">测量数</text>
+  <text class="pvalue" x="364" y="446" fill="#047857">2</text>
+  <text class="plabel" x="84" y="470">checkPhrase</text>
+  <text class="pvalue mono" x="364" y="470" fill="#047857">[0, 1]</text>
+
+  <!-- call history -->
+  <rect x="416" y="384" width="320" height="108" rx="14" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.4"/>
+  <circle cx="436" cy="406" r="5" fill="#fb923c"/>
+  <text class="ptitle" x="450" y="411" fill="#c2410c">Call history</text>
+  <path d="M436 424H716" stroke="#ffedd5" stroke-width="1"/>
+  <text class="plabel" x="436" y="446">Proposer / R2</text>
+  <text class="pvalue mono" x="716" y="446" fill="#c2410c">no-change</text>
+  <text class="plabel" x="436" y="470">重复测量</text>
+  <text class="pvalue" x="716" y="470" fill="#c2410c">0</text>
+
+  <text class="note" x="400" y="532">面板是示意图；数字来自最小示例的那次真实运行。</text>
+</svg>
